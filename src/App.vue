@@ -14,7 +14,6 @@
 
       <q-toolbar-title>
         <a href='#/'>Affordable Housing App</a>
-        <div slot="subtitle">Running on Quasar v{{$q.version}}</div>
       </q-toolbar-title>
     </q-toolbar>
 
@@ -42,6 +41,12 @@
     <div id="q-app">
       <router-view></router-view>
     </div>
+
+    <q-toolbar slot="footer">
+      <q-toolbar-title>
+        <div slot="subtitle">Running on Quasar, Vue, and Django Rest Framework</div>
+      </q-toolbar-title>
+    </q-toolbar>
   </q-layout>
 </template>
 
