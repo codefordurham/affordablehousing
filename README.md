@@ -24,3 +24,24 @@ https://github.com/codefordurham/datahub-dw
 This application is currently configured to access data through a Django Rest Framework (DRF). For more information to setup the DRF for this project, go to the datahub-be GitHub repository at:
 
 https://github.com/codefordurham/datahub-be
+
+# Quasar App
+
+> A Quasar project
+
+## Build Setup
+
+``` bash
+# install dependencies
+$ npm install
+
+# serve with hot reload at localhost:8080
+$ quasar dev
+
+# build for production with minification
+$ quasar build
+
+# lint code
+$ quasar lint
+```
+
