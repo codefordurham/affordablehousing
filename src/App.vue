@@ -1,10 +1,10 @@
 <template>
   <q-layout
     ref="layout"
-    view="lHh Lpr fff"
+    view="lHh Lpr lFf"
     :left-class="{'bg-grey-2': true}"
   >
-    <q-toolbar slot="header" class="glossy">
+    <q-toolbar slot="header">
       <q-btn
         flat
         @click="$refs.layout.toggleLeft()"
@@ -44,7 +44,11 @@
 
     <q-toolbar slot="footer">
       <q-toolbar-title>
-        <div slot="subtitle">Running on Quasar, Vue, and Django Rest Framework</div>
+        <div slot="subtitle">
+          <a href='http://quasar-framework.org'>Running on Quasar, </a>
+          <a href='https://vuejs.org'>Vue,</a>
+          <a href='http://www.django-rest-framework.org/'>and Django Rest Framework</a>
+        </div>
       </q-toolbar-title>
     </q-toolbar>
   </q-layout>
@@ -63,7 +67,8 @@ import {
   QListHeader,
   QItem,
   QItemSide,
-  QItemMain
+  QItemMain,
+  QInput
 } from 'quasar'
 /*
  * Root component
@@ -80,13 +85,19 @@ export default {
     QListHeader,
     QItem,
     QItemSide,
-    QItemMain
+    QItemMain,
+    QInput
   },
   data () {
     return {
-      items: routes
+      items: routes,
+      changecolor: null
     }
   }
 }
 </script>
-<style></style>
+<style>
+.text-changecolor {
+  color: white;
+}
+</style>
