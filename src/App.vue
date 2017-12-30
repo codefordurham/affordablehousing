@@ -1,21 +1,31 @@
 <template>
   <q-layout
     ref="layout"
-    view="lHh Lpr lFf"
+    view="lHh Lpr lff"
     :left-class="{'bg-grey-2': true}"
   >
-    <q-toolbar slot="header">
-      <q-btn
-        flat
-        @click="$refs.layout.toggleLeft()"
-      >
-        <q-icon name="menu" />
-      </q-btn>
-
-      <q-toolbar-title>
-        <a href='#/'>Affordable Housing App</a>
-      </q-toolbar-title>
-    </q-toolbar>
+    <div class="header" slot="header">
+      <div class="image">
+        <img src="~assets/affordablehousing.png" class="reponsive" >
+      </div>
+      <div class="apptitle" >State of Affordable<br />Housing in Durham</div>
+      <div class="mission">
+        We want to ensure Durham remains a community with enough housing<br />
+        near employment for everyone. Our vision is to support Durham by<br />
+        aggregating and organizing housing related information to move<br />
+        community consensus and investment decisions forward.
+      </div>
+      <div class="toolbar">
+        <q-toolbar>
+          <q-btn flat @click="$refs.layout.toggleLeft()">
+            <q-icon name="menu" />
+          </q-btn>
+          <q-toolbar-title>
+            <a href='#/'>Home</a>
+          </q-toolbar-title>
+        </q-toolbar>
+      </div>
+    </div>
 
     <div slot="left">
       <!--
@@ -67,8 +77,7 @@ import {
   QListHeader,
   QItem,
   QItemSide,
-  QItemMain,
-  QInput
+  QItemMain
 } from 'quasar'
 /*
  * Root component
@@ -85,8 +94,7 @@ export default {
     QListHeader,
     QItem,
     QItemSide,
-    QItemMain,
-    QInput
+    QItemMain
   },
   data () {
     return {
@@ -97,7 +105,42 @@ export default {
 }
 </script>
 <style>
-.text-changecolor {
-  color: white;
+.image { 
+   position: relative; 
+   width: 100%;
+}
+.apptitle { 
+   position: absolute;
+   font: bold 45px Georgia; 
+   color: whitesmoke;
+   text-shadow:
+     -1px -1px 0 #000,
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+     1px 1px 0 #000;   
+   letter-spacing: -1px;
+   top: 25px; 
+   left: 50px; 
+   width: 100%; 
+}
+.mission { 
+  position: absolute;
+  font: bold 15px Helvetica, Arial, Sans-Serif;
+  color: whitesmoke;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;   
+  letter-spacing: 1px;
+  top: 35px; 
+  left: 450px; 
+  width: 100%; 
+}
+.toolbar { 
+   position: absolute; 
+   top: 150px; 
+   left: 0; 
+   width: 100%; 
 }
 </style>

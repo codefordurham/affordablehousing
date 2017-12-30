@@ -17,7 +17,7 @@ Data:
   >
     <h6><center>{{ $route.name }}</center></h6>
     
-    <div id='holder'>
+    <div class='holder'>
       <div class='mapHolder'>
         <durham-map :propval='pushSelect'
           v-on:durhambgSelected='onDurhambgSelected'
@@ -31,8 +31,9 @@ Data:
       />
       <center>
         <q-select 
-          color='indigo'
-          frame-color='indigo'
+          color='brand'
+          background='brand'
+          frame-color='brand'
           separator
           v-model='select.value'
           :options=options
@@ -162,7 +163,7 @@ export default {
 </script>
 
 <style scoped>
-#holder {
+.holder {
   position: relative;
   padding-top: 50px;
   height: 650px;
@@ -174,9 +175,13 @@ export default {
   margin: auto;
 }
 .q-select {
-  color: 'indigo';
-  background-color: 'indigo';
   width: 500px;
   bottom: 60px;
+}
+.text-brand {
+  color: green;
+}
+.bg-brand {
+  background: #a2aa33;
 }
 </style>

@@ -31,8 +31,9 @@ Data:
       />
       <center>
         <q-select 
-          color='indigo'
-          frame-color='indigo'
+          color='brand'
+          background='brand'
+          frame-color='brand'
           separator
           v-model='select.value'
           :options=options
@@ -185,5 +186,11 @@ export default {
   background-color: 'indigo';
   width: 500px;
   bottom: 60px;
+}
+.text-brand {
+  color: green;
+}
+.bg-brand {
+  background: #a2aa33;
 }
 </style>
