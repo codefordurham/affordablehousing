@@ -1,7 +1,7 @@
 <template>
   <q-layout
     ref="layout"
-    view="lHh Lpr lff"
+    view="lHh Lpr lFf"
     :left-class="{'bg-grey-2': true}"
   >
     <div class="header" slot="header">
@@ -111,7 +111,7 @@ export default {
 }
 .apptitle { 
    position: absolute;
-   font: bold 45px Georgia; 
+   font: bold 45px Helvetica, Arial, Sans-Serif; 
    color: whitesmoke;
    text-shadow:
      -1px -1px 0 #000,
@@ -120,8 +120,9 @@ export default {
      1px 1px 0 #000;   
    letter-spacing: -1px;
    top: 25px; 
-   left: 50px; 
-   width: 100%; 
+   left: 40px; 
+   width: 100%;
+   line-height: 100%;
 }
 .mission { 
   position: absolute;
@@ -133,9 +134,10 @@ export default {
     -1px 1px 0 #000,
     1px 1px 0 #000;   
   letter-spacing: 1px;
-  top: 35px; 
-  left: 450px; 
-  width: 100%; 
+  top: 40px; 
+  left: 470px; 
+  width: 100%;
+  line-height: 100%;
 }
 .toolbar { 
    position: absolute; 
