@@ -2,6 +2,8 @@
   <q-layout
     ref="layout"
     :view="layoutStore.view"
+    :left-breakpoint="layoutStore.leftBreakpoint"
+    :right-breakpoint="layoutStore.rightBreakpoint"
     :reveal="layoutStore.reveal"
     :left-class="{'bg-grey-2': true}"
   >
@@ -87,9 +89,7 @@ import {
   QList,
   QListHeader,
   QItem,
-  QItemSide,
-  QItemMain,
-  QRadio
+  QItemMain
 } from 'quasar'
 
 export default {
@@ -103,9 +103,7 @@ export default {
     QList,
     QListHeader,
     QItem,
-    QItemSide,
-    QItemMain,
-    QRadio
+    QItemMain
   },
   data () {
     const v = layoutStore.view
@@ -143,8 +141,10 @@ export default {
 </script>
 <style>
 .headimage { 
-   position: relative; 
-   width: 100%;
+   position: relative;
+   height: 190;
+   width: auto;
+   overflow: hidden; 
 }
 .apptitle { 
    position: absolute;
