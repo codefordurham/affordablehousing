@@ -50,12 +50,12 @@
         <q-item>
           <a href='#/'>
             <q-item-main label='Home:' sublabel='Affordable Housing'/>
-          </a>          
+          </a>   
         </q-item>
         <q-item v-for="item in items" :key="item.id">
-          <router-link :to="item.path">
+          <q-side-link :to="item.path">
             <q-item-main :label="item.type" :sublabel="item.name" />
-          </router-link>
+          </q-side-link>
         </q-item>
       </q-list>
     </div>
@@ -89,7 +89,8 @@ import {
   QList,
   QListHeader,
   QItem,
-  QItemMain
+  QItemMain,
+  QSideLink
 } from 'quasar'
 
 export default {
@@ -103,7 +104,8 @@ export default {
     QList,
     QListHeader,
     QItem,
-    QItemMain
+    QItemMain,
+    QSideLink
   },
   data () {
     const v = layoutStore.view
