@@ -1,11 +1,12 @@
 <template>
   <q-layout
     ref="layout"
-    view="lHh Lpr lFf"
+    :view="layoutStore.view"
+    :reveal="layoutStore.reveal"
     :left-class="{'bg-grey-2': true}"
   >
     <div class="header" slot="header">
-      <div class="image">
+      <div class="headimage">
         <img src="~assets/affordablehousing.png" class="reponsive" >
       </div>
       <div class="apptitle" >State of Affordable<br />Housing in Durham</div>
@@ -28,6 +29,9 @@
           </q-btn>
           <q-btn flat>
             <a href='#/durhambgs2-map'>Map Two</a>
+          </q-btn>
+          <q-btn flat @click="changeView" >
+            <q-icon name="import export" />
           </q-btn>
         </q-toolbar>
       </div>
@@ -71,6 +75,7 @@
 </template>
 
 <script>
+import layoutStore from './store/layout'
 import { routes } from 'router/graphs'
 
 import {
@@ -83,11 +88,10 @@ import {
   QListHeader,
   QItem,
   QItemSide,
-  QItemMain
+  QItemMain,
+  QRadio
 } from 'quasar'
-/*
- * Root component
- */
+
 export default {
   name: 'q-app',
   components: {
@@ -100,18 +104,45 @@ export default {
     QListHeader,
     QItem,
     QItemSide,
-    QItemMain
+    QItemMain,
+    QRadio
   },
   data () {
+    const v = layoutStore.view
     return {
+      layoutStore,
       items: routes,
-      changecolor: null
+      layoutvals: v,
+      isActive: false
+    }
+  },
+  methods: {
+    changeView () {
+      this.isActive = !this.isActive
+      if (this.isActive === true) {
+        this.layoutvals = 'lhh Lpr lff'
+      }
+      else if (this.isActive === false) {
+        this.layoutvals = 'lHh Lpr lFf'
+      }
+    }
+  },
+  computed: {
+    changeWatch () {
+      const
+        layout = `${this.layoutvals}`
+      return `${layout}`
+    }
+  },
+  watch: {
+    changeWatch (v) {
+      layoutStore.view = v
     }
   }
 }
 </script>
 <style>
-.image { 
+.headimage { 
    position: relative; 
    width: 100%;
 }
