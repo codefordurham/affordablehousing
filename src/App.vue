@@ -12,12 +12,14 @@
         <img src="~assets/affordablehousing.png" class="reponsive" >
       </div>
       <div class="apptitle" >State of Affordable<br />Housing in Durham</div>
-      <div class="mission">
+
+      <div class="mission" >
         We want to ensure Durham remains a community with enough housing<br />
         near employment for everyone. Our vision is to support Durham by<br />
         aggregating and organizing housing related information to move<br />
         community consensus and investment decisions forward.
       </div>
+
       <div class="toolbar">
         <q-toolbar>
           <q-btn flat @click="$refs.layout.toggleLeft()">
@@ -163,20 +165,27 @@ export default {
    width: 100%;
    line-height: 100%;
 }
-.mission { 
-  position: absolute;
-  font: bold 15px Helvetica, Arial, Sans-Serif;
-  color: whitesmoke;
-  text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;   
-  letter-spacing: 1px;
-  top: 40px; 
-  left: 470px; 
-  width: 100%;
-  line-height: 100%;
+@media (min-width: 900px) {
+  .mission { 
+    position: absolute;
+    font: bold 15px Helvetica, Arial, Sans-Serif;
+    color: whitesmoke;
+    text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;   
+    letter-spacing: 1px;
+    top: 40px; 
+    left: 470px; 
+    width: 100%;
+    line-height: 100%;
+  }
+}
+@media (max-width: 899px) {
+  .mission {
+    display: none;
+  }
 }
 .toolbar { 
    position: absolute; 
