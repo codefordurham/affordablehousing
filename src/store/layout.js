@@ -3,7 +3,7 @@ export default {
   reveal: false,
   leftScroll: true,
   rightScroll: true,
-  leftBreakpoint: 0, // 996,
+  leftBreakpoint: 1366, // 996,
   rightBreakpoint: 1200,
   hideTabs: false
 }
