@@ -181,11 +181,17 @@ export default {
   position: absolute;
   margin: auto;
 }
-.q-select {
-  color: 'indigo';
-  background-color: 'indigo';
-  width: 500px;
-  bottom: 60px;
+@media (min-width: 600px) {
+  .q-select {
+    width: 500px;
+    bottom: 60px;
+  }
+}
+@media (max-width: 599px) {
+  .q-select {
+    width: 300px;
+    bottom: 60px;
+  }
 }
 .text-brand {
   color: green;
