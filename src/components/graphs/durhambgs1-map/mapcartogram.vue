@@ -29,13 +29,18 @@ const colors = d3Chromatic.schemeRdYlGn[3].reverse()
 const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
 const path = d3.geoPath().projection(projection)
 
+const width = 600
+const height = 500
+var centered
+
 export default {
   data: function () {
     return {
       cartogram: null,
       topology: null,
       geometries: null,
-      durhambgs: null
+      durhambgs: null,
+      layer: null
     }
   },
   mounted: function () {
@@ -47,10 +52,20 @@ export default {
       .properties(function (d) {
         return dataById.get(d.id)
       })
-    var svg = d3.select(this.$el)
-    var layer = svg.append('g')
+
+    const svg = d3.select(this.$el)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+    svg.append('rect')
+      .attr('class', 'background')
+      .attr('width', width)
+      .attr('height', height)
+      .on('click', mounthis.clicked)
+
+    mounthis.layer = svg.append('g')
       .attr('id', 'layer')
-    mounthis.durhambgs = layer.append('g')
+    mounthis.durhambgs = mounthis.layer.append('g')
       .attr('id', 'durhambgs')
       .selectAll('path')
 
@@ -64,12 +79,13 @@ export default {
           .rollup(function (d) { return d[0] })
           .map(data)
 
-        layer.selectAll('.tooltip')
+        mounthis.layer.selectAll('.tooltip')
           .data(topojson.feature(mounthis.topology, mounthis.topology.objects.durhambgs).features)
           .enter()
           .append('path')
           .attr('class', 'tooltip')
           .attr('d', path)
+          .on('click', mounthis.clicked)
           .on('mouseover', function (d) {
             mounthis.$emit('durhambgSelected', d.id)
           })
@@ -77,7 +93,7 @@ export default {
             mounthis.$emit('durhambgDeselected', d.id)
           })
 
-        var features = mounthis.cartogram.features(mounthis.topology, mounthis.geometries)
+        let features = mounthis.cartogram.features(mounthis.topology, mounthis.geometries)
 
         mounthis.durhambgs = mounthis.durhambgs.data(features)
           .enter()
@@ -99,7 +115,7 @@ export default {
           lo = values[0],
           hi = values[values.length - 1]
 
-        var color = d3.scaleLinear()
+        let color = d3.scaleLinear()
           .domain([lo, d3.mean(values), hi])
           .range(colors)
 
@@ -143,12 +159,43 @@ export default {
         .attr('fill', function (d) {
           return color(value(d))
         })
+    },
+    clicked: function (d) {
+      let x
+      let y
+      let k
+
+      if (d && centered !== d) {
+        let centroid = path.centroid(d)
+        x = centroid[0]
+        y = centroid[1]
+        k = 4
+        centered = d
+      }
+      else {
+        x = width / 2
+        y = height / 2
+        k = 1
+        centered = null
+      }
+
+      this.layer.selectAll('path')
+        .classed('active', centered && function (d) { return d === centered })
+
+      this.layer.transition()
+        .duration(750)
+        .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')scale(' + k + ')translate(' + -x + ',' + -y + ')')
+        .style('stroke-width', 1.5 / k + 'px')
     }
   }
 }
 </script>
 
 <style>
+.background {
+  fill: none;
+  pointer-events: all;
+}
 .durhambg {
   stroke: #98999b;
 }
