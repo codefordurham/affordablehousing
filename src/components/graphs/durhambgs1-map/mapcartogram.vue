@@ -12,7 +12,7 @@ Links:
 -->
 
 <template>
-  <svg width='600' height='500'></svg>
+  <svg width='600' height='600'></svg>
 </template>
 
 <script>
@@ -30,15 +30,20 @@ const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precisio
 const path = d3.geoPath().projection(projection)
 
 const width = 600
-const height = 500
+const height = 600
 var centered
 
 export default {
   data: function () {
     return {
+      cntycartogram: null,
+      cntyboundaries: null,
+      municartogram: null,
+      muniboundaries: null,
       cartogram: null,
       topology: null,
       geometries: null,
+      durhamhds: null,
       durhambgs: null,
       layer: null
     }
@@ -46,6 +51,11 @@ export default {
   mounted: function () {
     var mounthis = this
     var dataById
+
+    mounthis.cntycartogram = d3Cartogram.d3.cartogram()
+      .projection(projection)
+    mounthis.municartogram = d3Cartogram.d3.cartogram()
+      .projection(projection)
 
     mounthis.cartogram = d3Cartogram.d3.cartogram()
       .projection(projection)
@@ -65,9 +75,57 @@ export default {
 
     mounthis.layer = svg.append('g')
       .attr('id', 'layer')
+      .attr('class', 'key')
+      .attr('transform', 'translate(0,40)')
+    mounthis.cntyboundaries = mounthis.layer.append('g')
+      .attr('id', 'cntyboundaries')
+      .selectAll('path')
+    mounthis.muniboundaries = mounthis.layer.append('g')
+      .attr('id', 'muniboundaries')
+      .selectAll('path')
     mounthis.durhambgs = mounthis.layer.append('g')
       .attr('id', 'durhambgs')
       .selectAll('path')
+
+    d3.json('statics/data/cntyboundaries.topojson', function (topo) {
+      let topology = topo
+      let geometries = topology.objects.cntyboundaries.geometries
+
+      let features = mounthis.cntycartogram.features(topology, geometries)
+
+      mounthis.cntyboundaries = mounthis.cntyboundaries.data(features)
+        .enter()
+        .append('path')
+        .attr('class', 'cntyboundary')
+        .attr('id', function (d) {
+          return d.id
+        })
+        .attr('d', path)
+
+      mounthis.cntyboundaries.transition()
+        .duration(750)
+        .ease(d3.easeLinear)
+    })
+
+    d3.json('statics/data/muniboundaries.topojson', function (topo) {
+      let topology = topo
+      let geometries = topology.objects.muniboundaries.geometries
+
+      let features = mounthis.municartogram.features(topology, geometries)
+
+      mounthis.muniboundaries = mounthis.muniboundaries.data(features)
+        .enter()
+        .append('path')
+        .attr('class', 'muniboundary')
+        .attr('id', function (d) {
+          return d.id
+        })
+        .attr('d', path)
+
+      mounthis.muniboundaries.transition()
+        .duration(750)
+        .ease(d3.easeLinear)
+    })
 
     d3.json('statics/data/durhambgs.json', function (topo) {
       mounthis.topology = topo
@@ -196,7 +254,16 @@ export default {
   fill: none;
   pointer-events: all;
 }
+.cntyboundary {
+  stroke: gray;
+  fill: white;
+}
+.muniboundary {
+  stroke: gray;
+  fill: lightgray;
+}
 .durhambg {
+  opacity: 0.9;
   stroke: #98999b;
 }
 .tooltip {

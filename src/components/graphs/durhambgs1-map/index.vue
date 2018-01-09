@@ -166,8 +166,8 @@ export default {
 .holder {
   position: relative;
   padding-top: 50px;
-  height: 650px;
-  width: 700px;
+  height: 600px;
+  width: 600px;
   margin: auto;
 }
 .mapHolder {
