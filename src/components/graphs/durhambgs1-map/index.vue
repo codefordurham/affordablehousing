@@ -16,7 +16,7 @@ Data:
     :left-class="{'bg-grey-2': true}"
   >
     <h6><center>{{ $route.name }}</center></h6>
-    
+
     <div class='holder'>
       <div class='mapHolder'>
         <durham-map :propval='pushSelect'
@@ -30,7 +30,7 @@ Data:
         :description='currentDurhambgDescription'
       />
       <center>
-        <q-select 
+        <q-select
           color='brand'
           background='brand'
           frame-color='brand'
@@ -64,6 +64,7 @@ import {
 const tooltip = load('mixins/tooltip')
 
 // Data stuff
+// TODO: setup a function to determine development vs. production
 const SINGFAMHOUSE_DATA_PATH = 'http://127.0.0.1:8000/api/singfamhouse/?format=json'
 
 function numberWithCommas (x) {

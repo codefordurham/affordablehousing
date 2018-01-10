@@ -1,15 +1,21 @@
-# affordablehousing
-This is the start of the affordable Housing for Durham website, which is part of Code for Durham. The map was derived from the d3 cartogram, at:
+# Affordable Housing
+
+This is the start of the affordable Housing for Durham website, which is part of [Code for Durham](http://codefordurham.com/).
+
+This project is built with Vue, Quasar, and D3
+
+Documentation for Vue:
+
+https://vuejs.org/v2/guide/
+
+Documentation for Quasar:
+
+http://quasar-framework.org/
+
+The map was derived from the d3 cartogram, at:
 
 https://github.com/shawnbot/topogram,
 
-and d3 vue examples at:
-
-https://github.com/CorpGlory/d3vue,
-
-with the addition of v-select vue app at:
-
-https://sagalbot.github.io/vue-select/.
 
 The data for the map was obtained from the NC OneMap at:
 
@@ -17,23 +23,41 @@ http://www.nconemap.com/ and from Durham Neighborhood Commpass at:
 
 http://compass.durhamnc.gov/
 
-For information on how to process these datasets go to the datahub data wrangling GitHub repository at:
+Potential source for user stories
 
-https://github.com/codefordurham/datahub-dw
+https://docs.google.com/document/d/1gQ-7Ut-ciY7ZgD8g2rcWSk2qJsk00ajZAuwDcXmcGt4/edit?usp=drivesdk
 
-This application is currently configured to access data through a Django Rest Framework (DRF). For more information to setup the DRF for this project, go to the datahub-be GitHub repository at:
+**Getting up and running**
+
+Clone or download this repo.
+
+Install dependencies
+```
+$ npm install
+```
+Run the front end on localhost
+```
+$ npm run dev
+```
+
+This application is currently configured to access data through a Django Rest Framework (DRF). The current DRF for this project is datahub-be. You need to clone or download this GitHub repository and follow the instructions in the README:
 
 https://github.com/codefordurham/datahub-be
 
-# Quasar App
+The back end provides the data to generate the maps. When it is setup and running the maps will show in the app.
+
+## Quasar App
 
 > A Quasar project
+
+Install Quasar globally in your machine to get use of the CLIs
+```
+npm install -g quasar-cli
+```
 
 ## Build Setup
 
 ``` bash
-# install dependencies
-$ npm install
 
 # serve with hot reload at localhost:8080
 $ quasar dev
@@ -45,3 +69,11 @@ $ quasar build
 $ quasar lint
 ```
 
+## Contributing
+Contact [Colin Copeland](https://github.com/copelco) to request write permission to the repos.
+
+Read through the USERSTORIES.md and TODO.md. User stories are the desired features of the application. Todos are items like researching technologies that we may use or how to implement a feature.
+
+Look at the issues on the repos. Claim an issue under 'Assignees' by assigning yourself to the issue.
+
+Pull from master branch. Switch to a branch `git checkout -b <your name>`. Only push to your branch. Do not push to master! Run your branch locally to check for errors before submitting a pull request. In the comments, reference the issue number that the pull request resolves, or any questions.
