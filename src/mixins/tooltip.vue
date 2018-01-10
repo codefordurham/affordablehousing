@@ -27,9 +27,9 @@ module.exports = {
 #tooltipContainer {
   position: absolute;
   bottom: 0;
-  width: 150px;
-  left: 5px;
-  bottom: 250px;
+  width: 200px;
+  left: 50px;
+  bottom: 300px;
   font-size: 12px;
   line-height: 16px;
   padding: 10px;
