@@ -45,6 +45,8 @@ export default {
       geometries: null,
       durhamhds: null,
       durhambgs: null,
+      roadscartogram: null,
+      osmroads: null,
       layer: null
     }
   },
@@ -56,12 +58,13 @@ export default {
       .projection(projection)
     mounthis.municartogram = d3Cartogram.d3.cartogram()
       .projection(projection)
-
     mounthis.cartogram = d3Cartogram.d3.cartogram()
       .projection(projection)
       .properties(function (d) {
         return dataById.get(d.id)
       })
+    mounthis.roadscartogram = d3Cartogram.d3.cartogram()
+      .projection(projection)
 
     const svg = d3.select(this.$el)
       .append('svg')
@@ -85,6 +88,9 @@ export default {
       .selectAll('path')
     mounthis.durhambgs = mounthis.layer.append('g')
       .attr('id', 'durhambgs')
+      .selectAll('path')
+    mounthis.osmroads = mounthis.layer.append('g')
+      .attr('id', 'osmroads')
       .selectAll('path')
 
     d3.json('statics/data/cntyboundaries.topojson', function (topo) {
@@ -184,6 +190,26 @@ export default {
             return color(value(d))
           })
       })
+    })
+
+    d3.json('statics/data/osm_roads_gen0.topojson', function (topo) {
+      let topology = topo
+      let geometries = topology.objects.osm_roads_gen0.geometries
+
+      let features = mounthis.roadscartogram.features(topology, geometries)
+
+      mounthis.osmroads = mounthis.osmroads.data(features)
+        .enter()
+        .append('path')
+        .attr('class', 'osm_roads_gen0')
+        .attr('id', function (d) {
+          return d.id
+        })
+        .attr('d', path)
+
+      mounthis.osmroads.transition()
+        .duration(750)
+        .ease(d3.easeLinear)
     })
   },
   props: ['propval'],
