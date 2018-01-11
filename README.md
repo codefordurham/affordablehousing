@@ -23,10 +23,6 @@ http://www.nconemap.com/ and from Durham Neighborhood Commpass at:
 
 http://compass.durhamnc.gov/
 
-Potential source for user stories
-
-https://docs.google.com/document/d/1gQ-7Ut-ciY7ZgD8g2rcWSk2qJsk00ajZAuwDcXmcGt4/edit?usp=drivesdk
-
 **Getting up and running**
 
 Clone or download this repo.
