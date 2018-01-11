@@ -127,7 +127,7 @@ export default {
         .ease(d3.easeLinear)
     })
 
-    d3.json('statics/data/durhambgs.json', function (topo) {
+    d3.json('statics/data/durhambgs.topojson', function (topo) {
       mounthis.topology = topo
       mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
 
