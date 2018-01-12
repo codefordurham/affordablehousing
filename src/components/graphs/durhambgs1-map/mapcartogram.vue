@@ -12,7 +12,7 @@ Links:
 -->
 
 <template>
-  <svg width='600' height='600'></svg>
+  <svg width='580' height='600'></svg>
 </template>
 
 <script>
@@ -29,24 +29,26 @@ const colors = d3Chromatic.schemeRdYlGn[3].reverse()
 const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
 const path = d3.geoPath().projection(projection)
 
-const width = 600
-const height = 600
+const width = 580
+const height = 580
 var centered
 
 export default {
   data: function () {
     return {
-      cntycartogram: null,
-      cntyboundaries: null,
       municartogram: null,
       muniboundaries: null,
+      cntycartogram: null,
+      cntyboundaries: null,
+      // watercartogram: null,
+      // osm_waterways: null,
       cartogram: null,
       topology: null,
       geometries: null,
       durhamhds: null,
       durhambgs: null,
       roadscartogram: null,
-      osmroads: null,
+      osm_roads_gen0: null,
       layer: null
     }
   },
@@ -54,9 +56,11 @@ export default {
     var mounthis = this
     var dataById
 
-    mounthis.cntycartogram = d3Cartogram.d3.cartogram()
-      .projection(projection)
     mounthis.municartogram = d3Cartogram.d3.cartogram()
+      .projection(projection)
+    /* mounthis.watercartogram = d3Cartogram.d3.cartogram()
+      .projection(projection) */
+    mounthis.cntycartogram = d3Cartogram.d3.cartogram()
       .projection(projection)
     mounthis.cartogram = d3Cartogram.d3.cartogram()
       .projection(projection)
@@ -80,61 +84,57 @@ export default {
       .attr('id', 'layer')
       .attr('class', 'key')
       .attr('transform', 'translate(0,40)')
-    mounthis.cntyboundaries = mounthis.layer.append('g')
-      .attr('id', 'cntyboundaries')
-      .selectAll('path')
     mounthis.muniboundaries = mounthis.layer.append('g')
       .attr('id', 'muniboundaries')
+      .selectAll('path')
+    /* mounthis.osm_waterareas = mounthis.layer.append('g')
+      .attr('id', 'osm_waterarea')
+      .selectAll('path') */
+    mounthis.cntyboundaries = mounthis.layer.append('g')
+      .attr('id', 'cntyboundaries')
       .selectAll('path')
     mounthis.durhambgs = mounthis.layer.append('g')
       .attr('id', 'durhambgs')
       .selectAll('path')
-    mounthis.osmroads = mounthis.layer.append('g')
-      .attr('id', 'osmroads')
+    mounthis.osm_roads_gen0 = mounthis.layer.append('g')
+      .attr('id', 'osm_roads_gen0')
       .selectAll('path')
 
-    d3.json('statics/data/cntyboundaries.topojson', function (topo) {
-      let topology = topo
-      let geometries = topology.objects.cntyboundaries.geometries
-
-      let features = mounthis.cntycartogram.features(topology, geometries)
-
-      mounthis.cntyboundaries = mounthis.cntyboundaries.data(features)
-        .enter()
-        .append('path')
-        .attr('class', 'cntyboundary')
-        .attr('id', function (d) {
-          return d.id
-        })
-        .attr('d', path)
-
-      mounthis.cntyboundaries.transition()
-        .duration(750)
-        .ease(d3.easeLinear)
-    })
-
-    d3.json('statics/data/muniboundaries.topojson', function (topo) {
-      let topology = topo
+    d3.json('statics/data/muniboundaries.topojson', function (topology) {
       let geometries = topology.objects.muniboundaries.geometries
-
       let features = mounthis.municartogram.features(topology, geometries)
 
       mounthis.muniboundaries = mounthis.muniboundaries.data(features)
         .enter()
         .append('path')
         .attr('class', 'muniboundary')
-        .attr('id', function (d) {
-          return d.id
-        })
         .attr('d', path)
-
-      mounthis.muniboundaries.transition()
-        .duration(750)
-        .ease(d3.easeLinear)
     })
 
-    d3.json('statics/data/durhambgs.topojson', function (topo) {
-      mounthis.topology = topo
+    /* d3.json('statics/data/osm_waterarea.topojson', function (topology) {
+      let geometries = topology.objects.osm_waterareas.geometries
+      let features = mounthis.watercartogram.features(topology, geometries)
+
+      mounthis.osm_waterareas = mounthis.osm_waterareas.data(features)
+        .enter()
+        .append('path')
+        .attr('class', 'osm_waterarea')
+        .attr('d', path)
+    }) */
+
+    d3.json('statics/data/cntyboundaries.topojson', function (topology) {
+      let geometries = topology.objects.cntyboundaries.geometries
+      let features = mounthis.cntycartogram.features(topology, geometries)
+
+      mounthis.cntyboundaries = mounthis.cntyboundaries.data(features)
+        .enter()
+        .append('path')
+        .attr('class', 'cntyboundary')
+        .attr('d', path)
+    })
+
+    d3.json('statics/data/durhambgs.topojson', function (topology) {
+      mounthis.topology = topology
       mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
 
       d3.json('http://127.0.0.1:8000/api/singfamhouse/?format=json', function (data) {
@@ -192,24 +192,22 @@ export default {
       })
     })
 
-    d3.json('statics/data/osm_roads_gen0.topojson', function (topo) {
-      let topology = topo
+    d3.json('statics/data/osm_roads_gen0.topojson', function (topology) {
       let geometries = topology.objects.osm_roads_gen0.geometries
+
+      mounthis.layer.selectAll('.osm_roads_gen0')
+        .data(topojson.feature(topology, topology.objects.osm_roads_gen0).features)
+        .enter().append('path')
+        .attr('class', function (d) { return 'osm_roads_gen0' + d.properties.type })
+        .attr('d', path)
 
       let features = mounthis.roadscartogram.features(topology, geometries)
 
-      mounthis.osmroads = mounthis.osmroads.data(features)
+      mounthis.osm_roads_gen0 = mounthis.osm_roads_gen0.data(features)
         .enter()
         .append('path')
         .attr('class', 'osm_roads_gen0')
-        .attr('id', function (d) {
-          return d.id
-        })
         .attr('d', path)
-
-      mounthis.osmroads.transition()
-        .duration(750)
-        .ease(d3.easeLinear)
     })
   },
   props: ['propval'],
@@ -280,17 +278,40 @@ export default {
   fill: none;
   pointer-events: all;
 }
-.cntyboundary {
-  stroke: gray;
-  fill: white;
-}
 .muniboundary {
   stroke: gray;
   fill: lightgray;
 }
+/* .osm_waterarea {
+  stroke: blue;
+  fill: blue;
+} */
+.cntyboundary {
+  stroke: gray;
+  fill: none;
+}
 .durhambg {
   opacity: 0.9;
   stroke: #98999b;
+}
+.osm_roads_gen0 {
+  fill: none;
+  stroke: #000;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.osm_roads_gen0.primary {
+  stroke: #776;
+}
+.osm_roads_gen0.secondary {
+  stroke: #ccb;
+}
+.osm_roads_gen0.motorway {
+  stroke: #f39;
+  stroke-width: 1.5px;
+}
+.osm_roads_gen0.rail {
+  stroke: gray;
 }
 .tooltip {
   fill: rgba(255, 255, 255, 0.0);

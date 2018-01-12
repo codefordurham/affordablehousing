@@ -166,8 +166,8 @@ export default {
 .holder {
   position: relative;
   padding-top: 50px;
-  height: 600px;
-  width: 600px;
+  height: 700px;
+  width: 580px;
   margin: auto;
 }
 .mapHolder {
@@ -185,11 +185,5 @@ export default {
     width: 300px;
     bottom: 60px;
   }
-}
-.text-brand {
-  color: green;
-}
-.bg-brand {
-  background: #a2aa33;
 }
 </style>

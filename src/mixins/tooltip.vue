@@ -19,7 +19,7 @@ module.exports = {
 
 #tooltipPositioner {
   position: relative;
-  left: 55%;
+  left: 57%;
   top: 400px;
   width: 250px;
 }
