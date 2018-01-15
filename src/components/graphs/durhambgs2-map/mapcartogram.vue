@@ -26,20 +26,25 @@ import * as d3Chromatic from 'd3-scale-chromatic'
 const colors = d3Chromatic.schemeRdYlGn[3].reverse()
 // const colors = d3Chromatic.schemeBlues[9]
 
-const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
-const path = d3.geoPath().projection(projection)
-
 const width = 600
 const height = 500
 var centered
 
+const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
+const path = d3.geoPath().projection(projection)
+const roadsurls = ['roads.572-802.geojson', 'roads.573-802.geojson', 'roads.574-802.geojson', 'roads.575-802.geojson', 'roads.576-802.geojson', 'roads.577-802.geojson', 'roads.572-803.geojson', 'roads.573-803.geojson', 'roads.574-803.geojson', 'roads.575-803.geojson', 'roads.576-803.geojson', 'roads.577-803.geojson', 'roads.572-804.geojson', 'roads.573-804.geojson', 'roads.574-804.geojson', 'roads.575-804.geojson', 'roads.576-804.geojson', 'roads.577-804.geojson', 'roads.572-805.geojson', 'roads.573-805.geojson', 'roads.574-805.geojson', 'roads.575-805.geojson', 'roads.576-805.geojson', 'roads.577-805.geojson']
+
 export default {
   data: function () {
     return {
+      muniboundaries: null,
+      cntyboundaries: null,
       cartogram: null,
       topology: null,
       geometries: null,
+      durhamhds: null,
       durhambgs: null,
+      roads: null,
       layer: null
     }
   },
@@ -65,12 +70,43 @@ export default {
 
     mounthis.layer = svg.append('g')
       .attr('id', 'layer')
+    mounthis.muniboundaries = mounthis.layer.append('g')
+      .attr('id', 'muniboundaries')
+      .selectAll('path')
+    mounthis.cntyboundaries = mounthis.layer.append('g')
+      .attr('id', 'cntyboundaries')
+      .selectAll('path')
     mounthis.durhambgs = mounthis.layer.append('g')
       .attr('id', 'durhambgs')
       .selectAll('path')
+    mounthis.roads = mounthis.layer.append('g')
+      .attr('id', 'roads')
+      .selectAll('path')
 
-    d3.json('statics/data/durhambgs.topojson', function (topo) {
-      mounthis.topology = topo
+    d3.json('statics/data/muniboundaries.topojson', function (topology) {
+      let geojson = topojson.feature(topology, topology.objects.muniboundaries)
+
+      mounthis.muniboundaries
+        .data(geojson.features)
+        .enter()
+        .append('path')
+        .attr('class', 'muniboundary')
+        .attr('d', path)
+    })
+
+    d3.json('statics/data/cntyboundaries.topojson', function (topology) {
+      let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
+
+      mounthis.cntyboundaries
+        .data(geojson.features)
+        .enter()
+        .append('path')
+        .attr('class', 'cntyboundary')
+        .attr('d', path)
+    })
+
+    d3.json('statics/data/durhambgs.topojson', function (topology) {
+      mounthis.topology = topology
       mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
 
       d3.json('http://127.0.0.1:8000/api/propsales/?format=json', function (data) {
@@ -127,6 +163,17 @@ export default {
           })
       })
     })
+
+    for (var i = 0; i < roadsurls.length; i++) {
+      d3.json('statics/data/' + roadsurls[i], function (geojson) {
+        mounthis.roads
+          .data(geojson.features)
+          .enter().append('path')
+          .attr('class', 'roads')
+          .attr('class', function (d) { return d.properties.kind })
+          .attr('d', path)
+      })
+    }
   },
   props: ['propval'],
   watch: {
@@ -194,6 +241,59 @@ export default {
 .background {
   fill: none;
   pointer-events: all;
+}
+.muniboundary {
+  stroke: gray;
+  fill: lightgray;
+}
+.cntyboundary {
+  stroke: gray;
+  fill: none;
+}
+.durhambg {
+  opacity: 0.9;
+  stroke: #98999b;
+}
+.roads {
+  fill: none;
+  stroke: white;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.major_road {
+  fill: none;
+  stroke: #fb7b7a;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.minor_road {
+  fill: none;
+  stroke: #999;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.highway {
+  fill: none;
+  stroke: blue;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.rail {
+  fill: none;
+  stroke: #503D3F;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.path {
+  fill: none;
+  stroke: brown;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
 .durhambg {
   stroke: #98999b;

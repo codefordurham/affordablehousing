@@ -279,7 +279,7 @@ export default {
 }
 .highway {
   fill: none;
-  stroke: red;
+  stroke: blue;
   stroke-width: 1.5px;
   stroke-linejoin: round;
   stroke-linecap: round;
