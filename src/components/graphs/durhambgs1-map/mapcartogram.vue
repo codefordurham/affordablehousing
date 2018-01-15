@@ -12,7 +12,7 @@ Links:
 -->
 
 <template>
-  <svg width='580' height='600'></svg>
+  <svg width='580' height='580'></svg>
 </template>
 
 <script>
@@ -26,29 +26,26 @@ import * as d3Chromatic from 'd3-scale-chromatic'
 const colors = d3Chromatic.schemeRdYlGn[3].reverse()
 // const colors = d3Chromatic.schemeBlues[9]
 
-const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
-const path = d3.geoPath().projection(projection)
-
 const width = 580
 const height = 580
 var centered
 
+const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
+const path = d3.geoPath().projection(projection)
+const urls = ['roads.572-802.geojson', 'roads.573-802.geojson', 'roads.574-802.geojson', 'roads.575-802.geojson', 'roads.576-802.geojson', 'roads.577-802.geojson', 'roads.572-803.geojson', 'roads.573-803.geojson', 'roads.574-803.geojson', 'roads.575-803.geojson', 'roads.576-803.geojson', 'roads.577-803.geojson', 'roads.572-804.geojson', 'roads.573-804.geojson', 'roads.574-804.geojson', 'roads.575-804.geojson', 'roads.576-804.geojson', 'roads.577-804.geojson', 'roads.572-805.geojson', 'roads.573-805.geojson', 'roads.574-805.geojson', 'roads.575-805.geojson', 'roads.576-805.geojson', 'roads.577-805.geojson']
+
 export default {
   data: function () {
     return {
-      municartogram: null,
       muniboundaries: null,
-      cntycartogram: null,
       cntyboundaries: null,
-      // watercartogram: null,
       // osm_waterways: null,
       cartogram: null,
       topology: null,
       geometries: null,
       durhamhds: null,
       durhambgs: null,
-      roadscartogram: null,
-      osm_roads_gen0: null,
+      tiles: null,
       layer: null
     }
   },
@@ -56,19 +53,11 @@ export default {
     var mounthis = this
     var dataById
 
-    mounthis.municartogram = d3Cartogram.d3.cartogram()
-      .projection(projection)
-    /* mounthis.watercartogram = d3Cartogram.d3.cartogram()
-      .projection(projection) */
-    mounthis.cntycartogram = d3Cartogram.d3.cartogram()
-      .projection(projection)
     mounthis.cartogram = d3Cartogram.d3.cartogram()
       .projection(projection)
       .properties(function (d) {
         return dataById.get(d.id)
       })
-    mounthis.roadscartogram = d3Cartogram.d3.cartogram()
-      .projection(projection)
 
     const svg = d3.select(this.$el)
       .append('svg')
@@ -96,15 +85,15 @@ export default {
     mounthis.durhambgs = mounthis.layer.append('g')
       .attr('id', 'durhambgs')
       .selectAll('path')
-    mounthis.osm_roads_gen0 = mounthis.layer.append('g')
-      .attr('id', 'osm_roads_gen0')
+    mounthis.tiles = mounthis.layer.append('g')
+      .attr('id', 'tile')
       .selectAll('path')
 
     d3.json('statics/data/muniboundaries.topojson', function (topology) {
-      let geometries = topology.objects.muniboundaries.geometries
-      let features = mounthis.municartogram.features(topology, geometries)
+      let geojson = topojson.feature(topology, topology.objects.muniboundaries)
 
-      mounthis.muniboundaries = mounthis.muniboundaries.data(features)
+      mounthis.muniboundaries
+        .data(geojson.features)
         .enter()
         .append('path')
         .attr('class', 'muniboundary')
@@ -112,10 +101,10 @@ export default {
     })
 
     /* d3.json('statics/data/osm_waterarea.topojson', function (topology) {
-      let geometries = topology.objects.osm_waterareas.geometries
-      let features = mounthis.watercartogram.features(topology, geometries)
+      let geojson = topojson.feature(topology, topology.objects.osm_waterareas)
 
-      mounthis.osm_waterareas = mounthis.osm_waterareas.data(features)
+      mounthis.osm_waterareas
+        .data(geojson)
         .enter()
         .append('path')
         .attr('class', 'osm_waterarea')
@@ -123,10 +112,10 @@ export default {
     }) */
 
     d3.json('statics/data/cntyboundaries.topojson', function (topology) {
-      let geometries = topology.objects.cntyboundaries.geometries
-      let features = mounthis.cntycartogram.features(topology, geometries)
+      let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
 
-      mounthis.cntyboundaries = mounthis.cntyboundaries.data(features)
+      mounthis.cntyboundaries
+        .data(geojson.features)
         .enter()
         .append('path')
         .attr('class', 'cntyboundary')
@@ -192,23 +181,16 @@ export default {
       })
     })
 
-    d3.json('statics/data/osm_roads_gen0.topojson', function (topology) {
-      let geometries = topology.objects.osm_roads_gen0.geometries
-
-      mounthis.layer.selectAll('.osm_roads_gen0')
-        .data(topojson.feature(topology, topology.objects.osm_roads_gen0).features)
-        .enter().append('path')
-        .attr('class', function (d) { return 'osm_roads_gen0' + d.properties.type })
-        .attr('d', path)
-
-      let features = mounthis.roadscartogram.features(topology, geometries)
-
-      mounthis.osm_roads_gen0 = mounthis.osm_roads_gen0.data(features)
-        .enter()
-        .append('path')
-        .attr('class', 'osm_roads_gen0')
-        .attr('d', path)
-    })
+    for (var i = 0; i < urls.length; i++) {
+      d3.json('statics/data/' + urls[i], function (geojson) {
+        mounthis.tiles
+          .data(geojson.features)
+          .enter().append('path')
+          .attr('class', 'tile')
+          .attr('class', function (d) { return d.properties.kind })
+          .attr('d', path)
+      })
+    }
   },
   props: ['propval'],
   watch: {
@@ -294,24 +276,46 @@ export default {
   opacity: 0.9;
   stroke: #98999b;
 }
-.osm_roads_gen0 {
+.tile {
   fill: none;
-  stroke: #000;
+  stroke: white;
   stroke-linejoin: round;
   stroke-linecap: round;
 }
-.osm_roads_gen0.primary {
-  stroke: #776;
+.major_road {
+  fill: none;
+  stroke: #fb7b7a;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
-.osm_roads_gen0.secondary {
-  stroke: #ccb;
+.minor_road {
+  fill: none;
+  stroke: #999;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
-.osm_roads_gen0.motorway {
-  stroke: #f39;
+.highway {
+  fill: none;
+  stroke: blue;
   stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
-.osm_roads_gen0.rail {
-  stroke: gray;
+.rail {
+  fill: none;
+  stroke: #503D3F;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.path {
+  fill: none;
+  stroke: brown;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
 .tooltip {
   fill: rgba(255, 255, 255, 0.0);
