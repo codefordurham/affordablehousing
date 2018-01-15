@@ -32,20 +32,19 @@ var centered
 
 const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
 const path = d3.geoPath().projection(projection)
-const urls = ['roads.572-802.geojson', 'roads.573-802.geojson', 'roads.574-802.geojson', 'roads.575-802.geojson', 'roads.576-802.geojson', 'roads.577-802.geojson', 'roads.572-803.geojson', 'roads.573-803.geojson', 'roads.574-803.geojson', 'roads.575-803.geojson', 'roads.576-803.geojson', 'roads.577-803.geojson', 'roads.572-804.geojson', 'roads.573-804.geojson', 'roads.574-804.geojson', 'roads.575-804.geojson', 'roads.576-804.geojson', 'roads.577-804.geojson', 'roads.572-805.geojson', 'roads.573-805.geojson', 'roads.574-805.geojson', 'roads.575-805.geojson', 'roads.576-805.geojson', 'roads.577-805.geojson']
+const roadsurls = ['roads.572-802.geojson', 'roads.573-802.geojson', 'roads.574-802.geojson', 'roads.575-802.geojson', 'roads.576-802.geojson', 'roads.577-802.geojson', 'roads.572-803.geojson', 'roads.573-803.geojson', 'roads.574-803.geojson', 'roads.575-803.geojson', 'roads.576-803.geojson', 'roads.577-803.geojson', 'roads.572-804.geojson', 'roads.573-804.geojson', 'roads.574-804.geojson', 'roads.575-804.geojson', 'roads.576-804.geojson', 'roads.577-804.geojson', 'roads.572-805.geojson', 'roads.573-805.geojson', 'roads.574-805.geojson', 'roads.575-805.geojson', 'roads.576-805.geojson', 'roads.577-805.geojson']
 
 export default {
   data: function () {
     return {
       muniboundaries: null,
       cntyboundaries: null,
-      // osm_waterways: null,
       cartogram: null,
       topology: null,
       geometries: null,
       durhamhds: null,
       durhambgs: null,
-      tiles: null,
+      roads: null,
       layer: null
     }
   },
@@ -76,17 +75,14 @@ export default {
     mounthis.muniboundaries = mounthis.layer.append('g')
       .attr('id', 'muniboundaries')
       .selectAll('path')
-    /* mounthis.osm_waterareas = mounthis.layer.append('g')
-      .attr('id', 'osm_waterarea')
-      .selectAll('path') */
     mounthis.cntyboundaries = mounthis.layer.append('g')
       .attr('id', 'cntyboundaries')
       .selectAll('path')
     mounthis.durhambgs = mounthis.layer.append('g')
       .attr('id', 'durhambgs')
       .selectAll('path')
-    mounthis.tiles = mounthis.layer.append('g')
-      .attr('id', 'tile')
+    mounthis.roads = mounthis.layer.append('g')
+      .attr('id', 'roads')
       .selectAll('path')
 
     d3.json('statics/data/muniboundaries.topojson', function (topology) {
@@ -99,17 +95,6 @@ export default {
         .attr('class', 'muniboundary')
         .attr('d', path)
     })
-
-    /* d3.json('statics/data/osm_waterarea.topojson', function (topology) {
-      let geojson = topojson.feature(topology, topology.objects.osm_waterareas)
-
-      mounthis.osm_waterareas
-        .data(geojson)
-        .enter()
-        .append('path')
-        .attr('class', 'osm_waterarea')
-        .attr('d', path)
-    }) */
 
     d3.json('statics/data/cntyboundaries.topojson', function (topology) {
       let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
@@ -181,12 +166,12 @@ export default {
       })
     })
 
-    for (var i = 0; i < urls.length; i++) {
-      d3.json('statics/data/' + urls[i], function (geojson) {
-        mounthis.tiles
+    for (var i = 0; i < roadsurls.length; i++) {
+      d3.json('statics/data/' + roadsurls[i], function (geojson) {
+        mounthis.roads
           .data(geojson.features)
           .enter().append('path')
-          .attr('class', 'tile')
+          .attr('class', 'roads')
           .attr('class', function (d) { return d.properties.kind })
           .attr('d', path)
       })
@@ -264,10 +249,6 @@ export default {
   stroke: gray;
   fill: lightgray;
 }
-/* .osm_waterarea {
-  stroke: blue;
-  fill: blue;
-} */
 .cntyboundary {
   stroke: gray;
   fill: none;
@@ -276,7 +257,7 @@ export default {
   opacity: 0.9;
   stroke: #98999b;
 }
-.tile {
+.roads {
   fill: none;
   stroke: white;
   stroke-linejoin: round;
@@ -298,7 +279,7 @@ export default {
 }
 .highway {
   fill: none;
-  stroke: blue;
+  stroke: red;
   stroke-width: 1.5px;
   stroke-linejoin: round;
   stroke-linecap: round;
