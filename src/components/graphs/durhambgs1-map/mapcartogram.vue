@@ -30,8 +30,13 @@ const width = 580
 const height = 580
 var centered
 
-const projection = d3.geoMercator().center([-78.7, 36.05]).scale(60000).precision(0.1)
-const path = d3.geoPath().projection(projection)
+const projection = d3.geoMercator()
+  .center([-78.7, 36.05])
+  .scale(60000)
+  .precision(0.1)
+const path = d3.geoPath()
+  .projection(projection)
+
 const roadsurls = ['roads.572-802.geojson', 'roads.573-802.geojson', 'roads.574-802.geojson', 'roads.575-802.geojson', 'roads.576-802.geojson', 'roads.577-802.geojson', 'roads.572-803.geojson', 'roads.573-803.geojson', 'roads.574-803.geojson', 'roads.575-803.geojson', 'roads.576-803.geojson', 'roads.577-803.geojson', 'roads.572-804.geojson', 'roads.573-804.geojson', 'roads.574-804.geojson', 'roads.575-804.geojson', 'roads.576-804.geojson', 'roads.577-804.geojson', 'roads.572-805.geojson', 'roads.573-805.geojson', 'roads.574-805.geojson', 'roads.575-805.geojson', 'roads.576-805.geojson', 'roads.577-805.geojson']
 
 export default {
@@ -40,10 +45,13 @@ export default {
       muniboundaries: null,
       cntyboundaries: null,
       cartogram: null,
-      topology: null,
-      geometries: null,
-      durhamhds: null,
+      topologybgs: null,
+      geometriesbgs: null,
       durhambgs: null,
+      topologyhds: null,
+      geometrieshds: null,
+      neighborhoods: null,
+      durhamhds: null,
       roads: null,
       layer: null
     }
@@ -66,7 +74,6 @@ export default {
       .attr('class', 'background')
       .attr('width', width)
       .attr('height', height)
-      .on('click', mounthis.clicked)
 
     mounthis.layer = svg.append('g')
       .attr('id', 'layer')
@@ -84,7 +91,11 @@ export default {
     mounthis.roads = mounthis.layer.append('g')
       .attr('id', 'roads')
       .selectAll('path')
+    mounthis.durhamhds = mounthis.layer.append('g')
+      .attr('id', 'durhamhds')
+      .selectAll('path')
 
+    // Add municiple boundaries
     d3.json('statics/data/muniboundaries.topojson', function (topology) {
       let geojson = topojson.feature(topology, topology.objects.muniboundaries)
 
@@ -92,10 +103,10 @@ export default {
         .data(geojson.features)
         .enter()
         .append('path')
-        .attr('class', 'muniboundary')
         .attr('d', path)
+        .attr('class', 'muniboundary')
     })
-
+    // Add county boundaries
     d3.json('statics/data/cntyboundaries.topojson', function (topology) {
       let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
 
@@ -103,13 +114,13 @@ export default {
         .data(geojson.features)
         .enter()
         .append('path')
-        .attr('class', 'cntyboundary')
         .attr('d', path)
+        .attr('class', 'cntyboundary')
     })
-
+    // Add block group features and fill with property values
     d3.json('statics/data/durhambgs.topojson', function (topology) {
-      mounthis.topology = topology
-      mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
+      mounthis.topologybgs = topology
+      mounthis.geometriesbgs = mounthis.topologybgs.objects.durhambgs.geometries
 
       d3.json('http://127.0.0.1:8000/api/singfamhouse/?format=json', function (data) {
         dataById = d3.nest()
@@ -118,29 +129,30 @@ export default {
           .map(data)
 
         mounthis.layer.selectAll('.tooltip')
-          .data(topojson.feature(mounthis.topology, mounthis.topology.objects.durhambgs).features)
+          .data(topojson.feature(mounthis.topologybgs, mounthis.topologybgs.objects.durhambgs).features)
           .enter()
           .append('path')
           .attr('class', 'tooltip')
           .attr('d', path)
-          .on('click', mounthis.clicked)
           .on('mouseover', function (d) {
             mounthis.$emit('durhambgSelected', d.id)
           })
           .on('mouseout', function (d) {
             mounthis.$emit('durhambgDeselected', d.id)
           })
+          .on('click', mounthis.clicked)
 
-        let features = mounthis.cartogram.features(mounthis.topology, mounthis.geometries)
+        let features = mounthis.cartogram.features(mounthis.topologybgs, mounthis.geometriesbgs)
 
-        mounthis.durhambgs = mounthis.durhambgs.data(features)
+        mounthis.durhambgs = mounthis.durhambgs
+          .data(features)
           .enter()
           .append('path')
-          .attr('class', 'durhambg')
+          .attr('d', path)
+          .attr('class', 'durhambgs')
           .attr('id', function (d) {
             return d.id
           })
-          .attr('d', path)
 
         let value = function (d) { return +d.properties['prc_sfno'] }
 
@@ -165,28 +177,44 @@ export default {
           })
       })
     })
-
+    // Add roads
     for (var i = 0; i < roadsurls.length; i++) {
       d3.json('statics/data/' + roadsurls[i], function (geojson) {
         mounthis.roads
           .data(geojson.features)
           .enter().append('path')
+          .attr('d', path)
           .attr('class', 'roads')
           .attr('class', function (d) { return d.properties.kind })
-          .attr('d', path)
       })
     }
+    // Add neighborhood boundaries
+    d3.json('statics/data/durhamhds.topojson', function (topology) {
+      mounthis.neighborhoods = topojson.feature(topology, topology.objects.durhamhds)
+
+      mounthis.durhamhds
+        .data(mounthis.neighborhoods.features)
+        .enter()
+        .append('path')
+        .attr('d', path)
+        .attr('class', 'durhamhds')
+        .attr('visibility', 'hidden')
+    })
   },
   props: ['propval'],
   watch: {
+    // Retrieve new property value from select in index.html
     propval: function (newPropVal) {
-      this.changePropVal(newPropVal)
+      if (newPropVal[0].type === 'bgs') {
+        this.changeBgsPropVal(newPropVal)
+      }
     }
   },
   methods: {
-    changePropVal: function (propval) {
+    // Change block groups property value
+    changeBgsPropVal: function (propval) {
       let value = function (d) {
-        return +d.properties[propval[0]]
+        return +d.properties[propval[0].value]
       }
 
       let values = this.durhambgs.data()
@@ -209,6 +237,7 @@ export default {
           return color(value(d))
         })
     },
+    // Click to zoom
     clicked: function (d) {
       let x
       let y
@@ -220,20 +249,25 @@ export default {
         y = centroid[1]
         k = 4
         centered = d
+
+        d3.selectAll('.durhamhds').attr('visibility', 'visible')
       }
       else {
         x = width / 2
         y = height / 2
         k = 1
         centered = null
+
+        d3.selectAll('.durhamhds').attr('visibility', 'hidden')
       }
 
       this.layer.selectAll('path')
         .classed('active', centered && function (d) { return d === centered })
+        // .attr('visibility', 'visible')
 
       this.layer.transition()
         .duration(750)
-        .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')scale(' + k + ')translate(' + -x + ',' + -y + ')')
+        .attr('transform', 'translate(' + width / 2 + ',' + height / 1.75 + ')scale(' + k + ')translate(' + -x + ',' + -y + ')')
         .style('stroke-width', 1.5 / k + 'px')
     }
   }
@@ -253,7 +287,7 @@ export default {
   stroke: gray;
   fill: none;
 }
-.durhambg {
+.durhambgs {
   opacity: 0.9;
   stroke: #98999b;
 }
@@ -297,6 +331,10 @@ export default {
   stroke-width: 0.5px;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+.durhamhds {
+  fill: none;
+  stroke: black;
 }
 .tooltip {
   fill: rgba(255, 255, 255, 0.0);

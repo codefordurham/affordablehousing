@@ -13,30 +13,30 @@ Data:
   <q-layout
     ref="layout"
     view="lHh Lpr fff"
-    :left-class="{'bg-grey-2': true}"
+    v-bind:left-class="{'bg-grey-2': true}"
   >
     <h6><center>{{ $route.name }}</center></h6>
     
     <div class='holder'>
       <div class='mapHolder'>
-        <durham-map :propval='pushSelect'
+        <durham-map v-bind:propval='pushSelect'
           v-on:durhambgSelected='onDurhambgSelected'
           v-on:durhambgDeselected='onDurhambgDeselected'
         />
       </div>
       <tooltip
         v-if='currentDurhambg'
-        :title='currentDurhambgTitle'
-        :description='currentDurhambgDescription'
+        v-bind:title='currentDurhambgTitle'
+        v-bind:description='currentDurhambgDescription'
       />
       <center>
         <q-select 
-          color='brand'
-          background='brand'
-          frame-color='brand'
+          color='black'
+          background='grey'
+          frame-color='green'
           separator
           v-model='select.value'
-          :options=options
+          v-bind:options=options
           v-on:input='newProp'
         />
       </center>
@@ -99,15 +99,15 @@ export default {
       durhambgsData: undefined,
       propdata: undefined,
       currentDurhambg: undefined,
-      select: {label: 'Percent of Non-Owner Occupied Single Family Homes', value: 'prc_sfno'},
+      select: {label: 'Percent of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'prc_sfno', type: 'bgs'},
       options: [
-        {label: 'Percent of Non-Owner Occupied Single Family Homes', value: 'prc_sfno'},
-        {label: 'Mean Value of Non-Owner Occupied Single Family Homes', value: 'mean_sfno'},
-        {label: 'Total Value of Non-Owner Occupied Single Family Homes', value: 'tot_sfno'},
-        {label: 'Number of Non-Owner Occupied Single Family Homes', value: 'num_sfno'},
-        {label: 'Mean Value of Owner Occupied Single Family Homes', value: 'mean_sfoo'},
-        {label: 'Total Value of Owner Occupied Single Family Homes', value: 'tot_sfoo'},
-        {label: 'Number of Owner Occupied Single Family Homes', value: 'num_sfoo'}
+        {label: 'Percent of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'prc_sfno', type: 'bgs'},
+        {label: 'Mean Value of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'mean_sfno', type: 'bgs'},
+        {label: 'Total Value of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'tot_sfno', type: 'bgs'},
+        {label: 'Number of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'num_sfno', type: 'bgs'},
+        {label: 'Mean Value of Owner Occupied Single Family Homes by BlockGroup', value: 'mean_sfoo', type: 'bgs'},
+        {label: 'Total Value of Owner Occupied Single Family Homes by BlockGroup', value: 'tot_sfoo', type: 'bgs'},
+        {label: 'Number of Owner Occupied Single Family Homes by BlockGroup', value: 'num_sfoo', type: 'bgs'}
       ],
       pushSelect: _.take(this.select)
     }
@@ -115,31 +115,33 @@ export default {
   computed: {
     currentDurhambgDescription: function () {
       var desc
-      if (this.select.value === 'prc_sfno') {
+      if (this.select.value === 'prc_sfno' && this.select.type === 'bgs') {
         desc = '% of Single Family Homes Not Occupied by Owner: ' + this.currentDurhambg.prc_sfno
       }
-      else if (this.select.value === 'num_sfoo') {
+      else if (this.select.value === 'num_sfoo' && this.select.type === 'bgs') {
         desc = '# of Single Family Homes Occupied by Owner: ' + this.currentDurhambg.num_sfoo
       }
-      else if (this.select.value === 'mean_sfno') {
+      else if (this.select.value === 'mean_sfno' && this.select.type === 'bgs') {
         desc = 'Mean Value of Single Family Homes not Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.mean_sfno)
       }
-      else if (this.select.value === 'tot_sfno') {
+      else if (this.select.value === 'tot_sfno' && this.select.type === 'bgs') {
         desc = 'Total Value of Single Family Homes not Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.tot_sfno)
       }
-      else if (this.select.value === 'num_sfno') {
+      else if (this.select.value === 'num_sfno' && this.select.type === 'bgs') {
         desc = '# of Single Family Homes not Occupied by Owner: ' + this.currentDurhambg.num_sfno
       }
-      else if (this.select.value === 'mean_sfoo') {
+      else if (this.select.value === 'mean_sfoo' && this.select.type === 'bgs') {
         desc = 'Mean Value of Single Family Homes Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.mean_sfoo)
       }
-      else if (this.select.value === 'tot_sfoo') {
+      else if (this.select.value === 'tot_sfoo' && this.select.type === 'bgs') {
         desc = 'Total Value of Single Family Homes Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.tot_sfoo)
       }
       return desc
     },
     currentDurhambgTitle: function () {
-      return 'GEOID: ' + this.currentDurhambg.id
+      if (this.select.type === 'bgs') {
+        return 'GEOID: ' + this.currentDurhambg.id
+      }
     }
   },
   methods: {
@@ -151,11 +153,11 @@ export default {
     },
     newProp: function () {
       if (this.pushSelect.length === 0) {
-        this.pushSelect.push(this.select.value)
+        this.pushSelect.push(this.select)
       }
       else if (this.pushSelect.length === 1) {
         this.pushSelect.splice(0, 1)
-        this.pushSelect.push(this.select.value)
+        this.pushSelect.push(this.select)
       }
     }
   }
