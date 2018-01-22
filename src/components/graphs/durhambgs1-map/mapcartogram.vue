@@ -45,12 +45,9 @@ export default {
       muniboundaries: null,
       cntyboundaries: null,
       cartogram: null,
-      topologybgs: null,
-      geometriesbgs: null,
+      topology: null,
+      geometries: null,
       durhambgs: null,
-      topologyhds: null,
-      geometrieshds: null,
-      neighborhoods: null,
       durhamhds: null,
       roads: null,
       layer: null
@@ -119,8 +116,8 @@ export default {
     })
     // Add block group features and fill with property values
     d3.json('statics/data/durhambgs.topojson', function (topology) {
-      mounthis.topologybgs = topology
-      mounthis.geometriesbgs = mounthis.topologybgs.objects.durhambgs.geometries
+      mounthis.topology = topology
+      mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
 
       d3.json('http://127.0.0.1:8000/api/singfamhouse/?format=json', function (data) {
         dataById = d3.nest()
@@ -129,7 +126,7 @@ export default {
           .map(data)
 
         mounthis.layer.selectAll('.tooltip')
-          .data(topojson.feature(mounthis.topologybgs, mounthis.topologybgs.objects.durhambgs).features)
+          .data(topojson.feature(mounthis.topology, mounthis.topology.objects.durhambgs).features)
           .enter()
           .append('path')
           .attr('class', 'tooltip')
@@ -142,7 +139,7 @@ export default {
           })
           .on('click', mounthis.clicked)
 
-        let features = mounthis.cartogram.features(mounthis.topologybgs, mounthis.geometriesbgs)
+        let features = mounthis.cartogram.features(mounthis.topology, mounthis.geometries)
 
         mounthis.durhambgs = mounthis.durhambgs
           .data(features)
@@ -190,15 +187,39 @@ export default {
     }
     // Add neighborhood boundaries
     d3.json('statics/data/durhamhds.topojson', function (topology) {
-      mounthis.neighborhoods = topojson.feature(topology, topology.objects.durhamhds)
+      var geojson = topojson.feature(topology, topology.objects.durhamhds)
 
       mounthis.durhamhds
-        .data(mounthis.neighborhoods.features)
+        .data(geojson.features)
         .enter()
         .append('path')
         .attr('d', path)
         .attr('class', 'durhamhds')
         .attr('visibility', 'hidden')
+
+      mounthis.durhamhds
+        .data(geojson.features)
+        .enter()
+        .append('text')
+        .attr('class', 'durhamhds')
+        .attr('visibility', 'hidden')
+        .each(function (d) {
+          if (parseFloat(d.properties.shape_area) < 0.00006) {
+          // if (d.properties.name !== 'Watts Hospital-Hillandale') {
+            // console.log(parseFloat(d.properties.shape_area))
+            return
+          }
+          d3.select(this)
+            .attr('transform', function (d) { return 'translate(' + path.centroid(d) + ')' })
+            .attr('text-anchor', 'middle')
+            .style('font-size', '3px')
+            .style('fill', '#F3EFEE')
+            .text(function (d) { return d.properties.name })
+        })
+        .filter(function (d) {
+          return parseFloat(d.properties.shape_area) < 0.00006
+          // return d.properties.name !== 'Watts Hospital-Hillandale'
+        }).remove()
     })
   },
   props: ['propval'],
@@ -334,7 +355,7 @@ export default {
 }
 .durhamhds {
   fill: none;
-  stroke: black;
+  stroke: #164584;
 }
 .tooltip {
   fill: rgba(255, 255, 255, 0.0);

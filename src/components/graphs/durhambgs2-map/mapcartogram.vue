@@ -42,8 +42,8 @@ export default {
       cartogram: null,
       topology: null,
       geometries: null,
-      durhamhds: null,
       durhambgs: null,
+      durhamhds: null,
       roads: null,
       layer: null
     }
@@ -81,6 +81,9 @@ export default {
       .selectAll('path')
     mounthis.roads = mounthis.layer.append('g')
       .attr('id', 'roads')
+      .selectAll('path')
+    mounthis.durhamhds = mounthis.layer.append('g')
+      .attr('id', 'durhamhds')
       .selectAll('path')
 
     d3.json('statics/data/muniboundaries.topojson', function (topology) {
@@ -134,7 +137,7 @@ export default {
         mounthis.durhambgs = mounthis.durhambgs.data(features)
           .enter()
           .append('path')
-          .attr('class', 'durhambg')
+          .attr('class', 'durhambgs')
           .attr('id', function (d) {
             return d.id
           })
@@ -174,6 +177,42 @@ export default {
           .attr('d', path)
       })
     }
+    // Add neighborhood boundaries
+    d3.json('statics/data/durhamhds.topojson', function (topology) {
+      var geojson = topojson.feature(topology, topology.objects.durhamhds)
+
+      mounthis.durhamhds
+        .data(geojson.features)
+        .enter()
+        .append('path')
+        .attr('d', path)
+        .attr('class', 'durhamhds')
+        .attr('visibility', 'hidden')
+
+      mounthis.durhamhds
+        .data(geojson.features)
+        .enter()
+        .append('text')
+        .attr('class', 'durhamhds')
+        .attr('visibility', 'hidden')
+        .each(function (d) {
+          if (parseFloat(d.properties.shape_area) < 0.00006) {
+          // if (d.properties.name !== 'Watts Hospital-Hillandale') {
+            // console.log(parseFloat(d.properties.shape_area))
+            return
+          }
+          d3.select(this)
+            .attr('transform', function (d) { return 'translate(' + path.centroid(d) + ')' })
+            .attr('text-anchor', 'middle')
+            .style('font-size', '3px')
+            .style('fill', '#F3EFEE')
+            .text(function (d) { return d.properties.name })
+        })
+        .filter(function (d) {
+          return parseFloat(d.properties.shape_area) < 0.00006
+          // return d.properties.name !== 'Watts Hospital-Hillandale'
+        }).remove()
+    })
   },
   props: ['propval'],
   watch: {
@@ -217,12 +256,16 @@ export default {
         y = centroid[1]
         k = 4
         centered = d
+
+        d3.selectAll('.durhamhds').attr('visibility', 'visible')
       }
       else {
         x = width / 2
         y = height / 2
         k = 1
         centered = null
+
+        d3.selectAll('.durhamhds').attr('visibility', 'hidden')
       }
 
       this.layer.selectAll('path')
@@ -250,7 +293,7 @@ export default {
   stroke: gray;
   fill: none;
 }
-.durhambg {
+.durhambgs {
   opacity: 0.9;
   stroke: #98999b;
 }
@@ -295,8 +338,9 @@ export default {
   stroke-linejoin: round;
   stroke-linecap: round;
 }
-.durhambg {
-  stroke: #98999b;
+.durhamhds {
+  fill: none;
+  stroke: #164584;
 }
 .tooltip {
   fill: rgba(255, 255, 255, 0.0);
