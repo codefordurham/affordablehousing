@@ -1,4 +1,9 @@
 # affordablehousing
+Affordable Housing is a broad subject, with many causes and solutions that vary depending on your location. 
+In Durham North Carolina one of the main drivers to a lack of affordable housing is the large economic 
+desparity of its citizens. Half of the city is a <a href="https://www.citylab.com/life/2012/07/americas-leading-creative-class-metros/2233/">World class center for research and technology</a>, while the 
+other half is a recovering post industrial tobacco and textile mill town.
+
 This is the start of the affordable Housing for Durham website, which is part of Code for Durham. The map was derived from the d3 cartogram, at:
 
 https://github.com/shawnbot/topogram,
