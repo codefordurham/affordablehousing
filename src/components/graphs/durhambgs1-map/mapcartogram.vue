@@ -23,8 +23,8 @@ const d3Cartogram = require('mixins/d3-cartogram')
 
 // Colors stuff
 import * as d3Chromatic from 'd3-scale-chromatic'
-const colors = d3Chromatic.schemeRdYlGn[3].reverse()
-// const colors = d3Chromatic.schemeBlues[9]
+const colors = d3Chromatic.schemeRdYlGn[3]
+// const colors = d3Chromatic.schemeYlOrRd[4]
 
 const width = 580
 const height = 580
@@ -160,7 +160,7 @@ export default {
             })
             .sort(d3.ascending),
           lo = values[0],
-          hi = values[values.length - 1]
+          hi = 20.0 // values[values.length - 1]
 
         let color = d3.scaleLinear()
           .domain([lo, d3.mean(values), hi])
@@ -238,6 +238,30 @@ export default {
         return +d.properties[propval[0].value]
       }
 
+      let propvalmax = null
+
+      if (propval[0].value === 'prc_sfno') {
+        propvalmax = 20.0
+      }
+      else if (propval[0].value === 'mean_sfno') {
+        propvalmax = 400000.0
+      }
+      else if (propval[0].value === 'tot_sfno') {
+        propvalmax = 6000000.0
+      }
+      else if (propval[0].value === 'num_sfno') {
+        propvalmax = 40.0
+      }
+      else if (propval[0].value === 'mean_sfoo') {
+        propvalmax = 450000.0
+      }
+      else if (propval[0].value === 'tot_sfoo') {
+        propvalmax = 300000000.0
+      }
+      else if (propval[0].value === 'num_sfoo') {
+        propvalmax = 1000.0
+      }
+
       let values = this.durhambgs.data()
           .map(value)
           .filter(function (n) {
@@ -245,7 +269,7 @@ export default {
           })
           .sort(d3.ascending),
         lo = values[0],
-        hi = values[values.length - 1]
+        hi = propvalmax // values[values.length - 1]
 
       let color = d3.scaleLinear()
         .domain([lo, d3.mean(values), hi])
