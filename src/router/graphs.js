@@ -6,7 +6,7 @@ export const routes = [
   {
     id: 1,
     type: 'Durham Map 1:',
-    name: 'Non-Owner Occupied Single Family Homes',
+    name: 'Single Family Homes Occupation Type and Value',
     path: '/durhambgs1-map',
     folder: true,
     component: load('components/graphs/durhambgs1-map/index')
@@ -14,7 +14,7 @@ export const routes = [
   {
     id: 2,
     type: 'Durham Map 2:',
-    name: 'Price Income Ratio for Single Family Homes',
+    name: 'Single Family Homes Sale Price and Income',
     path: '/durhambgs2-map',
     folder: true,
     component: load('components/graphs/durhambgs2-map/index')

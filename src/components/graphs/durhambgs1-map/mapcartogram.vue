@@ -25,7 +25,6 @@ const d3Colorbar = require('mixins/d3-colorbar')
 // Colors stuff
 // import * as d3Chromatic from 'd3-scale-chromatic'
 // const colors = d3Chromatic.schemeRdYlGn[3]
-// const colors = d3Chromatic.schemeYlOrRd[4]
 
 const width = 580
 const height = 580
@@ -76,7 +75,7 @@ export default {
 
     mounthis.layer = svg.append('g')
       .attr('id', 'layer')
-      .attr('class', 'key')
+      // .attr('class', 'key')
       .attr('transform', 'translate(0,40)')
     mounthis.muniboundaries = mounthis.layer.append('g')
       .attr('id', 'muniboundaries')
@@ -160,16 +159,13 @@ export default {
 
         let values = mounthis.durhambgs.data()
             .map(value)
-            .filter(function (n) {
-              return !isNaN(n)
-            })
             .sort(d3.ascending),
           lo = values[0],
           hi = 20.0 // values[values.length - 1]
 
         /* let colorScale = d3.scaleLinear()
           .domain([lo, d3.mean(values), hi])
-          .range(colors) */ // RdYlGn
+          .range(colors) */
         let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
         mounthis.durhambgs.transition()
@@ -332,7 +328,6 @@ export default {
 
       this.layer.selectAll('path')
         .classed('active', centered && function (d) { return d === centered })
-        // .attr('visibility', 'visible')
 
       this.layer.transition()
         .duration(750)

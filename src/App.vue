@@ -48,7 +48,7 @@
         internal vue-router navigation
       -->
       <q-list no-border link inset-delimiter>
-        <q-list-header>Affordable Housing Maps</q-list-header>
+        <q-list-header>Affordable Housing Menu</q-list-header>
         <q-item>
           <a href='#/'>
             <q-item-main label='Home:' sublabel='Affordable Housing'/>

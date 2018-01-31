@@ -8,35 +8,34 @@ Data:
   http://www.nconemap.com//
 
 -->
-
 <template>
   <q-layout
     ref="layout"
     view="lHh Lpr fff"
-    :left-class="{'bg-grey-2': true}"
+    v-bind:left-class="{'bg-grey-2': true}"
   >
     <h6><center>{{ $route.name }}</center></h6>
 
-    <div id='holder'>
+    <div class='holder'>
       <div class='mapHolder'>
-        <durham-map :propval='pushSelect'
+        <durham-map v-bind:propval='pushSelect'
           v-on:durhambgSelected='onDurhambgSelected'
           v-on:durhambgDeselected='onDurhambgDeselected'
         />
       </div>
       <tooltip
         v-if='currentDurhambg'
-        :title='currentDurhambgTitle'
-        :description='currentDurhambgDescription'
+        v-bind:title='currentDurhambgTitle'
+        v-bind:description='currentDurhambgDescription'
       />
       <center>
         <q-select 
-          color='brand'
-          background='brand'
-          frame-color='brand'
+          color='black'
+          background='grey'
+          frame-color='green'
           separator
           v-model='select.value'
-          :options=options
+          v-bind:options=options
           v-on:input='newProp'
         />
       </center>
@@ -170,11 +169,11 @@ export default {
 </script>
 
 <style scoped>
-#holder {
+.holder {
   position: relative;
   padding-top: 50px;
-  height: 650px;
-  width: 700px;
+  height: 700px;
+  width: 580px;
   margin: auto;
 }
 .mapHolder {
@@ -192,11 +191,5 @@ export default {
     width: 300px;
     bottom: 60px;
   }
-}
-.text-brand {
-  color: green;
-}
-.bg-brand {
-  background: #a2aa33;
 }
 </style>

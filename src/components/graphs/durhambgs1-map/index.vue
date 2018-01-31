@@ -8,7 +8,6 @@ Data:
   http://www.nconemap.com//
 
 -->
-
 <template>
   <q-layout
     ref="layout"
@@ -16,7 +15,7 @@ Data:
     v-bind:left-class="{'bg-grey-2': true}"
   >
     <h6><center>{{ $route.name }}</center></h6>
-    
+
     <div class='holder'>
       <div class='mapHolder'>
         <durham-map v-bind:propval='pushSelect'
