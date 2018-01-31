@@ -20,10 +20,11 @@ Links:
 const d3 = require('d3')
 const topojson = require('topojson')
 const d3Cartogram = require('mixins/d3-cartogram')
+const d3Colorbar = require('mixins/d3-colorbar')
 
 // Colors stuff
-import * as d3Chromatic from 'd3-scale-chromatic'
-const colors = d3Chromatic.schemeRdYlGn[3]
+// import * as d3Chromatic from 'd3-scale-chromatic'
+// const colors = d3Chromatic.schemeRdYlGn[3]
 // const colors = d3Chromatic.schemeYlOrRd[4]
 
 const width = 580
@@ -50,7 +51,8 @@ export default {
       durhambgs: null,
       durhamhds: null,
       roads: null,
-      layer: null
+      layer: null,
+      colorbar: null
     }
   },
   mounted: function () {
@@ -91,6 +93,9 @@ export default {
     mounthis.durhamhds = mounthis.layer.append('g')
       .attr('id', 'durhamhds')
       .selectAll('path')
+    mounthis.colorbar = mounthis.layer.append('g')
+      .attr('class', 'vertical')
+      .attr('transform', 'translate(100, 20)')
 
     // Add municiple boundaries
     d3.json('statics/data/muniboundaries.topojson', function (topology) {
@@ -162,16 +167,25 @@ export default {
           lo = values[0],
           hi = 20.0 // values[values.length - 1]
 
-        let color = d3.scaleLinear()
+        /* let colorScale = d3.scaleLinear()
           .domain([lo, d3.mean(values), hi])
-          .range(colors)
+          .range(colors) */ // RdYlGn
+        let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
         mounthis.durhambgs.transition()
           .duration(750)
           .ease(d3.easeLinear)
           .attr('fill', function (d) {
-            return color(value(d))
+            if (isNaN(d.properties['prc_sfno'])) {
+              return '#fff'
+            }
+            else {
+              return colorScale(value(d))
+            }
           })
+
+        let cbV = d3Colorbar.d3.colorbarV(colorScale, 20, 200).tickValues([lo, d3.mean(values), hi])
+        mounthis.colorbar.call(cbV)
       })
     })
     // Add roads
@@ -205,8 +219,6 @@ export default {
         .attr('visibility', 'hidden')
         .each(function (d) {
           if (parseFloat(d.properties.shape_area) < 0.00006) {
-          // if (d.properties.name !== 'Watts Hospital-Hillandale') {
-            // console.log(parseFloat(d.properties.shape_area))
             return
           }
           d3.select(this)
@@ -218,7 +230,6 @@ export default {
         })
         .filter(function (d) {
           return parseFloat(d.properties.shape_area) < 0.00006
-          // return d.properties.name !== 'Watts Hospital-Hillandale'
         }).remove()
     })
   },
@@ -271,16 +282,29 @@ export default {
         lo = values[0],
         hi = propvalmax // values[values.length - 1]
 
-      let color = d3.scaleLinear()
+      /* let colorScale = d3.scaleLinear()
         .domain([lo, d3.mean(values), hi])
-        .range(colors)
+        .range(colors) */
+      let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
       this.durhambgs.transition()
         .duration(750)
         .ease(d3.easeLinear)
         .attr('fill', function (d) {
-          return color(value(d))
+          if (isNaN(d.properties[propval[0].value])) {
+            return '#fff'
+          }
+          else {
+            return colorScale(value(d))
+          }
         })
+
+      this.colorbar.remove()
+      this.colorbar = this.layer.append('g')
+        .attr('class', 'vertical')
+        .attr('transform', 'translate(100, 20)')
+      let cbV = d3Colorbar.d3.colorbarV(colorScale, 20, 200).tickValues([lo, d3.mean(values), hi])
+      this.colorbar.call(cbV)
     },
     // Click to zoom
     clicked: function (d) {
