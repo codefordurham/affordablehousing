@@ -180,7 +180,10 @@ export default {
             }
           })
 
-        let cbV = d3Colorbar.d3.colorbarV(colorScale, 20, 200).tickValues([lo, d3.mean(values), hi])
+        let tickspace = (hi - lo) / 4
+        let cbV = d3Colorbar.d3
+          .colorbarV(colorScale, 20, 200)
+          .tickValues([lo, lo + tickspace, lo + (tickspace * 2), lo + (tickspace * 3), hi])
         mounthis.colorbar.call(cbV)
       })
     })
@@ -299,7 +302,10 @@ export default {
       this.colorbar = this.layer.append('g')
         .attr('class', 'vertical')
         .attr('transform', 'translate(100, 20)')
-      let cbV = d3Colorbar.d3.colorbarV(colorScale, 20, 200).tickValues([lo, d3.mean(values), hi])
+      let tickspace = (hi - lo) / 4
+      let cbV = d3Colorbar.d3
+        .colorbarV(colorScale, 20, 200)
+        .tickValues([lo, lo + tickspace, lo + (tickspace * 2), lo + (tickspace * 3), hi])
       this.colorbar.call(cbV)
     },
     // Click to zoom
