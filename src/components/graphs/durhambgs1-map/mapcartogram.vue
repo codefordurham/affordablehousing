@@ -163,10 +163,11 @@ export default {
           lo = values[0],
           hi = 20.0 // values[values.length - 1]
 
-        /* let colorScale = d3.scaleLinear()
-          .domain([lo, d3.mean(values), hi])
-          .range(colors) */
-        let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
+        let colorScale = d3.scaleLinear()
+          // .domain([lo, d3.mean(values), hi])
+          .domain([lo, hi])
+          .range(['yellow', 'red'])
+        // let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
         mounthis.durhambgs.transition()
           .duration(750)
@@ -281,10 +282,11 @@ export default {
         lo = values[0],
         hi = propvalmax // values[values.length - 1]
 
-      /* let colorScale = d3.scaleLinear()
-        .domain([lo, d3.mean(values), hi])
-        .range(colors) */
-      let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
+      let colorScale = d3.scaleLinear()
+        // .domain([lo, d3.mean(values), hi])
+        .domain([lo, hi])
+        .range(['yellow', 'red'])
+      // let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
       this.durhambgs.transition()
         .duration(750)
