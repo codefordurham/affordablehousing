@@ -97,8 +97,8 @@ export default {
       .attr('transform', 'translate(100, 20)')
 
     // Add municiple boundaries
-    d3.json('statics/data/muniboundaries.topojson', function (topology) {
-      let geojson = topojson.feature(topology, topology.objects.muniboundaries)
+    d3.json('statics/data/muniboundaries.geojson', function (geojson) {
+      // let geojson = topojson.feature(topology, topology.objects.muniboundaries)
 
       mounthis.muniboundaries
         .data(geojson.features)
@@ -108,8 +108,8 @@ export default {
         .attr('class', 'muniboundary')
     })
     // Add county boundaries
-    d3.json('statics/data/cntyboundaries.topojson', function (topology) {
-      let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
+    d3.json('statics/data/cntyboundaries.geojson', function (geojson) {
+      // let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
 
       mounthis.cntyboundaries
         .data(geojson.features)
@@ -200,8 +200,8 @@ export default {
       })
     }
     // Add neighborhood boundaries
-    d3.json('statics/data/durhamhds.topojson', function (topology) {
-      var geojson = topojson.feature(topology, topology.objects.durhamhds)
+    d3.json('statics/data/durhamhds.geojson', function (geojson) {
+      // var geojson = topojson.feature(topology, topology.objects.durhamhds)
 
       mounthis.durhamhds
         .data(geojson.features)
