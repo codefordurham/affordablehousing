@@ -52,7 +52,7 @@ import { routes } from 'router/graphs'
 
 // d3 and map stuff
 const d3 = require('d3')
-const map = load('components/graphs/durhambgs2-map/mapcartogram')
+const map = load('components/graphs/durhambgs6-map/mapcartogram')
 
 // Menu and tooltip stuff
 import {
@@ -63,7 +63,7 @@ import {
 const tooltip = load('mixins/tooltip')
 
 // Data stuff
-const PROPSALESCOMPASS_DATA_PATH = 'http://127.0.0.1:8000/api/propsales/?format=json'
+const SINGFAMHOUSE_DATA_PATH = 'http://127.0.0.1:8000/api/singfamhouse17/?format=json'
 
 function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -83,7 +83,7 @@ export default {
 
     this.durhambgsData = {}
 
-    d3.json(PROPSALESCOMPASS_DATA_PATH, function (data) {
+    d3.json(SINGFAMHOUSE_DATA_PATH, function (data) {
       data.map(function (d) {
         that.propdata = d[that.select.value].split(',').join('')
         d.value = +that.propdata
@@ -98,16 +98,15 @@ export default {
       durhambgsData: undefined,
       propdata: undefined,
       currentDurhambg: undefined,
-      select: {label: 'Price Income Ratio for Single Family Homes', value: 'pir'},
+      select: {label: 'Percent of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'prc_sfno', type: 'bgs'},
       options: [
-        {label: 'Price Income Ratio for Single Family Homes', value: 'pir'},
-        {label: 'Mean Sale Price for Single Family Homes', value: 'meansp'},
-        {label: 'Min Sale Price for Single Family Homes', value: 'minsp'},
-        {label: 'Max Sale Price for Single Family Homes', value: 'maxsp'},
-        {label: 'Median Sale Price for Single Family Homes', value: 'mediansp'},
-        {label: 'Total Sales for Single Family Homes', value: 'totsp'},
-        {label: 'Number of Single Family Homes Sold', value: 'nums'},
-        {label: 'Median Home Income', value: 'mhi'}
+        {label: 'Percent of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'prc_sfno', type: 'bgs'},
+        {label: 'Mean Value of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'mean_sfno', type: 'bgs'},
+        {label: 'Total Value of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'tot_sfno', type: 'bgs'},
+        {label: 'Number of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'num_sfno', type: 'bgs'},
+        {label: 'Mean Value of Owner Occupied Single Family Homes by BlockGroup', value: 'mean_sfoo', type: 'bgs'},
+        {label: 'Total Value of Owner Occupied Single Family Homes by BlockGroup', value: 'tot_sfoo', type: 'bgs'},
+        {label: 'Number of Owner Occupied Single Family Homes by BlockGroup', value: 'num_sfoo', type: 'bgs'}
       ],
       pushSelect: _.take(this.select)
     }
@@ -115,37 +114,33 @@ export default {
   computed: {
     currentDurhambgDescription: function () {
       var desc
-      if (this.select.value === 'pir') {
-        desc = 'Price Income Ratio of Single Family Homes between 2013 and 2014: ' + this.currentDurhambg.pir
+      if (this.select.value === 'prc_sfno' && this.select.type === 'bgs') {
+        desc = '% of Single Family Homes Not Occupied by Owner: ' + this.currentDurhambg.prc_sfno
       }
-      else if (this.select.value === 'ns') {
-        desc = '# of Single Family Homes sold between 2013 and 2014: ' + this.currentDurhambg.ns
+      else if (this.select.value === 'num_sfoo' && this.select.type === 'bgs') {
+        desc = '# of Single Family Homes Occupied by Owner: ' + this.currentDurhambg.num_sfoo
       }
-      else if (this.select.value === 'meansp') {
-        desc = 'Mean Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.meansp)
+      else if (this.select.value === 'mean_sfno' && this.select.type === 'bgs') {
+        desc = 'Mean Value of Single Family Homes not Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.mean_sfno)
       }
-      else if (this.select.value === 'minsp') {
-        desc = 'Min Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.minsp)
+      else if (this.select.value === 'tot_sfno' && this.select.type === 'bgs') {
+        desc = 'Total Value of Single Family Homes not Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.tot_sfno)
       }
-      else if (this.select.value === 'maxsp') {
-        desc = 'Max Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.maxsp)
+      else if (this.select.value === 'num_sfno' && this.select.type === 'bgs') {
+        desc = '# of Single Family Homes not Occupied by Owner: ' + this.currentDurhambg.num_sfno
       }
-      else if (this.select.value === 'mediansp') {
-        desc = 'Median Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.mediansp)
+      else if (this.select.value === 'mean_sfoo' && this.select.type === 'bgs') {
+        desc = 'Mean Value of Single Family Homes Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.mean_sfoo)
       }
-      else if (this.select.value === 'totsp') {
-        desc = 'Total sales of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.totsp)
-      }
-      else if (this.select.value === 'nums') {
-        desc = 'Number of Single Family Homes Sold between 2013 and 2014: ' + numberWithCommas(this.currentDurhambg.nums)
-      }
-      else if (this.select.value === 'mhi') {
-        desc = 'Median Home Income between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.mhi)
+      else if (this.select.value === 'tot_sfoo' && this.select.type === 'bgs') {
+        desc = 'Total Value of Single Family Homes Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.tot_sfoo)
       }
       return desc
     },
     currentDurhambgTitle: function () {
-      return 'GEOID: ' + this.currentDurhambg.id
+      if (this.select.type === 'bgs') {
+        return 'GEOID: ' + this.currentDurhambg.id
+      }
     }
   },
   methods: {
@@ -157,11 +152,11 @@ export default {
     },
     newProp: function () {
       if (this.pushSelect.length === 0) {
-        this.pushSelect.push(this.select.value)
+        this.pushSelect.push(this.select)
       }
       else if (this.pushSelect.length === 1) {
         this.pushSelect.splice(0, 1)
-        this.pushSelect.push(this.select.value)
+        this.pushSelect.push(this.select)
       }
     }
   }

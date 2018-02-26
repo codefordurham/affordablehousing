@@ -25,15 +25,6 @@
           <q-btn flat @click="$refs.layout.toggleLeft()">
             <q-icon name="menu" />
           </q-btn>
-          <q-btn flat>
-            <a href='#/'>Home</a>
-          </q-btn>
-          <q-btn flat>
-            <a href='#/durhambgs1-map'>Map One</a>
-          </q-btn>
-          <q-btn flat>
-            <a href='#/durhambgs2-map'>Map Two</a>
-          </q-btn>
           <q-btn flat @click="changeView" >
             <q-icon name="import export" />
           </q-btn>

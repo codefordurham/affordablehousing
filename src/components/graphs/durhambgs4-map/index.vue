@@ -52,7 +52,7 @@ import { routes } from 'router/graphs'
 
 // d3 and map stuff
 const d3 = require('d3')
-const map = load('components/graphs/durhambgs2-map/mapcartogram')
+const map = load('components/graphs/durhambgs4-map/mapcartogram')
 
 // Menu and tooltip stuff
 import {
@@ -63,7 +63,7 @@ import {
 const tooltip = load('mixins/tooltip')
 
 // Data stuff
-const PROPSALESCOMPASS_DATA_PATH = 'http://127.0.0.1:8000/api/propsales/?format=json'
+const PROPSALESCOMPASS_DATA_PATH = 'http://127.0.0.1:8000/api/propsales17/?format=json'
 
 function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -107,7 +107,9 @@ export default {
         {label: 'Median Sale Price for Single Family Homes', value: 'mediansp'},
         {label: 'Total Sales for Single Family Homes', value: 'totsp'},
         {label: 'Number of Single Family Homes Sold', value: 'nums'},
-        {label: 'Median Home Income', value: 'mhi'}
+        {label: 'Median Home Income in 2016', value: 'mhi'},
+        {label: 'Median Gross Rent as Percent of Houshold Income in 2016', value: 'mgr_phi'},
+        {label: 'Median Monthly Owner Cost as Percent of Houshold Income in 2016', value: 'mmoc_phi'}
       ],
       pushSelect: _.take(this.select)
     }
@@ -116,31 +118,37 @@ export default {
     currentDurhambgDescription: function () {
       var desc
       if (this.select.value === 'pir') {
-        desc = 'Price Income Ratio of Single Family Homes between 2013 and 2014: ' + this.currentDurhambg.pir
+        desc = 'Price Income Ratio of Single Family Homes between 2015 and 2017: ' + this.currentDurhambg.pir
       }
       else if (this.select.value === 'ns') {
-        desc = '# of Single Family Homes sold between 2013 and 2014: ' + this.currentDurhambg.ns
+        desc = '# of Single Family Homes sold between 2015 and 2017: ' + this.currentDurhambg.ns
       }
       else if (this.select.value === 'meansp') {
-        desc = 'Mean Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.meansp)
+        desc = 'Mean Sale Price of Single Family Homes between 2015 and 2017: $' + numberWithCommas(this.currentDurhambg.meansp)
       }
       else if (this.select.value === 'minsp') {
-        desc = 'Min Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.minsp)
+        desc = 'Min Sale Price of Single Family Homes between 2015 and 2017: $' + numberWithCommas(this.currentDurhambg.minsp)
       }
       else if (this.select.value === 'maxsp') {
-        desc = 'Max Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.maxsp)
+        desc = 'Max Sale Price of Single Family Homes between 2015 and 2017: $' + numberWithCommas(this.currentDurhambg.maxsp)
       }
       else if (this.select.value === 'mediansp') {
-        desc = 'Median Sale Price of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.mediansp)
+        desc = 'Median Sale Price of Single Family Homes between 2015 and 2017: $' + numberWithCommas(this.currentDurhambg.mediansp)
       }
       else if (this.select.value === 'totsp') {
-        desc = 'Total sales of Single Family Homes between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.totsp)
+        desc = 'Total sales of Single Family Homes between 2015 and 2017: $' + numberWithCommas(this.currentDurhambg.totsp)
       }
       else if (this.select.value === 'nums') {
-        desc = 'Number of Single Family Homes Sold between 2013 and 2014: ' + numberWithCommas(this.currentDurhambg.nums)
+        desc = 'Number of Single Family Homes Sold between 2015 and 2017: ' + numberWithCommas(this.currentDurhambg.nums)
       }
       else if (this.select.value === 'mhi') {
-        desc = 'Median Home Income between 2013 and 2014: $' + numberWithCommas(this.currentDurhambg.mhi)
+        desc = 'Median Home Income in 2016: $' + numberWithCommas(this.currentDurhambg.mhi)
+      }
+      else if (this.select.value === 'mgr_phi') {
+        desc = 'Median Gross Rent as Percent of Houshold Income in 2016: %' + numberWithCommas(this.currentDurhambg.mgr_phi)
+      }
+      else if (this.select.value === 'mmoc_phi') {
+        desc = 'Median Monthly Owner Cost as Percent of Houshold Income in 2016: %' + numberWithCommas(this.currentDurhambg.mmoc_phi)
       }
       return desc
     },

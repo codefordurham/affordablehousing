@@ -123,7 +123,7 @@ export default {
       mounthis.topology = topology
       mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
 
-      d3.json('http://127.0.0.1:8000/api/propsales/?format=json', function (data) {
+      d3.json('http://127.0.0.1:8000/api/propsales17/?format=json', function (data) {
         dataById = d3.nest()
           .key(function (d) { return d.id })
           .rollup(function (d) { return d[0] })
@@ -272,6 +272,12 @@ export default {
       }
       else if (propval[0] === 'mhi') {
         propvalmax = 150000.0
+      }
+      else if (propval[0] === 'mgr_phi') {
+        propvalmax = 50.0
+      }
+      else if (propval[0] === 'mmoc_phi') {
+        propvalmax = 37.5
       }
 
       let values = this.durhambgs.data()

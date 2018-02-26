@@ -123,7 +123,7 @@ export default {
       mounthis.topology = topology
       mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
 
-      d3.json('http://127.0.0.1:8000/api/propsales/?format=json', function (data) {
+      d3.json('http://127.0.0.1:8000/api/singfamhouse17/?format=json', function (data) {
         dataById = d3.nest()
           .key(function (d) { return d.id })
           .rollup(function (d) { return d[0] })
@@ -155,13 +155,13 @@ export default {
             return d.id
           })
 
-        let value = function (d) { return +d.properties['pir'] }
+        let value = function (d) { return +d.properties['prc_sfno'] }
 
         let values = mounthis.durhambgs.data()
             .map(value)
             .sort(d3.ascending),
           lo = values[0],
-          hi = 10.0 // values[values.length - 1]
+          hi = 20.0 // values[values.length - 1]
 
         let colorScale = d3.scaleLinear()
           // .domain([lo, d3.mean(values), hi])
@@ -173,7 +173,7 @@ export default {
           .duration(750)
           .ease(d3.easeLinear)
           .attr('fill', function (d) {
-            if (isNaN(d.properties['pir'])) {
+            if (isNaN(d.properties['prc_sfno'])) {
               return '#fff'
             }
             else {
@@ -237,41 +237,40 @@ export default {
   watch: {
     // Retrieve new property value from select in index.html
     propval: function (newPropVal) {
-      this.changePropVal(newPropVal)
+      if (newPropVal[0].type === 'bgs') {
+        this.changeBgsPropVal(newPropVal)
+      }
     }
   },
   methods: {
     // Change block groups property value
-    changePropVal: function (propval) {
+    changeBgsPropVal: function (propval) {
       let value = function (d) {
-        return +d.properties[propval[0]]
+        return +d.properties[propval[0].value]
       }
 
       let propvalmax = null
 
-      if (propval[0] === 'pir') {
-        propvalmax = 10.0
+      if (propval[0].value === 'prc_sfno') {
+        propvalmax = 20.0
       }
-      else if (propval[0] === 'meansp') {
-        propvalmax = 521502.0
+      else if (propval[0].value === 'mean_sfno') {
+        propvalmax = 400000.0
       }
-      else if (propval[0] === 'minsp') {
-        propvalmax = 250000.0
+      else if (propval[0].value === 'tot_sfno') {
+        propvalmax = 6000000.0
       }
-      else if (propval[0] === 'maxsp') {
-        propvalmax = 1500000.0
+      else if (propval[0].value === 'num_sfno') {
+        propvalmax = 40.0
       }
-      else if (propval[0] === 'mediansp') {
+      else if (propval[0].value === 'mean_sfoo') {
         propvalmax = 450000.0
       }
-      else if (propval[0] === 'totsp') {
-        propvalmax = 40000000.0
+      else if (propval[0].value === 'tot_sfoo') {
+        propvalmax = 300000000.0
       }
-      else if (propval[0] === 'nums') {
-        propvalmax = 200.0
-      }
-      else if (propval[0] === 'mhi') {
-        propvalmax = 150000.0
+      else if (propval[0].value === 'num_sfoo') {
+        propvalmax = 1000.0
       }
 
       let values = this.durhambgs.data()
@@ -293,7 +292,7 @@ export default {
         .duration(750)
         .ease(d3.easeLinear)
         .attr('fill', function (d) {
-          if (isNaN(d.properties[propval[0]])) {
+          if (isNaN(d.properties[propval[0].value])) {
             return '#fff'
           }
           else {
