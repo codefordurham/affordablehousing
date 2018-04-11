@@ -52,7 +52,7 @@ import { routes } from 'router/graphs'
 
 // d3 and map stuff
 const d3 = require('d3')
-const map = load('components/graphs/durhambgs6-map/mapcartogram')
+const map = load('components/graphs/durhambgs8-map/mapcartogram')
 
 // Menu and tooltip stuff
 import {
@@ -63,7 +63,7 @@ import {
 const tooltip = load('mixins/tooltip')
 
 // Data stuff
-const SINGFAMHOUSE_DATA_PATH = 'http://127.0.0.1:8000/api/singfamhouse17/?format=json'
+const COMPASSRACE_BGS_1314_DATA_PATH = 'http://127.0.0.1:8000/api/compassrace_bgs_1314/?format=json'
 
 function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -83,7 +83,7 @@ export default {
 
     this.durhambgsData = {}
 
-    d3.json(SINGFAMHOUSE_DATA_PATH, function (data) {
+    d3.json(COMPASSRACE_BGS_1314_DATA_PATH, function (data) {
       data.map(function (d) {
         that.propdata = d[that.select.value].split(',').join('')
         d.value = +that.propdata
@@ -98,15 +98,20 @@ export default {
       durhambgsData: undefined,
       propdata: undefined,
       currentDurhambg: undefined,
-      select: {label: 'Percent of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'prc_sfno', type: 'bgs'},
+      select: {label: 'Population in 2013', value: 'pop_13', type: 'bgs'},
       options: [
-        {label: 'Percent of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'prc_sfno', type: 'bgs'},
-        {label: 'Mean Value of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'mean_sfno', type: 'bgs'},
-        {label: 'Total Value of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'tot_sfno', type: 'bgs'},
-        {label: 'Number of Non-Owner Occupied Single Family Homes by BlockGroup', value: 'num_sfno', type: 'bgs'},
-        {label: 'Mean Value of Owner Occupied Single Family Homes by BlockGroup', value: 'mean_sfoo', type: 'bgs'},
-        {label: 'Total Value of Owner Occupied Single Family Homes by BlockGroup', value: 'tot_sfoo', type: 'bgs'},
-        {label: 'Number of Owner Occupied Single Family Homes by BlockGroup', value: 'num_sfoo', type: 'bgs'}
+        {label: 'Population in 2013', value: 'pop_13', type: 'bgs'},
+        {label: 'Population in 2014', value: 'pop_14', type: 'bgs'},
+        {label: 'Percent White Non-Hispanic in 2013', value: 'ptwhnl_13', type: 'bgs'},
+        {label: 'Percent White Non-Hispanic in 2014', value: 'ptwhnl_14', type: 'bgs'},
+        {label: 'Percent Black Non-Hispanic in 2013', value: 'ptblknl_13', type: 'bgs'},
+        {label: 'Percent Black Non-Hispanic in 2014', value: 'ptblknl_14', type: 'bgs'},
+        {label: 'Percent Asian Non-Hispanic in 2013', value: 'ptasnl_13', type: 'bgs'},
+        {label: 'Percent Asian Non-Hispanic in 2014', value: 'ptasnl_14', type: 'bgs'},
+        {label: 'Percent Other Non-Hispanic in 2013', value: 'ptothnl_13', type: 'bgs'},
+        {label: 'Percent Other Non-Hispanic in 2014', value: 'ptothnl_14', type: 'bgs'},
+        {label: 'Percent Hispanic in 2013', value: 'ptlat_13', type: 'bgs'},
+        {label: 'Percent Hispanic in 2014', value: 'ptlat_14', type: 'bgs'}
       ],
       pushSelect: _.take(this.select)
     }
@@ -114,26 +119,41 @@ export default {
   computed: {
     currentDurhambgDescription: function () {
       var desc
-      if (this.select.value === 'prc_sfno' && this.select.type === 'bgs') {
-        desc = '% of Single Family Homes Not Occupied by Owner: ' + this.currentDurhambg.prc_sfno
+      if (this.select.value === 'pop_13' && this.select.type === 'bgs') {
+        desc = 'Population: ' + numberWithCommas(this.currentDurhambg.pop_13)
       }
-      else if (this.select.value === 'num_sfoo' && this.select.type === 'bgs') {
-        desc = '# of Single Family Homes Occupied by Owner: ' + this.currentDurhambg.num_sfoo
+      else if (this.select.value === 'pop_14' && this.select.type === 'bgs') {
+        desc = 'Population: ' + numberWithCommas(this.currentDurhambg.pop_14)
       }
-      else if (this.select.value === 'mean_sfno' && this.select.type === 'bgs') {
-        desc = 'Mean Value of Single Family Homes not Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.mean_sfno)
+      else if (this.select.value === 'ptwhnl_13' && this.select.type === 'bgs') {
+        desc = 'Percent White: ' + this.currentDurhambg.ptwhnl_13 + '%'
       }
-      else if (this.select.value === 'tot_sfno' && this.select.type === 'bgs') {
-        desc = 'Total Value of Single Family Homes not Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.tot_sfno)
+      else if (this.select.value === 'ptwhnl_14' && this.select.type === 'bgs') {
+        desc = 'Percent White: ' + this.currentDurhambg.ptwhnl_14 + '%'
       }
-      else if (this.select.value === 'num_sfno' && this.select.type === 'bgs') {
-        desc = '# of Single Family Homes not Occupied by Owner: ' + this.currentDurhambg.num_sfno
+      else if (this.select.value === 'ptblknl_13' && this.select.type === 'bgs') {
+        desc = 'Percent Black: ' + this.currentDurhambg.ptblknl_13 + '%'
       }
-      else if (this.select.value === 'mean_sfoo' && this.select.type === 'bgs') {
-        desc = 'Mean Value of Single Family Homes Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.mean_sfoo)
+      else if (this.select.value === 'ptblknl_14' && this.select.type === 'bgs') {
+        desc = 'Percent Black: ' + this.currentDurhambg.ptblknl_14 + '%'
       }
-      else if (this.select.value === 'tot_sfoo' && this.select.type === 'bgs') {
-        desc = 'Total Value of Single Family Homes Occupied by Owner: $' + numberWithCommas(this.currentDurhambg.tot_sfoo)
+      else if (this.select.value === 'ptasnl_13' && this.select.type === 'bgs') {
+        desc = 'Percent Asian: ' + this.currentDurhambg.ptasnl_13 + '%'
+      }
+      else if (this.select.value === 'ptasnl_14' && this.select.type === 'bgs') {
+        desc = 'Percent Asian: ' + this.currentDurhambg.ptasnl_14 + '%'
+      }
+      else if (this.select.value === 'ptothnl_13' && this.select.type === 'bgs') {
+        desc = 'Percent Other: ' + this.currentDurhambg.ptothnl_13 + '%'
+      }
+      else if (this.select.value === 'ptothnl_14' && this.select.type === 'bgs') {
+        desc = 'Percent Other: ' + this.currentDurhambg.ptothnl_14 + '%'
+      }
+      else if (this.select.value === 'ptlat_13' && this.select.type === 'bgs') {
+        desc = 'Percent Hispanic: ' + this.currentDurhambg.ptlat_13 + '%'
+      }
+      else if (this.select.value === 'ptlat_14' && this.select.type === 'bgs') {
+        desc = 'Percent Hispanic: ' + this.currentDurhambg.ptlat_14 + '%'
       }
       return desc
     },
