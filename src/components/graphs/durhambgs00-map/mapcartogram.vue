@@ -47,7 +47,7 @@ export default {
       cartogram: null,
       topology: null,
       geometries: null,
-      durhambgs: null,
+      durhambgs00: null,
       durhamhds: null,
       roads: null,
       layer: null,
@@ -83,8 +83,8 @@ export default {
     mounthis.cntyboundaries = mounthis.layer.append('g')
       .attr('id', 'cntyboundaries')
       .selectAll('path')
-    mounthis.durhambgs = mounthis.layer.append('g')
-      .attr('id', 'durhambgs')
+    mounthis.durhambgs00 = mounthis.layer.append('g')
+      .attr('id', 'durhambgs00')
       .selectAll('path')
     mounthis.roads = mounthis.layer.append('g')
       .attr('id', 'roads')
@@ -119,18 +119,18 @@ export default {
         .attr('class', 'cntyboundary')
     })
     // Add block group features and fill with property values
-    d3.json('statics/data/durhambgs.topojson', function (topology) {
+    d3.json('statics/data/durhambgs00.topojson', function (topology) {
       mounthis.topology = topology
-      mounthis.geometries = mounthis.topology.objects.durhambgs.geometries
+      mounthis.geometries = mounthis.topology.objects.durhambgs00.geometries
 
-      d3.json('http://127.0.0.1:8000/api/compassrace_bgs_1314/?format=json', function (data) {
+      d3.json('http://127.0.0.1:8000/api/bgs00/?format=json', function (data) {
         dataById = d3.nest()
           .key(function (d) { return d.id })
           .rollup(function (d) { return d[0] })
           .map(data)
 
         mounthis.layer.selectAll('.tooltip')
-          .data(topojson.feature(mounthis.topology, mounthis.topology.objects.durhambgs).features)
+          .data(topojson.feature(mounthis.topology, mounthis.topology.objects.durhambgs00).features)
           .enter()
           .append('path')
           .attr('class', 'tooltip')
@@ -145,19 +145,19 @@ export default {
 
         let features = mounthis.cartogram.features(mounthis.topology, mounthis.geometries)
 
-        mounthis.durhambgs = mounthis.durhambgs
+        mounthis.durhambgs00 = mounthis.durhambgs00
           .data(features)
           .enter()
           .append('path')
           .attr('d', path)
-          .attr('class', 'durhambgs')
+          .attr('class', 'durhambgs00')
           .attr('id', function (d) {
             return d.id
           })
 
-        let value = function (d) { return +d.properties['pop_13'] }
+        let value = function (d) { return +d.properties['pir9800'] }
 
-        let values = mounthis.durhambgs.data()
+        let values = mounthis.durhambgs00.data()
             .map(value)
             .sort(d3.ascending),
           lo = values[0],
@@ -169,11 +169,11 @@ export default {
           .range(['yellow', 'red'])
         // let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
-        mounthis.durhambgs.transition()
+        mounthis.durhambgs00.transition()
           .duration(750)
           .ease(d3.easeLinear)
           .attr('fill', function (d) {
-            if (isNaN(d.properties['pop_13'])) {
+            if (isNaN(d.properties['pir9800'])) {
               return '#fff'
             }
             else {
@@ -212,7 +212,7 @@ export default {
         .attr('visibility', 'hidden')
 
       mounthis.durhamhds
-        .data(geojson.featur)
+        .data(geojson.features)
         .enter()
         .append('text')
         .attr('class', 'durhamhds')
@@ -249,7 +249,7 @@ export default {
         return +d.properties[propval[0].value]
       }
 
-      let values = this.durhambgs.data()
+      let values = this.durhambgs00.data()
           .map(value)
           .filter(function (n) {
             return !isNaN(n)
@@ -264,7 +264,7 @@ export default {
         .range(['yellow', 'red'])
       // let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
-      this.durhambgs.transition()
+      this.durhambgs00.transition()
         .duration(750)
         .ease(d3.easeLinear)
         .attr('fill', function (d) {
@@ -335,7 +335,7 @@ export default {
   stroke: gray;
   fill: none;
 }
-.durhambgs {
+.durhambgs00 {
   opacity: 0.9;
   stroke: #98999b;
 }

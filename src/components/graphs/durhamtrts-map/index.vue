@@ -85,7 +85,8 @@ export default {
 
     d3.json(LTDBACS_DATA_PATH, function (data) {
       data.map(function (d) {
-        that.propdata = d[that.select.value].split(',').join('')
+        that.propdata = d[that.select.value]
+        // .split(',').join('')
         d.value = +that.propdata
         that.durhamtrtsData[d.id] = d
         return d
@@ -101,10 +102,10 @@ export default {
       select: {label: 'Total Population in 1970', value: 'pop70', type: 'trts'},
       options: [
         {label: 'Total Population in 1970', value: 'pop70', type: 'trts'},
-        {label: 'Total White Population in 1970', value: 'white70', type: 'trts'},
-        {label: 'Percent White Population in 1970', value: 'pwhite70', type: 'trts'},
-        {label: 'Total Black Population in 1970', value: 'black70', type: 'trts'},
-        {label: 'Percent Black Population in 1970', value: 'pblack70', type: 'trts'},
+        {label: 'Total White Population in 1970', value: 'nhwht70', type: 'trts'},
+        {label: 'Percent White Population in 1970', value: 'pnhwht70', type: 'trts'},
+        {label: 'Total Black Population in 1970', value: 'nhblk70', type: 'trts'},
+        {label: 'Percent Black Population in 1970', value: 'pnhblk70', type: 'trts'},
         {label: 'Total Asian Population in 1970', value: 'asian70', type: 'trts'},
         {label: 'Percent Asian Population in 1970', value: 'pasian70', type: 'trts'},
         {label: 'Total Hawaiian Population in 1970', value: 'haw70', type: 'trts'},
@@ -326,17 +327,17 @@ export default {
       if (this.select.value === 'pop70' && this.select.type === 'trts') {
         desc = 'Total Population: ' + numberWithCommas(this.currentDurhamtr.pop70)
       }
-      else if (this.select.value === 'white70' && this.select.type === 'trts') {
-        desc = 'Total White Population: ' + numberWithCommas(this.currentDurhamtr.white70)
+      else if (this.select.value === 'nhwht70' && this.select.type === 'trts') {
+        desc = 'Total White Population: ' + numberWithCommas(this.currentDurhamtr.nhwht70)
       }
-      else if (this.select.value === 'pwhite70' && this.select.type === 'trts') {
-        desc = 'Percent White Population: ' + numberWithCommas(this.currentDurhamtr.pwhite70)
+      else if (this.select.value === 'pnhwht70' && this.select.type === 'trts') {
+        desc = 'Percent White Population: ' + numberWithCommas(this.currentDurhamtr.pnhwht70)
       }
-      else if (this.select.value === 'black70' && this.select.type === 'trts') {
-        desc = 'Total Black Population: ' + numberWithCommas(this.currentDurhamtr.black70)
+      else if (this.select.value === 'nhblk70' && this.select.type === 'trts') {
+        desc = 'Total Black Population: ' + numberWithCommas(this.currentDurhamtr.nhblk70)
       }
-      else if (this.select.value === 'pblack70' && this.select.type === 'trts') {
-        desc = 'Percent Black Population: ' + numberWithCommas(this.currentDurhamtr.pblack70)
+      else if (this.select.value === 'pnhblk70' && this.select.type === 'trts') {
+        desc = 'Percent Black Population: ' + numberWithCommas(this.currentDurhamtr.pnhblk70)
       }
       else if (this.select.value === 'asian70' && this.select.type === 'trts') {
         desc = 'Total Asian Population: ' + numberWithCommas(this.currentDurhamtr.asian70)
