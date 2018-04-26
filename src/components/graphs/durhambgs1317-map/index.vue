@@ -110,7 +110,6 @@ export default {
         {label: 'Median Sale Price, for Single Family Homes, between 2013 and 2014', value: 'mediansp1314', type: 'bgs'},
         {label: 'Median Sale Price, for Single Family Homes, between 2013 and 2014, Adjusted to 2017 Dollars', value: 'mediansp1314a17', type: 'bgs'},
         {label: 'Standard Deviation of Sale Price, for Single Family Homes, between 2013 and 2014', value: 'stddevsp1314', type: 'bgs'},
-        {label: 'Standard Deviation of Sale Price, for Single Family Homes, between 2013 and 2014, Adjusted to 2017 Dollars', value: 'stddevsp1314a17', type: 'bgs'},
         {label: 'Total Sale Price, for Single Family Homes, between 2013 and 2014', value: 'totsp1314', type: 'bgs'},
         {label: 'Total Sale Price, for Single Family Homes, between 2013 and 2014, Adjusted to 2017 Dollars', value: 'totsp1314a17', type: 'bgs'},
         {label: 'Number of Homes Sold, for Single Family Homes, between 2013 and 2014', value: 'nums1314', type: 'bgs'},
@@ -203,9 +202,6 @@ export default {
       }
       else if (this.select.value === 'stddevsp1314' && this.select.type === 'bgs') {
         desc = 'Standard Deviation of Sale Price, for Single Family Homes: ' + numberWithCommas(this.currentDurhambg.stddevsp1314)
-      }
-      else if (this.select.value === 'stddevsp1314a17' && this.select.type === 'bgs') {
-        desc = 'Standard Deviation of Sale Price, for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhambg.stddevsp1314a17)
       }
       else if (this.select.value === 'totsp1314' && this.select.type === 'bgs') {
         desc = 'Total Sale Price, for Single Family Homes: ' + numberWithCommas(this.currentDurhambg.totsp1314)

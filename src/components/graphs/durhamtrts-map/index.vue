@@ -268,7 +268,6 @@ export default {
         {label: 'Minimum Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'minsp9800a17', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'maxsp9800a17', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'mediansp9800a17', type: 'trts'},
-        {label: 'Standard Deviation of Sale Price for Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'stddevsp9800a17', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'totsp9800a17', type: 'trts'},
         {label: 'Price Income Ratio between 1998 and 2000, ', value: 'pir9800', type: 'trts'},
         {label: 'Age 25 and Older in 2000', value: 'ag25up00', type: 'trts'},
@@ -326,7 +325,6 @@ export default {
         {label: 'Minimum Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'minsp0709a17', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'maxsp0709a17', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'mediansp0709a17', type: 'trts'},
-        {label: 'Standard Deviation of Sale Price for Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'stddevsp0709a17', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'totsp0709a17', type: 'trts'},
         {label: 'Price Income Ratio between 2007 and 2012, ', value: 'pir0712', type: 'trts'},
         {label: 'Age 25 and Older in 2012', value: 'ag25up12', type: 'trts'},
@@ -402,7 +400,6 @@ export default {
         {label: 'Minimum Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'minsp1517a17', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'maxsp1517a17', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'mediansp1517a17', type: 'trts'},
-        {label: 'Standard Deviation of Sale Price for Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'stddevsp1517a17', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'totsp1517a17', type: 'trts'},
         {label: 'Price Income Ratio between 2015 and 2017', value: 'pir1517', type: 'trts'},
         {label: 'Change in Household Income between 2000 and 2016, Adjusted to 2017 Dollars', value: 'chinc0016a17', type: 'trts'},
@@ -924,9 +921,6 @@ export default {
       else if (this.select.value === 'mediansp9800a17' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp9800a17)
       }
-      else if (this.select.value === 'stddevsp9800a17' && this.select.type === 'trts') {
-        desc = 'Standard Deviation of Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.stddevsp9800a17)
-      }
       else if (this.select.value === 'totsp9800a17' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp9800a17)
       }
@@ -1097,9 +1091,6 @@ export default {
       }
       else if (this.select.value === 'mediansp0709a17' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp0709a17)
-      }
-      else if (this.select.value === 'stddevsp0709a17' && this.select.type === 'trts') {
-        desc = 'Standard Deviation of Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.stddevsp0709a17)
       }
       else if (this.select.value === 'totsp0709a17' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp0709a17)
@@ -1325,9 +1316,6 @@ export default {
       }
       else if (this.select.value === 'mediansp1517a17' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp1517a17)
-      }
-      else if (this.select.value === 'stddevsp1517a17' && this.select.type === 'trts') {
-        desc = 'Standard Deviation of Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.stddevsp1517a17)
       }
       else if (this.select.value === 'totsp1517a17' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp1517a17)
