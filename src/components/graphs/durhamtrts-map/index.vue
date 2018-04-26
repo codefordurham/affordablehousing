@@ -261,12 +261,14 @@ export default {
         {label: 'Minimum Sale Price of Single Family Homes between 1998 and 2000, ', value: 'minsp9800', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 1998 and 2000, ', value: 'maxsp9800', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 1998 and 2000, ', value: 'mediansp9800', type: 'trts'},
+        {label: 'Standard Deviation of Sale Price for Single Family Homes between 1998 and 2000, ', value: 'stddevsp9800', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 1998 and 2000, ', value: 'totsp9800', type: 'trts'},
         {label: 'Number of Homes Sold between 1998 and 2000, ', value: 'nums9800', type: 'trts'},
         {label: 'Mean Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'meansp9800a17', type: 'trts'},
         {label: 'Minimum Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'minsp9800a17', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'maxsp9800a17', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'mediansp9800a17', type: 'trts'},
+        {label: 'Standard Deviation of Sale Price for Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'stddevsp9800a17', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'totsp9800a17', type: 'trts'},
         {label: 'Price Income Ratio between 1998 and 2000, ', value: 'pir9800', type: 'trts'},
         {label: 'Age 25 and Older in 2000', value: 'ag25up00', type: 'trts'},
@@ -317,12 +319,14 @@ export default {
         {label: 'Minimum Sale Price of Single Family Homes between 2007 and 2009, ', value: 'minsp0709', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 2007 and 2009, ', value: 'maxsp0709', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 2007 and 2009, ', value: 'mediansp0709', type: 'trts'},
+        {label: 'Standard Deviation of Sale Price for Single Family Homes between 2007 and 2009, ', value: 'stddevsp0709', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 2007 and 2009, ', value: 'totsp0709', type: 'trts'},
         {label: 'Number of Homes Sold between 2007 and 2009, ', value: 'nums0709', type: 'trts'},
         {label: 'Mean Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'meansp0709a17', type: 'trts'},
         {label: 'Minimum Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'minsp0709a17', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'maxsp0709a17', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'mediansp0709a17', type: 'trts'},
+        {label: 'Standard Deviation of Sale Price for Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'stddevsp0709a17', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'totsp0709a17', type: 'trts'},
         {label: 'Price Income Ratio between 2007 and 2012, ', value: 'pir0712', type: 'trts'},
         {label: 'Age 25 and Older in 2012', value: 'ag25up12', type: 'trts'},
@@ -352,7 +356,7 @@ export default {
         {label: 'Percent Hispanic Population in 2016', value: 'phisp16', type: 'trts'},
         {label: 'Percent Change in White&apos;s between 2000 and 2016, ', value: 'pcnhwht0016', type: 'trts'},
         {label: 'Percent Change in Black&apos;s between 2000 and 2016, ', value: 'pcnhblk0016', type: 'trts'},
-        {label: 'Percent Change in Asians&apos;s between 2000 and 2016, ', value: 'pcasian0016', type: 'trts'},
+        {label: 'Percent Change in Asian&apos;s between 2000 and 2016, ', value: 'pcasian0016', type: 'trts'},
         {label: 'Percent Change in Hispanic&apos;s between 2000 and 2016, ', value: 'pchisp0016', type: 'trts'},
         {label: 'Total Housing Units in 2016', value: 'hu16', type: 'trts'},
         {label: 'Total Occupied Housing in 2016', value: 'ohu16', type: 'trts'},
@@ -367,6 +371,8 @@ export default {
         {label: 'Median Rent in 2016', value: 'mrent16', type: 'trts'},
         {label: 'Median Home Value in 2016, Adjusted to 2017 Dollars', value: 'mhmval16a17', type: 'trts'},
         {label: 'Median Rent in 2016, Adjusted to 2017 Dollars', value: 'mrent16a17', type: 'trts'},
+        {label: 'Change in Median Home Value between 2000 and 2016, Adjusted to 2017 Dollars', value: 'cmhmval0016a17', type: 'trts'},
+        {label: 'Change in Median Rent between 2000 and 2016, Adjusted to 2017 Dollars', value: 'cmrent0016a17', type: 'trts'},
         {label: 'Median Household Income in 2016', value: 'hinc16', type: 'trts'},
         {label: 'Median Household Income in 2016, Adjusted to 2017 Dollars', value: 'hinc16a17', type: 'trts'},
         {label: 'Median Household Income for Whites in 2016', value: 'hincw16', type: 'trts'},
@@ -389,19 +395,27 @@ export default {
         {label: 'Minimum Sale Price of Single Family Homes between 2015 and 2017', value: 'minsp1517', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 2015 and 2017', value: 'maxsp1517', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 2015 and 2017', value: 'mediansp1517', type: 'trts'},
+        {label: 'Standard Deviation of Sale Price for Single Family Homes between 2015 and 2017', value: 'stddevsp1517', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 2015 and 2017', value: 'totsp1517', type: 'trts'},
         {label: 'Number of Homes Sold between 2015 and 2017', value: 'nums1517', type: 'trts'},
         {label: 'Mean Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'meansp1517a17', type: 'trts'},
         {label: 'Minimum Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'minsp1517a17', type: 'trts'},
         {label: 'Maximum Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'maxsp1517a17', type: 'trts'},
         {label: 'Median Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'mediansp1517a17', type: 'trts'},
+        {label: 'Standard Deviation of Sale Price for Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'stddevsp1517a17', type: 'trts'},
         {label: 'Total Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'totsp1517a17', type: 'trts'},
         {label: 'Price Income Ratio between 2015 and 2017', value: 'pir1517', type: 'trts'},
+        {label: 'Change in Household Income between 2000 and 2016, Adjusted to 2017 Dollars', value: 'chinc0016a17', type: 'trts'},
+        {label: 'Change in Household Income for White&apos;s between 2000 and 2016, Adjusted to 2017 Dollars', value: 'chincw0016a17', type: 'trts'},
+        {label: 'Change in Household Income for Black&apos;s between 2000 and 2016, Adjusted to 2017 Dollars', value: 'chincb0016a17', type: 'trts'},
+        {label: 'Change in Household Income for Asian&apos;s between 2000 and 2016, Adjusted to 2017 Dollars', value: 'chinca0016a17', type: 'trts'},
+        {label: 'Change in Household Income for Hispanic&apos;s between 2000 and 2016, Adjusted to 2017 Dollars', value: 'chinch0016a17', type: 'trts'},
         {label: 'Age 25 and Older in 2016', value: 'ag25up16', type: 'trts'},
         {label: 'Number of Male College Graduates in 2016', value: 'colm16', type: 'trts'},
         {label: 'Number of Female College Graduates in 2016', value: 'colf16', type: 'trts'},
         {label: 'Number of College Graduates in 2016', value: 'col16', type: 'trts'},
-        {label: 'Percent College Graduates in 2016', value: 'pcol16', type: 'trts'}
+        {label: 'Percent College Graduates in 2016', value: 'pcol16', type: 'trts'},
+        {label: 'Percent Change in College Graduates between 2000 and 2016, ', value: 'pccol0016', type: 'trts'}
       ],
       pushSelect: _.take(this.select)
     }
@@ -889,6 +903,9 @@ export default {
       else if (this.select.value === 'mediansp9800' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.mediansp9800)
       }
+      else if (this.select.value === 'stddevsp9800' && this.select.type === 'trts') {
+        desc = 'Standard Deviation of Sale Price for Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.stddevsp9800)
+      }
       else if (this.select.value === 'totsp9800' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.totsp9800)
       }
@@ -906,6 +923,9 @@ export default {
       }
       else if (this.select.value === 'mediansp9800a17' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp9800a17)
+      }
+      else if (this.select.value === 'stddevsp9800a17' && this.select.type === 'trts') {
+        desc = 'Standard Deviation of Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.stddevsp9800a17)
       }
       else if (this.select.value === 'totsp9800a17' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp9800a17)
@@ -1057,6 +1077,9 @@ export default {
       else if (this.select.value === 'mediansp0709' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.mediansp0709)
       }
+      else if (this.select.value === 'stddevsp0709' && this.select.type === 'trts') {
+        desc = 'Standard Deviation of Sale Price for Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.stddevsp0709)
+      }
       else if (this.select.value === 'totsp0709' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.totsp0709)
       }
@@ -1074,6 +1097,9 @@ export default {
       }
       else if (this.select.value === 'mediansp0709a17' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp0709a17)
+      }
+      else if (this.select.value === 'stddevsp0709a17' && this.select.type === 'trts') {
+        desc = 'Standard Deviation of Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.stddevsp0709a17)
       }
       else if (this.select.value === 'totsp0709a17' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp0709a17)
@@ -1163,7 +1189,7 @@ export default {
         desc = 'Percent Change in Black&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcnhblk0016)
       }
       else if (this.select.value === 'pcasian0016' && this.select.type === 'trts') {
-        desc = 'Percent Change in Asians&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcasian0016)
+        desc = 'Percent Change in Asian&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcasian0016)
       }
       else if (this.select.value === 'pchisp0016' && this.select.type === 'trts') {
         desc = 'Percent Change in Hispanic&apos;s: ' + numberWithCommas(this.currentDurhamtr.pchisp0016)
@@ -1206,6 +1232,12 @@ export default {
       }
       else if (this.select.value === 'mrent16a17' && this.select.type === 'trts') {
         desc = 'Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent16a17)
+      }
+      else if (this.select.value === 'cmhmval0016a17' && this.select.type === 'trts') {
+        desc = 'Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmhmval0016a17)
+      }
+      else if (this.select.value === 'cmrent0016a17' && this.select.type === 'trts') {
+        desc = 'Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent0016a17)
       }
       else if (this.select.value === 'hinc16' && this.select.type === 'trts') {
         desc = 'Median Household Income: ' + numberWithCommas(this.currentDurhamtr.hinc16)
@@ -1273,6 +1305,9 @@ export default {
       else if (this.select.value === 'mediansp1517' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes, ' + numberWithCommas(this.currentDurhamtr.mediansp1517)
       }
+      else if (this.select.value === 'stddevsp1517' && this.select.type === 'trts') {
+        desc = 'Standard Deviation of Sale Price for Single Family Homes, ' + numberWithCommas(this.currentDurhamtr.stddevsp1517)
+      }
       else if (this.select.value === 'totsp1517' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes, ' + numberWithCommas(this.currentDurhamtr.totsp1517)
       }
@@ -1291,11 +1326,29 @@ export default {
       else if (this.select.value === 'mediansp1517a17' && this.select.type === 'trts') {
         desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp1517a17)
       }
+      else if (this.select.value === 'stddevsp1517a17' && this.select.type === 'trts') {
+        desc = 'Standard Deviation of Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.stddevsp1517a17)
+      }
       else if (this.select.value === 'totsp1517a17' && this.select.type === 'trts') {
         desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp1517a17)
       }
       else if (this.select.value === 'pir1517' && this.select.type === 'trts') {
         desc = 'Price Income Ratio, ' + numberWithCommas(this.currentDurhamtr.pir1517)
+      }
+      else if (this.select.value === 'chinc0016a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chinc0016a17)
+      }
+      else if (this.select.value === 'chincw0016a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for White&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chincw0016a17)
+      }
+      else if (this.select.value === 'chincb0016a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for Black&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chincb0016a17)
+      }
+      else if (this.select.value === 'chinca0016a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for Asian&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chinca0016a17)
+      }
+      else if (this.select.value === 'chinch0016a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for Hispanic&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chinch0016a17)
       }
       else if (this.select.value === 'ag25up16' && this.select.type === 'trts') {
         desc = 'Age 25 and Older: ' + numberWithCommas(this.currentDurhamtr.ag25up16)
@@ -1311,6 +1364,9 @@ export default {
       }
       else if (this.select.value === 'pcol16' && this.select.type === 'trts') {
         desc = 'Percent College Graduates: ' + numberWithCommas(this.currentDurhamtr.pcol16)
+      }
+      else if (this.select.value === 'pccol0016' && this.select.type === 'trts') {
+        desc = 'Percent Change in College Graduates: ' + numberWithCommas(this.currentDurhamtr.pccol0016)
       }
       return desc
     },
