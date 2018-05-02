@@ -40,6 +40,9 @@ $ npm install
 # serve with hot reload at localhost:8080
 $ quasar dev
 
+# Or use npm to run dev server
+$ npm run dev
+
 # build for production with minification
 $ quasar build
 
