@@ -174,7 +174,7 @@ export default {
           .ease(d3.easeLinear)
           .attr('fill', function (d) {
             if (isNaN(d.properties['pir9800'])) {
-              return '#fff'
+              return 'transparent'
             }
             else {
               return colorScale(value(d))

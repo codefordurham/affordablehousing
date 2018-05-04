@@ -23,7 +23,7 @@ const d3Cartogram = require('mixins/d3-cartogram')
 const d3Colorbar = require('mixins/d3-colorbar')
 
 // Colors stuff
-// import * as d3Chromatic from 'd3-scale-chromatic'
+import * as d3Chromatic from 'd3-scale-chromatic'
 // const colors = d3Chromatic.schemeRdYlGn[3]
 
 const width = 580
@@ -163,10 +163,11 @@ export default {
           lo = values[0],
           hi = values[values.length - 1]
 
-        let colorScale = d3.scaleLinear()
+        // let colorScale = d3.scaleLinear()
+        let colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
           // .domain([lo, d3.mean(values), hi])
           .domain([lo, hi])
-          .range(['yellow', 'red'])
+          // .range(['yellow', 'red'])
         // let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
         mounthis.durhamtrts.transition()
@@ -255,21 +256,31 @@ export default {
             return !isNaN(n)
           })
           .sort(d3.ascending),
-        lo = values[0],
-        hi = values[values.length - 1]
+        // lo = values[0],
+        // hi = values[values.length - 1]
+        lo = d3.min(values),
+        hi = d3.max(values)
 
-      let colorScale = d3.scaleLinear()
-        // .domain([lo, d3.mean(values), hi])
-        .domain([lo, hi])
-        .range(['yellow', 'red'])
-      // let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
+      if (propval[0].value !== 'pccol0016') {
+        // var colorScale = d3.scaleLinear()
+        var colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
+          .domain([lo, hi])
+          // .range(['yellow', 'red'])
+      }
+      else if (propval[0].value === 'pccol0016') {
+        /* colorScale = d3.scaleLinear()
+          .domain([lo, hi])
+          .range(['lightgray', 'red']) */
+        colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
+          .domain([lo, hi])
+      }
 
       this.durhamtrts.transition()
         .duration(750)
         .ease(d3.easeLinear)
         .attr('fill', function (d) {
           if (isNaN(d.properties[propval[0].value])) {
-            return '#fff'
+            return 'transparent'
           }
           else {
             return colorScale(value(d))
