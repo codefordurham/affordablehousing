@@ -335,6 +335,28 @@ export default {
         {label: 'Civilian Labor Force in 2012', value: 'clf12', type: 'trts'},
         {label: 'Number of Unemployed in 2012', value: 'unemp12', type: 'trts'},
         {label: 'Percent Unempolyment in 2012', value: 'punemp12', type: 'trts'},
+        {label: 'Percent Change in White&apos;s between 2000 and 2010, ', value: 'pcnhwht0010', type: 'trts'},
+        {label: 'Percent Change in Black&apos;s between 2000 and 2010, ', value: 'pcnhblk0010', type: 'trts'},
+        {label: 'Percent Change in Asian&apos;s between 2000 and 2010, ', value: 'pcasian0010', type: 'trts'},
+        {label: 'Percent Change in Hispanic&apos;s between 2000 and 2010, ', value: 'pchisp0010', type: 'trts'},
+        {label: 'Change in Median Home Value between 2000 and 2012, Adjusted to 2017 Dollars', value: 'cmhmval0012a17', type: 'trts'},
+        {label: 'Percent Change in Median Home Value between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pcmhmval0012a17', type: 'trts'},
+        {label: 'Change in Median Rent between 2000 and 2012, Adjusted to 2017 Dollars', value: 'cmrent0012a17', type: 'trts'},
+        {label: 'Percent Change in Median Rent between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pcmrent0012a17', type: 'trts'},
+        {label: 'Change in Household Income between 2000 and 2012, Adjusted to 2017 Dollars', value: 'chinc0012a17', type: 'trts'},
+        {label: 'Change in Household Income for White&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'chincw0012a17', type: 'trts'},
+        {label: 'Change in Household Income for Black&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'chincb0012a17', type: 'trts'},
+        {label: 'Change in Household Income for Asian&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'chinca0012a17', type: 'trts'},
+        {label: 'Change in Household Income for Hispanic&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'chinch0012a17', type: 'trts'},
+        {label: 'Change in Mean Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'cmeansp0009a17', type: 'trts'},
+        {label: 'Change in Median Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'cmediansp0009a17', type: 'trts'},
+        {label: 'Percent Change in Household Income between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pchinc0012a17', type: 'trts'},
+        {label: 'Percent Change in Household Income for White&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pchincw0012a17', type: 'trts'},
+        {label: 'Percent Change in Household Income for Black&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pchincb0012a17', type: 'trts'},
+        {label: 'Percent Change in Household Income for Asian&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pchinca0012a17', type: 'trts'},
+        {label: 'Percent Change in Household Income for Hispanic&apos;s between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pchinch0012a17', type: 'trts'},
+        {label: 'Percent Change in Mean Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'pcmeansp0009a17', type: 'trts'},
+        {label: 'Percent Change in Median Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'pcmediansp0009a17', type: 'trts'},
         {label: 'Total Population in 2016', value: 'pop16', type: 'trts'},
         {label: 'Total White Population in 2016', value: 'nhwht16', type: 'trts'},
         {label: 'Percent White Population in 2016', value: 'pnhwht16', type: 'trts'},
@@ -356,6 +378,10 @@ export default {
         {label: 'Percent Change in Black&apos;s between 2000 and 2016, ', value: 'pcnhblk0016', type: 'trts'},
         {label: 'Percent Change in Asian&apos;s between 2000 and 2016, ', value: 'pcasian0016', type: 'trts'},
         {label: 'Percent Change in Hispanic&apos;s between 2000 and 2016, ', value: 'pchisp0016', type: 'trts'},
+        {label: 'Percent Change in White&apos;s between 2010 and 2016, ', value: 'pcnhwht1016', type: 'trts'},
+        {label: 'Percent Change in Black&apos;s between 2010 and 2016, ', value: 'pcnhblk1016', type: 'trts'},
+        {label: 'Percent Change in Asian&apos;s between 2010 and 2016, ', value: 'pcasian1016', type: 'trts'},
+        {label: 'Percent Change in Hispanic&apos;s between 2010 and 2016, ', value: 'pchisp1016', type: 'trts'},
         {label: 'Total Housing Units in 2016', value: 'hu16', type: 'trts'},
         {label: 'Total Occupied Housing in 2016', value: 'ohu16', type: 'trts'},
         {label: 'Percent Occupied Housing in 2016', value: 'pohu16', type: 'trts'},
@@ -1151,6 +1177,72 @@ export default {
       else if (this.select.value === 'punemp12' && this.select.type === 'trts') {
         desc = 'Percent Unempolyment: ' + numberWithCommas(this.currentDurhamtr.punemp12)
       }
+      else if (this.select.value === 'pcnhwht0010' && this.select.type === 'trts') {
+        desc = 'Percent Change in White&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcnhwht0010)
+      }
+      else if (this.select.value === 'pcnhblk0010' && this.select.type === 'trts') {
+        desc = 'Percent Change in Black&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcnhblk0010)
+      }
+      else if (this.select.value === 'pcasian0010' && this.select.type === 'trts') {
+        desc = 'Percent Change in Asian&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcasian0010)
+      }
+      else if (this.select.value === 'pchisp0010' && this.select.type === 'trts') {
+        desc = 'Percent Change in Hispanic&apos;s: ' + numberWithCommas(this.currentDurhamtr.pchisp0010)
+      }
+      else if (this.select.value === 'cmhmval0012a17' && this.select.type === 'trts') {
+        desc = 'Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmhmval0012a17)
+      }
+      else if (this.select.value === 'pcmhmval0012a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmhmval0012a17)
+      }
+      else if (this.select.value === 'cmrent0012a17' && this.select.type === 'trts') {
+        desc = 'Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent0012a17)
+      }
+      else if (this.select.value === 'pcmrent0012a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmrent0012a17)
+      }
+      else if (this.select.value === 'chinc0012a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chinc0012a17)
+      }
+      else if (this.select.value === 'chincw0012a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for White&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chincw0012a17)
+      }
+      else if (this.select.value === 'chincb0012a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for Black&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chincb0012a17)
+      }
+      else if (this.select.value === 'chinca0012a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for Asian&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chinca0012a17)
+      }
+      else if (this.select.value === 'chinch0012a17' && this.select.type === 'trts') {
+        desc = 'Change in Household Income for Hispanic&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chinch0012a17)
+      }
+      else if (this.select.value === 'cmeansp0009a17' && this.select.type === 'trts') {
+        desc = 'Change in Mean Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmeansp0009a17)
+      }
+      else if (this.select.value === 'cmediansp0009a17' && this.select.type === 'trts') {
+        desc = 'Change in Median Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmediansp0009a17)
+      }
+      else if (this.select.value === 'pchinc0012a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Household Income, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pchinc0012a17)
+      }
+      else if (this.select.value === 'pchincw0012a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Household Income for White&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pchincw0012a17)
+      }
+      else if (this.select.value === 'pchincb0012a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Household Income for Black&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pchincb0012a17)
+      }
+      else if (this.select.value === 'pchinca0012a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Household Income for Asian&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pchinca0012a17)
+      }
+      else if (this.select.value === 'pchinch0012a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Household Income for Hispanic&apos;s, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pchinch0012a17)
+      }
+      else if (this.select.value === 'pcmeansp0009a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Mean Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmeansp0009a17)
+      }
+      else if (this.select.value === 'pcmediansp0009a17' && this.select.type === 'trts') {
+        desc = 'Percent Change in Median Sale Price for Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmediansp0009a17)
+      }
       else if (this.select.value === 'pop16' && this.select.type === 'trts') {
         desc = 'Total Population: ' + numberWithCommas(this.currentDurhamtr.pop16)
       }
@@ -1213,6 +1305,18 @@ export default {
       }
       else if (this.select.value === 'pchisp0016' && this.select.type === 'trts') {
         desc = 'Percent Change in Hispanic&apos;s: ' + numberWithCommas(this.currentDurhamtr.pchisp0016)
+      }
+      else if (this.select.value === 'pcnhwht1016' && this.select.type === 'trts') {
+        desc = 'Percent Change in White&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcnhwht1016)
+      }
+      else if (this.select.value === 'pcnhblk1016' && this.select.type === 'trts') {
+        desc = 'Percent Change in Black&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcnhblk1016)
+      }
+      else if (this.select.value === 'pcasian1016' && this.select.type === 'trts') {
+        desc = 'Percent Change in Asian&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcasian1016)
+      }
+      else if (this.select.value === 'pchisp1016' && this.select.type === 'trts') {
+        desc = 'Percent Change in Hispanic&apos;s: ' + numberWithCommas(this.currentDurhamtr.pchisp1016)
       }
       else if (this.select.value === 'hu16' && this.select.type === 'trts') {
         desc = 'Total Housing Units: ' + numberWithCommas(this.currentDurhamtr.hu16)
