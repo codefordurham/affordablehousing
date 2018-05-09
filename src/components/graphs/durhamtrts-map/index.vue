@@ -335,6 +335,7 @@ export default {
         {label: 'Civilian Labor Force in 2012', value: 'clf12', type: 'trts'},
         {label: 'Number of Unemployed in 2012', value: 'unemp12', type: 'trts'},
         {label: 'Percent Unempolyment in 2012', value: 'punemp12', type: 'trts'},
+        {label: 'Percent Change in College Graduates between 2000 and 2012, ', value: 'pccol0012', type: 'trts'},
         {label: 'Percent Change in White&apos;s between 2000 and 2010, ', value: 'pcnhwht0010', type: 'trts'},
         {label: 'Percent Change in Black&apos;s between 2000 and 2010, ', value: 'pcnhblk0010', type: 'trts'},
         {label: 'Percent Change in Asian&apos;s between 2000 and 2010, ', value: 'pcasian0010', type: 'trts'},
@@ -467,6 +468,7 @@ export default {
         {label: 'Number of Female College Graduates in 2016', value: 'colf16', type: 'trts'},
         {label: 'Number of College Graduates in 2016', value: 'col16', type: 'trts'},
         {label: 'Percent College Graduates in 2016', value: 'pcol16', type: 'trts'},
+        {label: 'Percent Change in College Graduates between 2012 and 2016, ', value: 'pccol1216', type: 'trts'},
         {label: 'Percent Change in College Graduates between 2000 and 2016, ', value: 'pccol0016', type: 'trts'}
       ],
       pushSelect: _.take(this.select)
@@ -1177,6 +1179,9 @@ export default {
       else if (this.select.value === 'punemp12' && this.select.type === 'trts') {
         desc = 'Percent Unempolyment: ' + numberWithCommas(this.currentDurhamtr.punemp12)
       }
+      else if (this.select.value === 'pccol0012' && this.select.type === 'trts') {
+        desc = 'Percent Change in College Graduates: ' + numberWithCommas(this.currentDurhamtr.pccol0012)
+      }
       else if (this.select.value === 'pcnhwht0010' && this.select.type === 'trts') {
         desc = 'Percent Change in White&apos;s: ' + numberWithCommas(this.currentDurhamtr.pcnhwht0010)
       }
@@ -1572,6 +1577,9 @@ export default {
       }
       else if (this.select.value === 'pcol16' && this.select.type === 'trts') {
         desc = 'Percent College Graduates: ' + numberWithCommas(this.currentDurhamtr.pcol16)
+      }
+      else if (this.select.value === 'pccol1216' && this.select.type === 'trts') {
+        desc = 'Percent Change in College Graduates: ' + numberWithCommas(this.currentDurhamtr.pccol1216)
       }
       else if (this.select.value === 'pccol0016' && this.select.type === 'trts') {
         desc = 'Percent Change in College Graduates: ' + numberWithCommas(this.currentDurhamtr.pccol0016)
