@@ -16,7 +16,6 @@
         </q-list>
       </center>
     </div>
-
   </div>
 </template>
 

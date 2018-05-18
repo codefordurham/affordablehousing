@@ -29,15 +29,12 @@ Data:
         v-bind:description='currentDurhamtrDescription'
       />
       <center>
-        <q-select 
-          color='black'
-          background='grey'
-          frame-color='green'
-          separator
-          v-model='select.value'
-          v-bind:options=options
-          v-on:input='newProp'
-        />
+      <q-select 
+        separator
+        v-model='select.value'
+        v-bind:options=setOptions
+        v-on:input='newProp'
+      />
       </center>
     </div>
   </q-layout>
@@ -53,7 +50,9 @@ function load (component) {
 } */
 
 import { routes } from 'router/graphs'
-import { options } from './ltdbacs_trts_vuemapmenu'
+import { options as selectOptions } from './ltdbacs_trts_vuemapmenu'
+/* import setOptions from './ltdbacs_trts_vuevaroptions'
+import { groupOptions } from './ltdbacs_trts_vuegroupoptions' */
 import popupValues from './ltdbacs_trts_vuemappopup'
 
 // d3 and map stuff
@@ -101,7 +100,7 @@ export default {
       propdata: undefined,
       currentDurhamtr: undefined,
       select: {label: 'Total Population in 1970', value: 'pop70', type: 'trts'},
-      options: options,
+      setOptions: selectOptions,
       pushSelect: _.take(this.select)
     }
   },
