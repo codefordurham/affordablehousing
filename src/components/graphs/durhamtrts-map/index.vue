@@ -17,6 +17,24 @@ Data:
     <h6><center>{{ $route.name }}</center></h6>
 
     <div class='holder'>
+      <center>
+      <select v-model="selectgroup.value">
+        <option 
+          v-for="option in groupOptions" 
+          v-bind:value="option.value">
+          {{option.label}}
+        </option>        
+      </select>
+      <br/>
+      <select v-model="selectvariable.value" v-on:input="newVar">
+        <option
+          v-for="option in varOptions"
+          v-bind:value="option.value">
+          {{option.label}}
+        </option>
+      </select>
+      <br/>
+      </center>
       <div class='mapHolder'>
         <durham-map v-bind:propval='pushSelect'
           v-on:durhamtrSelected='onDurhamtrSelected'
@@ -28,14 +46,6 @@ Data:
         v-bind:title='currentDurhamtrTitle'
         v-bind:description='currentDurhamtrDescription'
       />
-      <center>
-      <q-select 
-        separator
-        v-model='select.value'
-        v-bind:options=setOptions
-        v-on:input='newProp'
-      />
-      </center>
     </div>
   </q-layout>
 </template>
@@ -45,14 +55,9 @@ function load (component) {
   return () => import(`src/${component}.vue`)
 }
 
-/* function numberWithCommas (x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-} */
-
 import { routes } from 'router/graphs'
-import { options as selectOptions } from './ltdbacs_trts_vuemapmenu'
-/* import setOptions from './ltdbacs_trts_vuevaroptions'
-import { groupOptions } from './ltdbacs_trts_vuegroupoptions' */
+import setOptions from './ltdbacs_trts_vuevaroptions'
+import { groupOptions } from './ltdbacs_trts_vuegroupoptions'
 import popupValues from './ltdbacs_trts_vuemappopup'
 
 // d3 and map stuff
@@ -85,9 +90,9 @@ export default {
 
     d3.json(LTDBACS_DATA_PATH, function (data) {
       data.map(function (d) {
-        that.propdata = d[that.select.value]
+        that.vardata = d[that.selectvariable.value]
         // .split(',').join('')
-        d.value = +that.propdata
+        d.value = +that.vardata
         that.durhamtrtsData[d.id] = d
         return d
       })
@@ -97,17 +102,19 @@ export default {
     return {
       items: routes,
       durhamtrtsData: undefined,
-      propdata: undefined,
+      vardata: undefined,
       currentDurhamtr: undefined,
-      select: {label: 'Total Population in 1970', value: 'pop70', type: 'trts'},
-      setOptions: selectOptions,
-      pushSelect: _.take(this.select)
+      groupOptions: groupOptions,
+      selectgroup: {label: 'Durhams Demographic Numbers', value: 'democount'},
+      selectvariable: {label: 'Total Population in 1970', value: 'pop70', unit: '#', type: 'trts'},
+      pushSelect: _.take(this.selectvariable)
     }
   },
   computed: {
+    varOptions: setOptions,
     currentDurhamtrDescription: popupValues,
     currentDurhamtrTitle: function () {
-      if (this.select.type === 'trts') {
+      if (this.selectvariable.type === 'trts') {
         return 'GEOID: ' + this.currentDurhamtr.id
       }
     }
@@ -119,13 +126,13 @@ export default {
     onDurhamtrDeselected: function (durhamtrGeoID) {
       this.currentDurhamtr = undefined
     },
-    newProp: function () {
+    newVar: function () {
       if (this.pushSelect.length === 0) {
-        this.pushSelect.push(this.select)
+        this.pushSelect.push(this.selectvariable)
       }
       else if (this.pushSelect.length === 1) {
         this.pushSelect.splice(0, 1)
-        this.pushSelect.push(this.select)
+        this.pushSelect.push(this.selectvariable)
       }
     }
   }
@@ -135,7 +142,7 @@ export default {
 <style scoped>
 .holder {
   position: relative;
-  padding-top: 50px;
+  padding-top: 0px;
   height: 700px;
   width: 580px;
   margin: auto;
