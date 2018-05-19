@@ -1093,11 +1093,29 @@ function popupValues () {
   else if (this.selectvariable.value === 'ag25up16' && this.selectvariable.type === 'trts') {
     desc = 'Age 25 and Older: ' + numberWithCommas(this.currentDurhamtr.ag25up16)
   }
-  else if (this.selectvariable.value === 'colm16' && this.selectvariable.type === 'trts') {
-    desc = 'Number of Male College Graduates: ' + numberWithCommas(this.currentDurhamtr.colm16)
+  else if (this.selectvariable.value === 'batm16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Males with Bachelor Degrees: ' + numberWithCommas(this.currentDurhamtr.batm16)
   }
-  else if (this.selectvariable.value === 'colf16' && this.selectvariable.type === 'trts') {
-    desc = 'Number of Female College Graduates: ' + numberWithCommas(this.currentDurhamtr.colf16)
+  else if (this.selectvariable.value === 'masm16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Males with Mater Degrees: ' + numberWithCommas(this.currentDurhamtr.masm16)
+  }
+  else if (this.selectvariable.value === 'prom16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Males with Professional Degrees: ' + numberWithCommas(this.currentDurhamtr.prom16)
+  }
+  else if (this.selectvariable.value === 'phdm16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Males with a PhD: ' + numberWithCommas(this.currentDurhamtr.phdm16)
+  }
+  else if (this.selectvariable.value === 'batf16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Females with Bachelor Degrees: ' + numberWithCommas(this.currentDurhamtr.batf16)
+  }
+  else if (this.selectvariable.value === 'masf16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Females with Master Degrees: ' + numberWithCommas(this.currentDurhamtr.masf16)
+  }
+  else if (this.selectvariable.value === 'prof16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Females with Professional Degrees: ' + numberWithCommas(this.currentDurhamtr.prof16)
+  }
+  else if (this.selectvariable.value === 'phdf16' && this.selectvariable.type === 'trts') {
+    desc = 'Number of Females with a PhD: ' + numberWithCommas(this.currentDurhamtr.phdf16)
   }
   else if (this.selectvariable.value === 'col16' && this.selectvariable.type === 'trts') {
     desc = 'Number of College Graduates: ' + numberWithCommas(this.currentDurhamtr.col16)

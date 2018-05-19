@@ -367,8 +367,14 @@ function setOptions () {
       {label: 'Number of College Graduates in 2012', value: 'col12', unit: '#', type: 'trts'},
       {label: 'Percent College Graduates in 2012', value: 'pcol12', unit: '%', type: 'trts'},
       {label: 'Percent Change in College Graduates between 2000 and 2012', value: 'pccol0012', unit: '%', type: 'trts'},
-      {label: 'Number of Male College Graduates in 2016', value: 'colm16', unit: '#', type: 'trts'},
-      {label: 'Number of Female College Graduates in 2016', value: 'colf16', unit: '#', type: 'trts'},
+      {label: 'Number of Males with Bachelor Degrees in 2016', value: 'batm16', unit: '#', type: 'trts'},
+      {label: 'Number of Males with Mater Degrees in 2016', value: 'masm16', unit: '#', type: 'trts'},
+      {label: 'Number of Males with Professional Degrees in 2016', value: 'prom16', unit: '#', type: 'trts'},
+      {label: 'Number of Males with a PhD in 2016', value: 'phdm16', unit: '#', type: 'trts'},
+      {label: 'Number of Females with Bachelor Degrees in 2016', value: 'batf16', unit: '#', type: 'trts'},
+      {label: 'Number of Females with Master Degrees in 2016', value: 'masf16', unit: '#', type: 'trts'},
+      {label: 'Number of Females with Professional Degrees in 2016', value: 'prof16', unit: '#', type: 'trts'},
+      {label: 'Number of Females with a PhD in 2016', value: 'phdf16', unit: '#', type: 'trts'},
       {label: 'Number of College Graduates in 2016', value: 'col16', unit: '#', type: 'trts'},
       {label: 'Percent College Graduates in 2016', value: 'pcol16', unit: '%', type: 'trts'},
       {label: 'Percent Change in College Graduates between 2012 and 2016', value: 'pccol1216', unit: '%', type: 'trts'},
@@ -393,4 +399,5 @@ function setOptions () {
   }
   return options
 }
+
 export default setOptions
