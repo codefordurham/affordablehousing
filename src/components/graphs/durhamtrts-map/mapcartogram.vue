@@ -24,7 +24,7 @@ const d3Colorbar = require('mixins/d3-colorbar')
 
 // Colors stuff
 import * as d3Chromatic from 'd3-scale-chromatic'
-// const colors = d3Chromatic.schemeRdYlGn[3]
+import { variableOptions } from './ltdbacs_trts_vuevaroptions'
 
 const width = 580
 const height = 580
@@ -156,19 +156,12 @@ export default {
           })
 
         let value = function (d) { return +d.properties['pop70'] }
-
-        let values = mounthis.durhamtrts.data()
-            .map(value)
-            .sort(d3.ascending),
-          lo = values[0],
-          hi = values[values.length - 1]
+        let lo = 223.11
+        let hi = 5198.12
 
         // let colorScale = d3.scaleLinear()
         let colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
-          // .domain([lo, d3.mean(values), hi])
           .domain([lo, hi])
-          // .range(['yellow', 'red'])
-        // let colorScale = d3.scaleSequential(d3.interpolateCool).domain([lo, hi])
 
         mounthis.durhamtrts.transition()
           .duration(750)
@@ -187,6 +180,7 @@ export default {
           .colorbarV(colorScale, 20, 200)
           .tickValues([lo, lo + tickspace, lo + (tickspace * 2), lo + (tickspace * 3), hi])
         mounthis.colorbar.call(cbV)
+        mounthis.colorbar.append('text').attr('x', 58).attr('y', 105).text('#')
       })
     })
     // Add roads
@@ -238,9 +232,7 @@ export default {
   watch: {
     // Retrieve new property value from select in index.html
     propval: function (newPropVal) {
-      if (newPropVal[0].type === 'trts') {
-        this.changeTrtsPropVal(newPropVal)
-      }
+      this.changeTrtsPropVal(newPropVal)
     }
   },
   methods: {
@@ -249,28 +241,19 @@ export default {
       let value = function (d) {
         return +d.properties[propval[0].value]
       }
-
-      let values = this.durhamtrts.data()
-          .map(value)
-          .filter(function (n) {
-            return !isNaN(n)
-          })
-          .sort(d3.ascending),
-        // lo = values[0],
-        // hi = values[values.length - 1]
-        lo = d3.min(values),
-        hi = d3.max(values)
+      for (var i = 0; i < variableOptions.length; i++) {
+        if (variableOptions[i].value === propval[0].value) {
+          var voptions = variableOptions[i]
+        }
+      }
+      let lo = parseFloat(voptions.lo)
+      let hi = parseFloat(voptions.hi)
 
       if (propval[0].value !== 'pccol0016') {
-        // var colorScale = d3.scaleLinear()
         var colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
           .domain([lo, hi])
-          // .range(['yellow', 'red'])
       }
       else if (propval[0].value === 'pccol0016') {
-        /* colorScale = d3.scaleLinear()
-          .domain([lo, hi])
-          .range(['lightgray', 'red']) */
         colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
           .domain([lo, hi])
       }
@@ -291,6 +274,7 @@ export default {
       this.colorbar = this.layer.append('g')
         .attr('class', 'vertical')
         .attr('transform', 'translate(100, 20)')
+      this.colorbar.append('text').attr('x', 45 + (voptions.hi.length * 3)).attr('y', 105).text(voptions.unit)
       let tickspace = (hi - lo) / 4
       let cbV = d3Colorbar.d3
         .colorbarV(colorScale, 20, 200)

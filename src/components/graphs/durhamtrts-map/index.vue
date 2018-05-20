@@ -33,7 +33,6 @@ Data:
           {{option.label}}
         </option>
       </select>
-      <br/>
       </center>
       <div class='mapHolder'>
         <durham-map v-bind:propval='pushSelect'
@@ -56,31 +55,27 @@ function load (component) {
 }
 
 import { routes } from 'router/graphs'
-import setOptions from './ltdbacs_trts_vuevaroptions'
+import setOptions from './ltdbacs_trts_vuevarmenuoptions'
 import { groupOptions } from './ltdbacs_trts_vuegroupoptions'
 import popupValues from './ltdbacs_trts_vuemappopup'
 
 // d3 and map stuff
 const d3 = require('d3')
 const map = load('components/graphs/durhamtrts-map/mapcartogram')
-
-// Menu and tooltip stuff
-import {
-  QSelect,
-  QLayout
-} from 'quasar'
-
 const tooltip = load('mixins/tooltip')
 
 // Data stuff
 const LTDBACS_DATA_PATH = 'http://127.0.0.1:8000/api/ltdbacs_trts_7016/?format=json'
 var _ = require('lodash')
 
+import {
+  QLayout
+} from 'quasar'
+
 export default {
   components: {
     durhamMap: map,
     tooltip: tooltip,
-    QSelect,
     QLayout
   },
   created: function () {
@@ -91,7 +86,6 @@ export default {
     d3.json(LTDBACS_DATA_PATH, function (data) {
       data.map(function (d) {
         that.vardata = d[that.selectvariable.value]
-        // .split(',').join('')
         d.value = +that.vardata
         that.durhamtrtsData[d.id] = d
         return d
@@ -106,7 +100,7 @@ export default {
       currentDurhamtr: undefined,
       groupOptions: groupOptions,
       selectgroup: {label: 'Durhams Demographic Numbers', value: 'democount'},
-      selectvariable: {label: 'Total Population in 1970', value: 'pop70', unit: '#', type: 'trts'},
+      selectvariable: {label: 'Total Population in 1970', value: 'pop70'},
       pushSelect: _.take(this.selectvariable)
     }
   },
@@ -114,9 +108,7 @@ export default {
     varOptions: setOptions,
     currentDurhamtrDescription: popupValues,
     currentDurhamtrTitle: function () {
-      if (this.selectvariable.type === 'trts') {
-        return 'GEOID: ' + this.currentDurhamtr.id
-      }
+      return 'GEOID: ' + this.currentDurhamtr.id
     }
   },
   methods: {
