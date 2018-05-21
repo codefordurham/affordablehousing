@@ -9,10 +9,10 @@
     var horizontal = 2;
     function colorbar(orient, scale, width, height) {
 
-        var tickValues = scale.domain(),
+        var tickValues = scale.domain().reverse(),
             axisGroup = null;
         var linearScale = d3.scaleLinear()
-            .domain(scale.domain())
+            .domain(scale.domain().reverse())
             .range([0, orient === horizontal ? width : height]);
         var barThickness = orient === horizontal ? height : width;
         var barRange = orient === horizontal ? width : height;
@@ -29,7 +29,7 @@
 
             var interScale = d3.scaleLinear()
                 .domain([0, barRange])
-                .range(scale.domain());
+                .range(scale.domain().reverse());
 
             var bars = context.selectAll("rect")
                 .data(barData)

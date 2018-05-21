@@ -177,7 +177,33 @@ function setOptions () {
       {label: 'Median Home Value in 2000, Adjusted to 2017 Dollars', value: 'mhmval00a17'},
       {label: 'Median Rent in 2000', value: 'mrent00'},
       {label: 'Median Rent in 2000, Adjusted to 2017 Dollars', value: 'mrent00a17'},
-      {label: 'Mean Sale Price of Single Family Homes between 1998 and 2000', value: 'meansp9800'},
+      {label: 'Median Home Value in 2012', value: 'mhmval12'},
+      {label: 'Median Home Value in 2012, Adjusted to 2017 Dollars', value: 'mhmval12a17'},
+      {label: 'Median Rent in 2012', value: 'mrent12'},
+      {label: 'Median Rent in 2012, Adjusted to 2017 Dollars', value: 'mrent12a17'},
+      {label: 'Median Home Value in 2016', value: 'mhmval16'},
+      {label: 'Median Rent in 2016', value: 'mrent16'},
+      {label: 'Median Home Value in 2016, Adjusted to 2017 Dollars', value: 'mhmval16a17'},
+      {label: 'Median Rent in 2016, Adjusted to 2017 Dollars', value: 'mrent16a17'}]
+  }
+  else if (this.selectgroup.value === 'crealvalue') {
+    options = [{label: 'Change in Median Home Value between 2000 and 2012, Adjusted to 2017 Dollars', value: 'cmhmval0012a17'},
+      {label: 'Change in Median Rent between 2000 and 2012, Adjusted to 2017 Dollars', value: 'cmrent0012a17'},
+      {label: 'Change in Median Home Value between 2000 and 2016, Adjusted to 2017 Dollars', value: 'cmhmval0016a17'},
+      {label: 'Change in Median Rent between 2000 and 2016, Adjusted to 2017 Dollars', value: 'cmrent0016a17'},
+      {label: 'Change in Median Home Value between 2012 and 2016, Adjusted to 2017 Dollars', value: 'cmhmval1216a17'},
+      {label: 'Change in Median Rent between 2012 and 2016, Adjusted to 2017 Dollars', value: 'cmrent1216a17'}]
+  }
+  else if (this.selectgroup.value === 'pcrealvalue') {
+    options = [{label: 'Percent Change in Median Home Value between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pcmhmval0012a17'},
+      {label: 'Percent Change in Median Rent between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pcmrent0012a17'},
+      {label: 'Percent Change in Median Home Value between 2000 and 2016, Adjusted to 2017 Dollars', value: 'pcmhmval0016a17'},
+      {label: 'Percent Change in Median Rent between 2000 and 2016, Adjusted to 2017 Dollars', value: 'pcmrent0016a17'},
+      {label: 'Percent Change in Median Home Value between 2012 and 2016, Adjusted to 2017 Dollars', value: 'pcmhmval1216a17'},
+      {label: 'Percent Change in Median Rent between 2012 and 2016, Adjusted to 2017 Dollars', value: 'pcmrent1216a17'}]
+  }
+  else if (this.selectgroup.value === 'realsale') {
+    options = [{label: 'Mean Sale Price of Single Family Homes between 1998 and 2000', value: 'meansp9800'},
       {label: 'Minimum Sale Price of Single Family Homes between 1998 and 2000', value: 'minsp9800'},
       {label: 'Maximum Sale Price of Single Family Homes between 1998 and 2000', value: 'maxsp9800'},
       {label: 'Median Sale Price of Single Family Homes between 1998 and 2000', value: 'mediansp9800'},
@@ -189,10 +215,6 @@ function setOptions () {
       {label: 'Maximum Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'maxsp9800a17'},
       {label: 'Median Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'mediansp9800a17'},
       {label: 'Total Sale Price of Single Family Homes between 1998 and 2000, Adjusted to 2017 Dollars', value: 'totsp9800a17'},
-      {label: 'Median Home Value in 2012', value: 'mhmval12'},
-      {label: 'Median Home Value in 2012, Adjusted to 2017 Dollars', value: 'mhmval12a17'},
-      {label: 'Median Rent in 2012', value: 'mrent12'},
-      {label: 'Median Rent in 2012, Adjusted to 2017 Dollars', value: 'mrent12a17'},
       {label: 'Mean Sale Price of Single Family Homes between 2007 and 2009', value: 'meansp0709'},
       {label: 'Minimum Sale Price of Single Family Homes between 2007 and 2009', value: 'minsp0709'},
       {label: 'Maximum Sale Price of Single Family Homes between 2007 and 2009', value: 'maxsp0709'},
@@ -205,10 +227,6 @@ function setOptions () {
       {label: 'Maximum Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'maxsp0709a17'},
       {label: 'Median Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'mediansp0709a17'},
       {label: 'Total Sale Price of Single Family Homes between 2007 and 2009, Adjusted to 2017 Dollars', value: 'totsp0709a17'},
-      {label: 'Median Home Value in 2016', value: 'mhmval16'},
-      {label: 'Median Rent in 2016', value: 'mrent16'},
-      {label: 'Median Home Value in 2016, Adjusted to 2017 Dollars', value: 'mhmval16a17'},
-      {label: 'Median Rent in 2016, Adjusted to 2017 Dollars', value: 'mrent16a17'},
       {label: 'Mean Sale Price of Single Family Homes between 2015 and 2017', value: 'meansp1517'},
       {label: 'Minimum Sale Price of Single Family Homes between 2015 and 2017', value: 'minsp1517'},
       {label: 'Maximum Sale Price of Single Family Homes between 2015 and 2017', value: 'maxsp1517'},
@@ -222,27 +240,21 @@ function setOptions () {
       {label: 'Median Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'mediansp1517a17'},
       {label: 'Total Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'totsp1517a17'}]
   }
-  else if (this.selectgroup.value === 'crealvalue') {
-    options = [{label: 'Change in Median Home Value between 2000 and 2012, Adjusted to 2017 Dollars', value: 'cmhmval0012a17'},
-      {label: 'Change in Median Rent between 2000 and 2012, Adjusted to 2017 Dollars', value: 'cmrent0012a17'},
-      {label: 'Change in Mean Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'cmeansp0009a17'},
+  else if (this.selectgroup.value === 'crealsale') {
+    options = [{label: 'Change in Mean Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'cmeansp0009a17'},
       {label: 'Change in Median Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'cmediansp0009a17'},
-      {label: 'Change in Median Home Value between 2000 and 2016, Adjusted to 2017 Dollars', value: 'cmhmval0016a17'},
-      {label: 'Change in Median Rent between 2000 and 2016, Adjusted to 2017 Dollars', value: 'cmrent0016a17'},
-      {label: 'Change in Median Home Value between 2012 and 2016, Adjusted to 2017 Dollars', value: 'cmhmval1216a17'},
-      {label: 'Change in Median Rent between 2012 and 2016, Adjusted to 2017 Dollars', value: 'cmrent1216a17'},
       {label: 'Change in Mean Sale Price for Single Family Homes between 2009 and 2017, Adjusted to 2017 Dollars', value: 'cmeansp0917a17'},
       {label: 'Change in Median Sale Price for Single Family Homes between 2009 and 2017, Adjusted to 2017 Dollars', value: 'cmediansp0917a17'},
       {label: 'Change in Mean Sale Price for Single Family Homes between 2000 and 2017, Adjusted to 2017 Dollars', value: 'cmeansp0017a17'},
       {label: 'Change in Median Sale Price for Single Family Homes between 2000 and 2017, Adjusted to 2017 Dollars', value: 'cmediansp0017a17'}]
   }
-  else if (this.selectgroup.value === 'pcrealvalue') {
-    options = [{label: 'Percent Change in Median Home Value between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pcmhmval0012a17'},
-      {label: 'Percent Change in Median Rent between 2000 and 2012, Adjusted to 2017 Dollars', value: 'pcmrent0012a17'},
-      {label: 'Percent Change in Median Home Value between 2000 and 2016, Adjusted to 2017 Dollars', value: 'pcmhmval0016a17'},
-      {label: 'Percent Change in Median Rent between 2000 and 2016, Adjusted to 2017 Dollars', value: 'pcmrent0016a17'},
-      {label: 'Percent Change in Median Home Value between 2012 and 2016, Adjusted to 2017 Dollars', value: 'pcmhmval1216a17'},
-      {label: 'Percent Change in Median Rent between 2012 and 2016, Adjusted to 2017 Dollars', value: 'pcmrent1216a17'}]
+  else if (this.selectgroup.value === 'pcrealsale') {
+    options = [{label: 'Percent Change in Mean Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'pcmeansp0009a17'},
+      {label: 'Percent Change in Median Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'pcmediansp0009a17'},
+      {label: 'Percent Change in Mean Sale Price for Single Family Homes between 2009 and 2017, Adjusted to 2017 Dollars', value: 'pcmeansp0917a17'},
+      {label: 'Percent Change in Median Sale Price for Single Family Homes between 2009 and 2017, Adjusted to 2017 Dollars', value: 'pcmediansp0917a17'},
+      {label: 'Percent Change in Mean Sale Price for Single Family Homes between 2000 and 2017, Adjusted to 2017 Dollars', value: 'pcmeansp0017a17'},
+      {label: 'Percent Change in Median Sale Price for Single Family Homes between 2000 and 2017, Adjusted to 2017 Dollars', value: 'pcmediansp0017a17'}]
   }
   else if (this.selectgroup.value === 'income') {
     options = [{label: 'Median Household Income in 1970', value: 'hinc70'},
