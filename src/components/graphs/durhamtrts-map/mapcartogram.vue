@@ -97,8 +97,8 @@ export default {
       .attr('transform', 'translate(100, 20)')
 
     // Add municiple boundaries
-    d3.json('statics/data/muniboundaries.geojson', function (geojson) {
-      // let geojson = topojson.feature(topology, topology.objects.muniboundaries)
+    d3.json('statics/data/muniboundaries.topojson', function (topology) {
+      let geojson = topojson.feature(topology, topology.objects.muniboundaries)
 
       mounthis.muniboundaries
         .data(geojson.features)
@@ -160,7 +160,7 @@ export default {
         let hi = 5198.12
 
         // let colorScale = d3.scaleLinear()
-        let colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
+        let colorScale = d3.scaleSequential(d3Chromatic.interpolatePuOr)
           .domain([lo, hi])
 
         mounthis.durhamtrts.transition()
@@ -250,11 +250,11 @@ export default {
       let hi = parseFloat(voptions.hi)
 
       if (propval[0].value !== 'pccol0016') {
-        var colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
+        var colorScale = d3.scaleSequential(d3Chromatic.interpolatePuOr)
           .domain([lo, hi])
       }
       else if (propval[0].value === 'pccol0016') {
-        colorScale = d3.scaleSequential(d3Chromatic.interpolateRdYlGn)
+        colorScale = d3.scaleSequential(d3Chromatic.interpolatePuOr)
           .domain([lo, hi])
       }
 
