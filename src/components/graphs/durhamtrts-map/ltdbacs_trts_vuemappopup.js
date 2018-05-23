@@ -1129,6 +1129,36 @@ function popupValues () {
   else if (this.selectvariable.value === 'pccol0016') {
     desc = 'Percent Change in College Graduates: ' + numberWithCommas(this.currentDurhamtr.pccol0016)
   }
+  else if (this.selectvariable.value === 'grprchi12') {
+    desc = 'Gross Rent as Percent of Household Income: ' + numberWithCommas(this.currentDurhamtr.grprchi12)
+  }
+  else if (this.selectvariable.value === 'grprchi16') {
+    desc = 'Gross Rent as Percent of Household Income: ' + numberWithCommas(this.currentDurhamtr.grprchi16)
+  }
+  else if (this.selectvariable.value === 'pcgrprchi1216') {
+    desc = 'Percent Change Gross Rent as Percent of Household Income: ' + numberWithCommas(this.currentDurhamtr.pcgrprchi1216)
+  }
+  else if (this.selectvariable.value === 'mmocphi12') {
+    desc = 'Morgage Monthly Owners Cost as a Percent of Household Income: ' + numberWithCommas(this.currentDurhamtr.mmocphi12)
+  }
+  else if (this.selectvariable.value === 'mmocphiym12') {
+    desc = 'Morgage Monthly Owners Cost as a Percent of Household Income with Morgage: ' + numberWithCommas(this.currentDurhamtr.mmocphiym12)
+  }
+  else if (this.selectvariable.value === 'mmocphinm12') {
+    desc = 'Morgage Monthly Owners Cost as a Percent of Household Income without Morgage: ' + numberWithCommas(this.currentDurhamtr.mmocphinm12)
+  }
+  else if (this.selectvariable.value === 'mmocphi16') {
+    desc = 'Morgage Monthly Owners Cost as a Percent of Household Income: ' + numberWithCommas(this.currentDurhamtr.mmocphi16)
+  }
+  else if (this.selectvariable.value === 'mmocphiym16') {
+    desc = 'Morgage Monthly Owners Cost as a Percent of Household Income with Morgage: ' + numberWithCommas(this.currentDurhamtr.mmocphiym16)
+  }
+  else if (this.selectvariable.value === 'mmocphinm16') {
+    desc = 'Morgage Monthly Owners Cost as a Percent of Household Income without Morgage: ' + numberWithCommas(this.currentDurhamtr.mmocphinm16)
+  }
+  else if (this.selectvariable.value === 'pcmmocphiym1216') {
+    desc = 'Percent Change in Morgage Monthly Owners Cost as a Percent of Household Income with Morgage: ' + numberWithCommas(this.currentDurhamtr.pcmmocphiym1216)
+  }
   return desc
 }
 

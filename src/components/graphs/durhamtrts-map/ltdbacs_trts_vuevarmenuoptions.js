@@ -240,6 +240,18 @@ function setOptions () {
       {label: 'Median Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'mediansp1517a17'},
       {label: 'Total Sale Price of Single Family Homes between 2015 and 2017, Adjusted to 2017 Dollars', value: 'totsp1517a17'}]
   }
+  else if (this.selectgroup.value === 'realcost') {
+    options = [{label: 'Gross Rent as Percent of Household Income in 2012', value: 'grprchi12'},
+      {label: 'Gross Rent as Percent of Household Income in 2016', value: 'grprchi16'},
+      {label: 'Percent Change Gross Rent as Percent of Household Income between 2012 and 2016', value: 'pcgrprchi1216'},
+      {label: 'Morgage Monthly Owners Cost as a Percent of Household Income in 2012', value: 'mmocphi12'},
+      {label: 'Morgage Monthly Owners Cost as a Percent of Household Income with Morgage in 2012', value: 'mmocphiym12'},
+      {label: 'Morgage Monthly Owners Cost as a Percent of Household Income without Morgage in 2012', value: 'mmocphinm12'},
+      {label: 'Morgage Monthly Owners Cost as a Percent of Household Income in 2016', value: 'mmocphi16'},
+      {label: 'Morgage Monthly Owners Cost as a Percent of Household Income with Morgage in 2016', value: 'mmocphiym16'},
+      {label: 'Morgage Monthly Owners Cost as a Percent of Household Income without Morgage in 2016', value: 'mmocphinm16'},
+      {label: 'Percent Change in Morgage Monthly Owners Cost as a Percent of Household Income with Morgage between 2012 and 2016', value: 'pcmmocphiym1216'}]
+  }
   else if (this.selectgroup.value === 'crealsale') {
     options = [{label: 'Change in Mean Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'cmeansp0009a17'},
       {label: 'Change in Median Sale Price for Single Family Homes between 2000 and 2009, Adjusted to 2017 Dollars', value: 'cmediansp0009a17'},

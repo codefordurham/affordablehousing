@@ -8,6 +8,7 @@ export const groupOptions = [
   {label: 'Change in Durhams Housing Values', value: 'crealvalue'},
   {label: 'Percent Change in Durhams Housing Values', value: 'pcrealvalue'},
   {label: 'Durhams Housing Sales', value: 'realsale'},
+  {label: 'Cost of Rent and Morgage as Percent of Houshold Income', value: 'realcost'},
   {label: 'Change in Durhams Housing Sales', value: 'crealsale'},
   {label: 'Percent Change in Durhams Housing Sales', value: 'pcrealsale'},
   {label: 'Incomes in Durham', value: 'income'},
