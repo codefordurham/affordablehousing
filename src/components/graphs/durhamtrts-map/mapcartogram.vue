@@ -108,8 +108,8 @@ export default {
         .attr('class', 'muniboundary')
     })
     // Add county boundaries
-    d3.json('statics/data/cntyboundaries.geojson', function (geojson) {
-      // let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
+    d3.json('statics/data/cntyboundaries.topojson', function (topology) {
+      let geojson = topojson.feature(topology, topology.objects.cntyboundaries)
 
       mounthis.cntyboundaries
         .data(geojson.features)
