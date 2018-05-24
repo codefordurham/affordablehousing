@@ -124,6 +124,7 @@ export default {
       mounthis.geometries = mounthis.topology.objects.durhamtrts10.geometries
 
       d3.json('http://127.0.0.1:8000/api/ltdbacs_trts_7016/?format=json', function (data) {
+      // d3.json('statics/data/ltdbacs7016tr.json', function (data) {
         dataById = d3.nest()
           .key(function (d) { return d.id })
           .rollup(function (d) { return d[0] })
