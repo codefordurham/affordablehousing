@@ -14,37 +14,37 @@ Data:
     view="lHh Lpr fff"
     v-bind:left-class="{'bg-grey-2': true}"
   >
-    <h6><center>{{ $route.name }}</center></h6>
-
     <div class='holder'>
-      <center>
-      <select v-model="selectgroup.value">
-        <option 
-          v-for="option in groupOptions" 
+      <h6>{{ $route.name }}</h6>
+      <select class="select-group" v-model="selectgroup.value">
+        <option v-for="option in groupOptions" 
           v-bind:value="option.value">
           {{option.label}}
         </option>        
       </select>
       <br/>
-      <select v-model="selectvariable.value" v-on:input="newVar">
-        <option
-          v-for="option in varOptions"
+      <select class="select-variable" v-model="selectvariable.value" v-on:input="newVar">
+        <option v-for="option in varOptions"
           v-bind:value="option.value">
           {{option.label}}
         </option>
       </select>
-      </center>
-      <div class='mapHolder'>
-        <durham-map v-bind:propval='pushSelect'
-          v-on:durhamtrSelected='onDurhamtrSelected'
-          v-on:durhamtrDeselected='onDurhamtrDeselected'
-        />
+      <div class="row">
+        <div class="col-9">
+          <div class='mapHolder'>
+            <durham-map v-bind:propval='pushSelect'
+              v-on:durhamtrSelected='onDurhamtrSelected'
+              v-on:durhamtrDeselected='onDurhamtrDeselected'
+            />
+          </div>
+        </div>
+        <div class="col-3">
+          <tooltip v-if='currentDurhamtr'
+            v-bind:title='currentDurhamtrTitle'
+            v-bind:description='currentDurhamtrDescription'
+          />
+        </div>
       </div>
-      <tooltip
-        v-if='currentDurhamtr'
-        v-bind:title='currentDurhamtrTitle'
-        v-bind:description='currentDurhamtrDescription'
-      />
     </div>
   </q-layout>
 </template>
@@ -132,28 +132,81 @@ export default {
 }
 </script>
 
-<style scoped>
-.holder {
-  position: relative;
-  padding-top: 0px;
-  height: 700px;
-  width: 580px;
-  margin: auto;
+<style lang="stylus" scoped>
+@media (min-width: 500px) {
+  .holder {
+    position: relative;
+    padding-top: 10px;
+    height: 700px;
+    width: 580px;
+    margin: auto;
+  }
+}
+@media (max-width: 499px) {
+  .holder {
+    position: relative;
+    padding-top: 40px;
+    height: 700px;
+    width: 580px;
+    margin: auto;
+  }
 }
 .mapHolder {
   position: absolute;
   margin: auto;
 }
 @media (min-width: 600px) {
-  .q-select {
+  .select-group {
     width: 500px;
     bottom: 60px;
   }
-}
-@media (max-width: 599px) {
-  .q-select {
-    width: 300px;
+  .select-variable {
+    width: 500px;
     bottom: 60px;
+    overflow:hidden; 
+    white-space:pre;
+    word-wrap: normal !important;
+    white-space: normal;
+    text-overflow:ellipsis;
+    -webkit-appearance: none;
   }
 }
+@media (max-width: 599px) {
+  .select-group {
+    width: 300px;
+    bottom: 60px;
+    overflow:hidden; 
+    white-space:pre;
+    word-wrap: normal !important;
+    white-space: normal;
+    text-overflow:ellipsis;
+    -webkit-appearance: none;
+  }
+  .select-variable {
+    width: 300px;
+    bottom: 60px;
+    overflow:hidden; 
+    white-space:pre;
+    word-wrap: normal !important;
+    white-space: normal;
+    text-overflow:ellipsis;
+    -webkit-appearance: none;
+  }
+}
+.flex-col-docs
+  .doc-container
+    padding 15px
+  .column > div
+    padding 10px 15px
+    background rgba(86, 61, 124, .15)
+    border 1px solid rgba(86, 61, 124, .2)
+  .column + .column
+    margin-top 1rem
+  .nesting-example
+    .column + .column
+      margin 0
+  .minheight-column .column
+    min-width 5rem
+  .with-bg .column
+    background rgba(255, 0, 0, .1)
 </style>

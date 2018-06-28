@@ -17,18 +17,29 @@ module.exports = {
 </script>
 <style scoped>
 
-#tooltipPositioner {
-  position: relative;
-  left: 57%;
-  top: 400px;
-  width: 250px;
+@media (min-width: 600px) {
+  #tooltipPositioner {
+    position: relative;
+    left: 60%;
+    top: 370px;
+    width: 250px;
+  }
+}
+
+@media (max-width: 599px) {
+  #tooltipPositioner {
+    position: relative;
+    left: -100%;
+    top: 370px;
+    width: 250px;
+  }
 }
 
 #tooltipContainer {
   position: absolute;
   bottom: 0;
   width: 200px;
-  left: 50px;
+  left: 0px;
   bottom: 300px;
   font-size: 12px;
   line-height: 16px;

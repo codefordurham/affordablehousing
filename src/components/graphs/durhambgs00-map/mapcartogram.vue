@@ -160,6 +160,9 @@ export default {
 
         let values = mounthis.durhambgs00.data()
             .map(value)
+            .filter(function (n) {
+              return !isNaN(n)
+            })
             .sort(d3.ascending),
           lo = values[0],
           hi = values[values.length - 1]

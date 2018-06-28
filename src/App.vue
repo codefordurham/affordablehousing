@@ -9,7 +9,7 @@
   >
     <div class="header" slot="header">
       <div class="headimage">
-        <img src="~assets/affordablehousing.png" class="reponsive" >
+        <img src="~assets/affordablehousing.png" alt="Banner" class="banner">
       </div>
       <div class="apptitle" >State of Affordable<br />Housing in Durham</div>
 
@@ -135,28 +135,81 @@ export default {
 }
 </script>
 <style>
-.headimage { 
-   position: relative;
-   height: 190;
-   width: auto;
-   overflow: hidden; 
+@media (min-width: 500px) {
+  .banner {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url(~assets/affordablehousing.png) no-repeat;
+    width: 1456px; /* Width of new image */
+    height: 191px; /* Height of new image */
+  }
+   .headimage {
+      position: relative;
+      height: 190;
+      width: auto;
+      overflow: hidden; 
+   }
+  .apptitle {
+     position: absolute;
+     font: bold 45px Helvetica, Arial, Sans-Serif; 
+     color: whitesmoke;
+     text-shadow:
+       -1px -1px 0 #000,
+       1px -1px 0 #000,
+       -1px 1px 0 #000,
+       1px 1px 0 #000;   
+     letter-spacing: -1px;
+     top: 25px; 
+     left: 40px; 
+     width: 100%;
+     line-height: 100%;
+  }
+  .toolbar { 
+    position: absolute; 
+    top: 150px; 
+    left: 0; 
+    width: 100%; 
+  }
 }
-.apptitle { 
-   position: absolute;
-   font: bold 45px Helvetica, Arial, Sans-Serif; 
-   color: whitesmoke;
-   text-shadow:
-     -1px -1px 0 #000,
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-     1px 1px 0 #000;   
-   letter-spacing: -1px;
-   top: 25px; 
-   left: 40px; 
-   width: 100%;
-   line-height: 100%;
+@media (max-width: 499px) {
+  .banner {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url(~assets/affordablehousingalt.png) no-repeat;
+    width: 1028px; /* Width of new image */
+    height: 132px; /* Height of new image */
+  }
+  .toolbar { 
+    position: absolute; 
+    top: 120px; 
+    left: 0; 
+    width: 100%; 
+  }
+  .headimage { 
+      position: relative;
+      height: 140;
+      width: auto;
+      overflow: hidden; 
+   }
+  .apptitle {
+     position: absolute;
+     font: bold 35px Helvetica, Arial, Sans-Serif; 
+     color: whitesmoke;
+     text-shadow:
+       -1px -1px 0 #000,
+       1px -1px 0 #000,
+       -1px 1px 0 #000,
+       1px 1px 0 #000;   
+     letter-spacing: -1px;
+     top: 25px; 
+     left: 40px; 
+     width: 100%;
+     line-height: 100%;
+  }
 }
-@media (min-width: 900px) {
+@media (min-width: 1050px) {
   .mission { 
     position: absolute;
     font: bold 15px Helvetica, Arial, Sans-Serif;
@@ -173,15 +226,9 @@ export default {
     line-height: 100%;
   }
 }
-@media (max-width: 899px) {
+@media (max-width: 1049px) {
   .mission {
     display: none;
   }
-}
-.toolbar { 
-   position: absolute; 
-   top: 150px; 
-   left: 0; 
-   width: 100%; 
 }
 </style>

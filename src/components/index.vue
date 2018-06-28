@@ -7,14 +7,12 @@
   <div class="layout-padding">
 
     <div class="housing">
-      <center>
         <q-list>
           <q-item v-for="item in items" :key="item.id">
             <q-item-side icon="store" />
             <router-link :to="item.path">{{ item.name }}</router-link>
           </q-item>
         </q-list>
-      </center>
     </div>
   </div>
 </template>

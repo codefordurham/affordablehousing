@@ -12,10 +12,16 @@ Links:
 -->
 
 <template>
-  <svg width='580' height='580'></svg>
+  <svg width='580' height='580' />
 </template>
 
 <script>
+
+// var viewportWidth = document.documentElement.clientWidth
+var width = null
+var height = null
+var centered = null
+
 // Map stuff
 const d3 = require('d3')
 const topojson = require('topojson')
@@ -25,10 +31,6 @@ const d3Colorbar = require('mixins/d3-colorbar')
 // Colors stuff
 import * as d3Chromatic from 'd3-scale-chromatic'
 import { variableOptions } from './ltdbacs_trts_vuevaroptions'
-
-const width = 580
-const height = 580
-var centered
 
 const projection = d3.geoMercator()
   .center([-78.7, 36.05])
@@ -65,17 +67,16 @@ export default {
       })
 
     const svg = d3.select(this.$el)
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height)
-    svg.append('rect')
+    width = svg.node().getBoundingClientRect().width
+    height = width / 2
+
+    svg.append('svg')
       .attr('class', 'background')
       .attr('width', width)
       .attr('height', height)
 
     mounthis.layer = svg.append('g')
       .attr('id', 'layer')
-      // .attr('class', 'key')
       .attr('transform', 'translate(0,40)')
     mounthis.muniboundaries = mounthis.layer.append('g')
       .attr('id', 'muniboundaries')
@@ -157,6 +158,7 @@ export default {
           })
 
         let value = function (d) { return +d.properties['pop70'] }
+
         let lo = 223.11
         let hi = 5198.12
 
@@ -384,6 +386,10 @@ export default {
   fill: rgba(255, 255, 255, 0.0);
 }
 .tooltip:hover {
+  fill: steelblue;
+  fill-opacity: 0.5;
+}
+.tooltip:touch {
   fill: steelblue;
   fill-opacity: 0.5;
 }
