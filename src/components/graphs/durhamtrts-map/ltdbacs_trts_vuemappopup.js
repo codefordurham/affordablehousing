@@ -643,44 +643,44 @@ function popupValues () {
   else if (this.selectvariable.value === 'hinca12a17') {
     desc = 'Median Household Income for Asians, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.hinca12a17)
   }
-  else if (this.selectvariable.value === 'meansp0709') {
-    desc = 'Mean Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.meansp0709)
+  else if (this.selectvariable.value === 'meansp0809') {
+    desc = 'Mean Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.meansp0809)
   }
-  else if (this.selectvariable.value === 'minsp0709') {
-    desc = 'Minimum Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.minsp0709)
+  else if (this.selectvariable.value === 'minsp0809') {
+    desc = 'Minimum Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.minsp0809)
   }
-  else if (this.selectvariable.value === 'maxsp0709') {
-    desc = 'Maximum Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.maxsp0709)
+  else if (this.selectvariable.value === 'maxsp0809') {
+    desc = 'Maximum Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.maxsp0809)
   }
-  else if (this.selectvariable.value === 'mediansp0709') {
-    desc = 'Median Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.mediansp0709)
+  else if (this.selectvariable.value === 'mediansp0809') {
+    desc = 'Median Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.mediansp0809)
   }
-  else if (this.selectvariable.value === 'stddevsp0709') {
-    desc = 'Standard Deviation of Sale Price for Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.stddevsp0709)
+  else if (this.selectvariable.value === 'stddevsp0809') {
+    desc = 'Standard Deviation of Sale Price for Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.stddevsp0809)
   }
-  else if (this.selectvariable.value === 'totsp0709') {
-    desc = 'Total Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.totsp0709)
+  else if (this.selectvariable.value === 'totsp0809') {
+    desc = 'Total Sale Price of Single Family Homes: ' + numberWithCommas(this.currentDurhamtr.totsp0809)
   }
-  else if (this.selectvariable.value === 'nums0709') {
-    desc = 'Number of Homes Sold: ' + numberWithCommas(this.currentDurhamtr.nums0709)
+  else if (this.selectvariable.value === 'nums0809') {
+    desc = 'Number of Homes Sold: ' + numberWithCommas(this.currentDurhamtr.nums0809)
   }
-  else if (this.selectvariable.value === 'meansp0709a17') {
-    desc = 'Mean Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.meansp0709a17)
+  else if (this.selectvariable.value === 'meansp0809a17') {
+    desc = 'Mean Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.meansp0809a17)
   }
-  else if (this.selectvariable.value === 'minsp0709a17') {
-    desc = 'Minimum Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.minsp0709a17)
+  else if (this.selectvariable.value === 'minsp0809a17') {
+    desc = 'Minimum Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.minsp0809a17)
   }
-  else if (this.selectvariable.value === 'maxsp0709a17') {
-    desc = 'Maximum Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.maxsp0709a17)
+  else if (this.selectvariable.value === 'maxsp0809a17') {
+    desc = 'Maximum Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.maxsp0809a17)
   }
-  else if (this.selectvariable.value === 'mediansp0709a17') {
-    desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp0709a17)
+  else if (this.selectvariable.value === 'mediansp0809a17') {
+    desc = 'Median Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mediansp0809a17)
   }
-  else if (this.selectvariable.value === 'totsp0709a17') {
-    desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp0709a17)
+  else if (this.selectvariable.value === 'totsp0809a17') {
+    desc = 'Total Sale Price of Single Family Homes, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.totsp0809a17)
   }
-  else if (this.selectvariable.value === 'pir0712') {
-    desc = 'Price Income Ratio: ' + numberWithCommas(this.currentDurhamtr.pir0712)
+  else if (this.selectvariable.value === 'pir0812') {
+    desc = 'Price Income Ratio: ' + numberWithCommas(this.currentDurhamtr.pir0812)
   }
   else if (this.selectvariable.value === 'ag25up12') {
     desc = 'Age 25 and Older: ' + numberWithCommas(this.currentDurhamtr.ag25up12)
