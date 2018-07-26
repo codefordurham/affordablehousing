@@ -22,7 +22,7 @@ export const routes = [
   {
     id: 3,
     type: 'Durham Map Block Groups 2013 to 2018:',
-    name: 'Housing and Social Data, at US Census Block Groups Level, from 2013 to 2014',
+    name: 'Housing and Social Data, at US Census Block Groups Level, from 2013 to 2018',
     path: '/durhambgs1317-map',
     folder: true,
     component: load('components/graphs/durhambgs1317-map/index')

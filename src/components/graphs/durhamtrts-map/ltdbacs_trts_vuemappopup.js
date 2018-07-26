@@ -826,6 +826,12 @@ function popupValues () {
   else if (this.selectvariable.value === 'phisp16') {
     desc = 'Percent Hispanic Population: ' + numberWithCommas(this.currentDurhamtr.phisp16)
   }
+  else if (this.selectvariable.value === 'cpop0016') {
+    desc = 'Change in Population: ' + numberWithCommas(this.currentDurhamtr.cpop0016)
+  }
+  else if (this.selectvariable.value === 'pcpop0016') {
+    desc = 'Percent Change in Population: ' + numberWithCommas(this.currentDurhamtr.pcpop0016)
+  }
   else if (this.selectvariable.value === 'pcnhwht0016') {
     desc = 'Percent Change in White Population: ' + numberWithCommas(this.currentDurhamtr.pcnhwht0016)
   }
@@ -837,6 +843,12 @@ function popupValues () {
   }
   else if (this.selectvariable.value === 'pchisp0016') {
     desc = 'Percent Change in Hispanic Population: ' + numberWithCommas(this.currentDurhamtr.pchisp0016)
+  }
+  else if (this.selectvariable.value === 'cpop1016') {
+    desc = 'Change in Population: ' + numberWithCommas(this.currentDurhamtr.cpop1016)
+  }
+  else if (this.selectvariable.value === 'pcpop1016') {
+    desc = 'Percent Change in Population: ' + numberWithCommas(this.currentDurhamtr.pcpop1016)
   }
   else if (this.selectvariable.value === 'pcnhwht1016') {
     desc = 'Percent Change in White Population: ' + numberWithCommas(this.currentDurhamtr.pcnhwht1016)

@@ -48,6 +48,8 @@ function setOptions () {
       {label: 'Total Other Population in 2016', value: 'oth16'},
       {label: 'Total Two or More Races Population in 2016', value: 'twomr16'},
       {label: 'Total Hispanic Population in 2016', value: 'hisp16'},
+      {label: 'Change in Population between 2000 and 2016', value: 'cpop0016'},
+      {label: 'Change in Population between 2010 and 2016', value: 'cpop1016'},
       {label: 'Age 25 and Older in 2016', value: 'ag25up16'}]
   }
   else if (this.selectgroup.value === 'demopercent') {
@@ -93,10 +95,12 @@ function setOptions () {
       {label: 'Percent Change in Black Population between 2000 and 2010', value: 'pcnhblk0010'},
       {label: 'Percent Change in Asian Population between 2000 and 2010', value: 'pcasian0010'},
       {label: 'Percent Change in Hispanic Population between 2000 and 2010', value: 'pchisp0010'},
+      {label: 'Percent Change in Population between 2000 and 2016', value: 'pcpop0016'},
       {label: 'Percent Change in White Population between 2000 and 2016', value: 'pcnhwht0016'},
       {label: 'Percent Change in Black Population between 2000 and 2016', value: 'pcnhblk0016'},
       {label: 'Percent Change in Asian Population between 2000 and 2016', value: 'pcasian0016'},
       {label: 'Percent Change in Hispanic Population between 2000 and 2016', value: 'pchisp0016'},
+      {label: 'Percent Change in Population between 2010 and 2016', value: 'pcpop1016'},
       {label: 'Percent Change in White Population between 2010 and 2016', value: 'pcnhwht1016'},
       {label: 'Percent Change in Black Population between 2010 and 2016', value: 'pcnhblk1016'},
       {label: 'Percent Change in Asian Population between 2010 and 2016', value: 'pcasian1016'},
