@@ -53,10 +53,10 @@ function popupValues () {
     desc = 'Percent Owner Occupied Housing: ' + numberWithCommas(this.currentDurhamtr.pown70)
   }
   else if (this.selectvariable.value === 'rent70') {
-    desc = 'Total Rental Housing: ' + numberWithCommas(this.currentDurhamtr.rent70)
+    desc = 'Series([], ): ' + numberWithCommas(this.currentDurhamtr.rent70)
   }
   else if (this.selectvariable.value === 'prent70') {
-    desc = 'Percent Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent70)
+    desc = 'Percent Occupied Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent70)
   }
   else if (this.selectvariable.value === 'mhmval70a17') {
     desc = 'Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mhmval70a17)
@@ -65,10 +65,10 @@ function popupValues () {
     desc = 'Median Home Value: ' + numberWithCommas(this.currentDurhamtr.mhmval70)
   }
   else if (this.selectvariable.value === 'mrent70') {
-    desc = 'Median Rent: ' + numberWithCommas(this.currentDurhamtr.mrent70)
+    desc = 'Median Contract Rent: ' + numberWithCommas(this.currentDurhamtr.mrent70)
   }
   else if (this.selectvariable.value === 'mrent70a17') {
-    desc = 'Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent70a17)
+    desc = 'Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent70a17)
   }
   else if (this.selectvariable.value === 'hinc70') {
     desc = 'Median Household Income: ' + numberWithCommas(this.currentDurhamtr.hinc70)
@@ -161,10 +161,10 @@ function popupValues () {
     desc = 'Percent Owner Occupied Housing: ' + numberWithCommas(this.currentDurhamtr.pown80)
   }
   else if (this.selectvariable.value === 'rent80') {
-    desc = 'Total Rental Housing: ' + numberWithCommas(this.currentDurhamtr.rent80)
+    desc = 'Series([], ): ' + numberWithCommas(this.currentDurhamtr.rent80)
   }
   else if (this.selectvariable.value === 'prent80') {
-    desc = 'Percent Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent80)
+    desc = 'Percent Occupied Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent80)
   }
   else if (this.selectvariable.value === 'mhmval80') {
     desc = 'Median Home Value: ' + numberWithCommas(this.currentDurhamtr.mhmval80)
@@ -173,10 +173,10 @@ function popupValues () {
     desc = 'Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mhmval80a17)
   }
   else if (this.selectvariable.value === 'mrent80') {
-    desc = 'Median Rent: ' + numberWithCommas(this.currentDurhamtr.mrent80)
+    desc = 'Median Contract Rent: ' + numberWithCommas(this.currentDurhamtr.mrent80)
   }
   else if (this.selectvariable.value === 'mrent80a17') {
-    desc = 'Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent80a17)
+    desc = 'Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent80a17)
   }
   else if (this.selectvariable.value === 'hinc80') {
     desc = 'Median Household Income: ' + numberWithCommas(this.currentDurhamtr.hinc80)
@@ -293,10 +293,10 @@ function popupValues () {
     desc = 'Percent Owner Occupied Housing: ' + numberWithCommas(this.currentDurhamtr.pown90)
   }
   else if (this.selectvariable.value === 'rent90') {
-    desc = 'Total Rental Housing: ' + numberWithCommas(this.currentDurhamtr.rent90)
+    desc = 'Series([], ): ' + numberWithCommas(this.currentDurhamtr.rent90)
   }
   else if (this.selectvariable.value === 'prent90') {
-    desc = 'Percent Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent90)
+    desc = 'Percent Occupied Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent90)
   }
   else if (this.selectvariable.value === 'mhmval90') {
     desc = 'Median Home Value: ' + numberWithCommas(this.currentDurhamtr.mhmval90)
@@ -305,10 +305,10 @@ function popupValues () {
     desc = 'Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mhmval90a17)
   }
   else if (this.selectvariable.value === 'mrent90') {
-    desc = 'Median Rent: ' + numberWithCommas(this.currentDurhamtr.mrent90)
+    desc = 'Median Contract Rent: ' + numberWithCommas(this.currentDurhamtr.mrent90)
   }
   else if (this.selectvariable.value === 'mrent90a17') {
-    desc = 'Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent90a17)
+    desc = 'Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent90a17)
   }
   else if (this.selectvariable.value === 'hinc90') {
     desc = 'Median Household Income: ' + numberWithCommas(this.currentDurhamtr.hinc90)
@@ -425,10 +425,10 @@ function popupValues () {
     desc = 'Percent Owner Occupied Housing: ' + numberWithCommas(this.currentDurhamtr.pown00)
   }
   else if (this.selectvariable.value === 'rent00') {
-    desc = 'Total Rental Housing: ' + numberWithCommas(this.currentDurhamtr.rent00)
+    desc = 'Series([], ): ' + numberWithCommas(this.currentDurhamtr.rent00)
   }
   else if (this.selectvariable.value === 'prent00') {
-    desc = 'Percent Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent00)
+    desc = 'Percent Occupied Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent00)
   }
   else if (this.selectvariable.value === 'mhmval00') {
     desc = 'Median Home Value: ' + numberWithCommas(this.currentDurhamtr.mhmval00)
@@ -437,10 +437,10 @@ function popupValues () {
     desc = 'Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mhmval00a17)
   }
   else if (this.selectvariable.value === 'mrent00') {
-    desc = 'Median Rent: ' + numberWithCommas(this.currentDurhamtr.mrent00)
+    desc = 'Median Contract Rent: ' + numberWithCommas(this.currentDurhamtr.mrent00)
   }
   else if (this.selectvariable.value === 'mrent00a17') {
-    desc = 'Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent00a17)
+    desc = 'Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent00a17)
   }
   else if (this.selectvariable.value === 'hinc00') {
     desc = 'Median Household Income: ' + numberWithCommas(this.currentDurhamtr.hinc00)
@@ -596,10 +596,10 @@ function popupValues () {
     desc = 'Percent Owner Occupied Housing: ' + numberWithCommas(this.currentDurhamtr.pown10)
   }
   else if (this.selectvariable.value === 'rent10') {
-    desc = 'Total Rental Housing: ' + numberWithCommas(this.currentDurhamtr.rent10)
+    desc = 'Series([], ): ' + numberWithCommas(this.currentDurhamtr.rent10)
   }
   else if (this.selectvariable.value === 'prent10') {
-    desc = 'Percent Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent10)
+    desc = 'Percent Occupied Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent10)
   }
   else if (this.selectvariable.value === 'mhmval12') {
     desc = 'Median Home Value: ' + numberWithCommas(this.currentDurhamtr.mhmval12)
@@ -608,10 +608,16 @@ function popupValues () {
     desc = 'Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mhmval12a17)
   }
   else if (this.selectvariable.value === 'mrent12') {
-    desc = 'Median Rent: ' + numberWithCommas(this.currentDurhamtr.mrent12)
+    desc = 'Median Contract Rent: ' + numberWithCommas(this.currentDurhamtr.mrent12)
   }
   else if (this.selectvariable.value === 'mrent12a17') {
-    desc = 'Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent12a17)
+    desc = 'Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent12a17)
+  }
+  else if (this.selectvariable.value === 'mgrent12') {
+    desc = 'Median Gross Rent: ' + numberWithCommas(this.currentDurhamtr.mgrent12)
+  }
+  else if (this.selectvariable.value === 'mgrent12a17') {
+    desc = 'Median Gross Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mgrent12a17)
   }
   else if (this.selectvariable.value === 'hinc12') {
     desc = 'Median Household Income: ' + numberWithCommas(this.currentDurhamtr.hinc12)
@@ -728,10 +734,10 @@ function popupValues () {
     desc = 'Percent Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmhmval0012a17)
   }
   else if (this.selectvariable.value === 'cmrent0012a17') {
-    desc = 'Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent0012a17)
+    desc = 'Change in Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent0012a17)
   }
   else if (this.selectvariable.value === 'pcmrent0012a17') {
-    desc = 'Percent Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmrent0012a17)
+    desc = 'Percent Change in Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmrent0012a17)
   }
   else if (this.selectvariable.value === 'chinc0012a17') {
     desc = 'Change in Household Income, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.chinc0012a17)
@@ -883,23 +889,29 @@ function popupValues () {
   else if (this.selectvariable.value === 'pown16') {
     desc = 'Percent Owner Occupied Housing: ' + numberWithCommas(this.currentDurhamtr.pown16)
   }
-  else if (this.selectvariable.value === 'rent16') {
-    desc = 'Total Rental Housing: ' + numberWithCommas(this.currentDurhamtr.rent16)
+  else if (this.selectvariable.value === 'rentoc16') {
+    desc = 'Total Occupied Rental Housing: ' + numberWithCommas(this.currentDurhamtr.rentoc16)
   }
-  else if (this.selectvariable.value === 'prent16') {
-    desc = 'Percent Rental Housing: ' + numberWithCommas(this.currentDurhamtr.prent16)
+  else if (this.selectvariable.value === 'prentoc16') {
+    desc = 'Series([], ): ' + numberWithCommas(this.currentDurhamtr.prentoc16)
   }
   else if (this.selectvariable.value === 'mhmval16') {
     desc = 'Median Home Value: ' + numberWithCommas(this.currentDurhamtr.mhmval16)
   }
+  else if (this.selectvariable.value === 'mgrent16') {
+    desc = 'Median Gross Rent: ' + numberWithCommas(this.currentDurhamtr.mgrent16)
+  }
   else if (this.selectvariable.value === 'mrent16') {
-    desc = 'Median Rent: ' + numberWithCommas(this.currentDurhamtr.mrent16)
+    desc = 'Median Contract Rent: ' + numberWithCommas(this.currentDurhamtr.mrent16)
   }
   else if (this.selectvariable.value === 'mhmval16a17') {
     desc = 'Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mhmval16a17)
   }
+  else if (this.selectvariable.value === 'mgrent16a17') {
+    desc = 'Median Gross Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mgrent16a17)
+  }
   else if (this.selectvariable.value === 'mrent16a17') {
-    desc = 'Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent16a17)
+    desc = 'Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.mrent16a17)
   }
   else if (this.selectvariable.value === 'cmhmval0016a17') {
     desc = 'Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmhmval0016a17)
@@ -908,10 +920,10 @@ function popupValues () {
     desc = 'Percent Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmhmval0016a17)
   }
   else if (this.selectvariable.value === 'cmrent0016a17') {
-    desc = 'Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent0016a17)
+    desc = 'Change in Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent0016a17)
   }
   else if (this.selectvariable.value === 'pcmrent0016a17') {
-    desc = 'Percent Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmrent0016a17)
+    desc = 'Percent Change in Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmrent0016a17)
   }
   else if (this.selectvariable.value === 'cmhmval1216a17') {
     desc = 'Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmhmval1216a17)
@@ -920,10 +932,16 @@ function popupValues () {
     desc = 'Percent Change in Median Home Value, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmhmval1216a17)
   }
   else if (this.selectvariable.value === 'cmrent1216a17') {
-    desc = 'Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent1216a17)
+    desc = 'Change in Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmrent1216a17)
   }
   else if (this.selectvariable.value === 'pcmrent1216a17') {
-    desc = 'Percent Change in Median Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmrent1216a17)
+    desc = 'Percent Change in Median Contract Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmrent1216a17)
+  }
+  else if (this.selectvariable.value === 'cmgrent1216a17') {
+    desc = 'Change in Median Gross Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.cmgrent1216a17)
+  }
+  else if (this.selectvariable.value === 'pcmgrent1216a17') {
+    desc = 'Percent Change in Median Gross Rent, Adjusted to 2017 Dollars: ' + numberWithCommas(this.currentDurhamtr.pcmgrent1216a17)
   }
   else if (this.selectvariable.value === 'hinc16') {
     desc = 'Median Household Income: ' + numberWithCommas(this.currentDurhamtr.hinc16)
