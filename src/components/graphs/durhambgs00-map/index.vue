@@ -63,8 +63,8 @@ import {
 const tooltip = load('mixins/tooltip')
 
 // Data stuff
-const DATA_PATH = 'http://127.0.0.1:8000/api/bgs9800/?format=json'
-// const DATA_PATH = 'statics/data/bgs9800.json'
+// const DATA_PATH = 'http://127.0.0.1:8000/api/bgs9800/?format=json'
+const DATA_PATH = 'statics/data/bgs9800.json'
 
 function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')

@@ -21,7 +21,17 @@ and the <a href="http://compass.durhamnc.gov/">Durham Neighborhood Compass</a>.
 
 Additional information on how to process these data sets go to the <a href="https://github.com/codefordurham/datahub-dw">datahub data wrangling GitHub repository</a>.
 
-This application is currently configured to access data through a <a href="http://www.django-rest-framework.org/">Django Rest Framework (DRF)</a>. For more information on how to setup and running the DRF for this project, go to the <a href="https://github.com/codefordurham/datahub-be">datahub-be GitHub repository</a>.
+This application is currently configured to access data in this Apps statics directory. However, you can also set it up to access the data through a <a href="http://www.django-rest-framework.org/">Django Rest Framework (DRF)</a>. For more information on how to setup and running the DRF for this project, go to the <a href="https://github.com/codefordurham/datahub-be">datahub-be GitHub repository</a>. You will also need to uncomment the sections in the following files: 
+
+* src/components/graphs/durhambgs00-map/index.vue
+* src/components/graphs/durhambgs1317-map/index.vue
+* src/components/graphs/durhamtrts-map/index.vue
+* src/components/graphs/durhambgs00-map/mapcartogram.vue
+* src/components/graphs/durhambgs1317-map/mapcartogram.vue
+* src/components/graphs/durhamtrts-map/mapcartogram.vue
+
+that include reference to URL http://127.0.0.1:8000/api/ and then comment out the reference to statics/data/ 
+below it.
 
 Along with Vue, this application also utilizes the <a href="http://quasar-framework.org/">Quasar Framework</a>. 
 Further information on how to run setup and run a Quasar project is listed below.

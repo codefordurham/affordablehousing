@@ -65,8 +65,8 @@ const map = load('components/graphs/durhamtrts-map/mapcartogram')
 const tooltip = load('mixins/tooltip')
 
 // Data stuff
-const LTDBACS_DATA_PATH = 'http://127.0.0.1:8000/api/ltdbacs_trts_7016/?format=json'
-// const LTDBACS_DATA_PATH = 'statics/data/ltdbacs7016tr.json'
+// const LTDBACS_DATA_PATH = 'http://127.0.0.1:8000/api/ltdbacs_trts_7016/?format=json'
+const LTDBACS_DATA_PATH = 'statics/data/ltdbacs7016tr.json'
 var _ = require('lodash')
 
 import {

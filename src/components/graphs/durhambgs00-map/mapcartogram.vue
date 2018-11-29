@@ -123,8 +123,8 @@ export default {
       mounthis.topology = topology
       mounthis.geometries = mounthis.topology.objects.durhambgs00.geometries
 
-      d3.json('http://127.0.0.1:8000/api/bgs9800/?format=json', function (data) {
-      // d3.json('statics/data/bgs9800.json', function (data) {
+      // d3.json('http://127.0.0.1:8000/api/bgs9800/?format=json', function (data) {
+      d3.json('statics/data/bgs9800.json', function (data) {
         dataById = d3.nest()
           .key(function (d) { return d.id })
           .rollup(function (d) { return d[0] })
